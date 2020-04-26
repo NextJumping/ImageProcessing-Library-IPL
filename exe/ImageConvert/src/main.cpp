@@ -11,4 +11,11 @@ int main(int argc, char * argv[]){
 	}
 	std::string fromFileName = argv[1];
 	std::string toFileName   = argv[2];
-	Image::Image<Pixel::PixelRGBf8> image = Image::IO::r
+	Image::Image<Pixel::PixelRGBf8> image = Image::IO::read<Pixel::PixelRGBf8>(nullptr,fromFileName);
+	if(image.getHeight()==0){
+		std::cout<<"Error Reading File - received image of zero height"<<std::endl;
+	}else{
+		Image::IO::write(image,toFileName);
+	}
+	return 1;
+}
