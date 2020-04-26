@@ -18,4 +18,12 @@ int main(int argc, char *argv[]) {
 	Video::FFMPEGvideoFile ffmpegFile(&dataManager);
   
 	if(ffmpegFile.openFile(fileName)==false){
-		std::cout<<"Error 
+		std::cout<<"Error opening movie file"<<std::endl;
+		return -1;
+	}
+	Image::Image<Pixel::PixelRGBi1u> image;
+	while(ffmpegFile.hasNextFrame(image)==true) {
+		Image::IO::write(image,"frame"+String::getString(ffmpegFile.getFrameIndex(),6)+"." + fileType);
+	}
+	return 0;
+}
