@@ -9,4 +9,6 @@
 		<ClCompile>
 			<AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 		</ClCompile>
-	<
+	</ItemDefinitionGroup>
+	<ItemGroup />
+</Project>
