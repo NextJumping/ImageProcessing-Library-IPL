@@ -5,4 +5,15 @@
 	<Import Project="$(IPL)\lib\AML_ffmpeg\AML_ffmpeg.props" Condition=" '$(AML_FFMPEG_PROPS)' == '' " />
 	<Import Project="$(IPL)\lib\AVL_Qt\AVL_Qt.props" Condition=" '$(AVL_QT_PROPS)' == '' " />
 	<Import Project="$(IPL)\lib\AML_Qt\AML_Qt.props" Condition=" '$(AML_QT_PROPS)' == '' " />
-	<Import Project="$(I
+	<Import Project="$(IPL)\lib\AIL_Qt\AIL_Qt.props" Condition=" '$(AIL_QT_PROPS)' == '' " />
+	<Import Project="$(IPL)\lib\AIL\AIL.props" Condition=" '$(AIL_PROPS)' == '' " />
+	<PropertyGroup Label="UserMacros">
+		<MEDIA_PLAYER_PROPS>true</MEDIA_PLAYER_PROPS>
+	</PropertyGroup>
+	<ItemDefinitionGroup>
+		<ClCompile>
+			<AdditionalIncludeDirectories>$(IPL)/MediaPlayer/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+		</ClCompile>
+	</ItemDefinitionGroup>
+	<ItemGroup />
+</Project>
