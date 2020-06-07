@@ -181,4 +181,15 @@
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(I
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
+copy $(QTDIR)\lib\QtCored4.dll $(IPL)\export\$(Platform)-$(Configuration)\QtCored4.dll /Y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-DLL|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>UNICODE;WIN32;QT_LARGEFILE_SUPPORT;QT_CORE_LIB;BUILD_DLL;QT_GUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Optimization>Disabled</Optimization>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(QTDIR)\include;.\Gen
