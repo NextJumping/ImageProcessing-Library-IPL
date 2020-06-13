@@ -227,4 +227,15 @@ copy $(QTDIR)\lib\QtCored4.dll $(IPL)\export\$(Platform)-$(Configuration)\QtCore
       <AdditionalLibraryDirectories>$(CURL_DIR)/lib/Debug;$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>mkdir $(IPL)\export\$(Platform)-$(Configur
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
+copy $(QTDIR)\lib\QtCored4.dll $(IPL)\export\$(Platform)-$(Configuration)\QtCored4.dll /Y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-DLL|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>UNICODE;WIN32;_DEBUG;QT_LARGEFILE_SUPPORT;QT_CORE_LIB;BUILD_DLL;QT_GUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(
