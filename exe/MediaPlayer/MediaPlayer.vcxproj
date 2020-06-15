@@ -249,4 +249,16 @@ copy $(QTDIR)\lib\QtCored4.dll $(IPL)\export\$(Platform)-$(Configuration)\QtCore
     </Link>
     <PostBuildEvent>
       <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
-copy $(TargetPath) $(IPL)
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
+copy $(QTDIR)\lib\QtCored4.dll $(IPL)\export\$(Platform)-$(Configuration)\QtCored4.dll /Y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>UNICODE;WIN32;QT_LARGEFILE_SUPPORT;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      
