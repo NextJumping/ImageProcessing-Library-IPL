@@ -365,4 +365,19 @@ copy $(QTDIR)\lib\QtCore4.dll $(IPL)\export\$(Platform)-$(Configuration)\QtCore4
       <Project>{8f538276-06ad-498e-b1f3-d789ba7e9300}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\lib\AML_ffmpeg\AML_ffmpeg.vcxproj">
-      <Project>{9
+      <Project>{98e5dffd-dd87-4059-a6dc-67605a87d2d9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\AML_Qt\AML_Qt.vcxproj">
+      <Project>{5ee9a45c-b94c-4883-9a3e-f18ecd0499a2}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\AVL\AVL.vcxproj">
+      <Project>{830c7521-7800-4877-ac29-686d38dea25a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\AVL_Qt\AVL_Qt.vcxproj">
+      <Project>{a50c0db6-8146-44cf-a1b2-0250eb7d5b2c}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\MediaPlayer.h">
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
+      <Message Condition="'$(
