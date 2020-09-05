@@ -430,4 +430,12 @@ copy $(QTDIR)\lib\QtCore4.dll $(IPL)\export\$(Platform)-$(Configuration)\QtCore4
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug-DLL|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release-DLL|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release
+    <ClCompile Include="GeneratedFiles\Release-DLL\moc_MediaPlayer.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug-DLL|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug-DLL|Win32'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Generat
