@@ -17,4 +17,26 @@
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Debug-DLL">
-      <UniqueIdentifier>{C5DF0DF9-740D-4733-A4F3-C077532ABFBB}</UniqueIdentifi
+      <UniqueIdentifier>{C5DF0DF9-740D-4733-A4F3-C077532ABFBB}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release-DLL">
+      <UniqueIdentifier>{4587D18D-ECD0-4003-B373-19E2AC8B69C3}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{71AEDF4D-FBBE-48DB-98FF-66A5C74F0C2E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{8C5BF4BF-2559-4260-AED9-ADAA7A71662E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="src\MediaPlayer.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClC
