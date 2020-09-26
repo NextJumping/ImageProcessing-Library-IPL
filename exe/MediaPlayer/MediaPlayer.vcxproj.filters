@@ -2,4 +2,19 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Generated Files">
-      <UniqueIdentifier>{F2E04B90-F6EA-479D-9CEF-969CF
+      <UniqueIdentifier>{F2E04B90-F6EA-479D-9CEF-969CF92AAE75}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{8DCB1B95-C1B3-4BA9-9BBA-7FEF1DDE3D4B}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{0D0240D8-C46F-4FB0-9509-FC4985C196D7}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug-DLL">
+      <UniqueIdentifier>{C5DF0DF9-740D-4733-A4F3-C077532ABFBB}</UniqueIdentifi
