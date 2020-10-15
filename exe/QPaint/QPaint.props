@@ -7,4 +7,7 @@
 	<Import Project="$(IPL)\lib\AIL_IO\AIL_IO.props" Condition=" '$(AIL_IO_PROPS)' == '' " />
 	<PropertyGroup Label="UserMacros">
 		<QPAINT_PROPS>true</QPAINT_PROPS>
-	</PropertyGr
+	</PropertyGroup>
+	<ItemDefinitionGroup />
+	<ItemGroup />
+</Project>
