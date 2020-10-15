@@ -46,3 +46,64 @@ MediaPlayer::MediaPlayer(Data::DataManager * const _dataManager)
 	QBoxLayout * layout = new QVBoxLayout;
 	layout->addWidget(videoWidget);
 	layout->addLayout(controlLayout);
+
+	createActions();
+	createMenus();
+
+	auto window = new QWidget;
+	window->setLayout(layout);
+	setCentralWidget(window);
+
+	setWindowTitle(tr("Media Player"));
+	resize(600, 600);
+	
+}
+
+void MediaPlayer::sliderChanged(int sliderIndex){
+}
+void MediaPlayer::sliderPressed(){
+	mediaControl->pause();
+}
+void MediaPlayer::sliderReleased(){
+	mediaControl->seek(positionSlider->sliderPosition());
+	mediaControl->play();
+}
+void MediaPlayer::durationFramesChanged(I8u durationFrames){
+	positionSlider->setRange(0, durationFrames);
+}
+void MediaPlayer::frameChanged(I8u frameIndex){
+	emit setSlider(frameIndex);
+}
+void MediaPlayer::playPause(){
+	mediaControl->playPause();
+}
+void MediaPlayer::open(){
+	QString fileName = QFileDialog::getOpenFileName(this,tr("Open File"), QDir::currentPath());
+	if(fileName.isEmpty()==true){return;}
+	mediaControl->open(fileName.toStdString(),true);
+	playPauseButton->setEnabled(true);
+}
+
+void MediaPlayer::exit(){
+	mediaControl->quit();
+	emit close();
+}
+
+void MediaPlayer::createActions(){
+	openAct = new QAction(tr("&Open"), this);
+	openAct->setShortcut(tr("Ctrl+O"));
+	connect(openAct, SIGNAL(triggered()), this, SLOT(open()));
+
+	exitAct = new QAction(tr("E&xit"), this);
+	exitAct->setShortcut(tr("Ctrl+Q"));
+	connect(exitAct, SIGNAL(triggered()), this, SLOT(exit()));
+
+}
+
+void MediaPlayer::createMenus(){
+	fileMenu = new QMenu(tr("&File"), this);
+	fileMenu->addAction(openAct);
+	fileMenu->addAction(exitAct);
+
+	menuBar()->addMenu(fileMenu);
+}
