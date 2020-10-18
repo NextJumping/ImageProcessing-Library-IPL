@@ -67,4 +67,20 @@
     </ClCompile>
     <ClCompile Include="src\MorphologicalDialog.cpp">
       <Filter>Source Files</Filter>
-    </ClCompil
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Debug-DLL\moc_ImageWindow.cpp">
+      <Filter>Generated Files\Debug-DLL_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Debug-DLL\moc_ImageWindow.cpp">
+      <Filter>Generated Files\Debug-DLL_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Debug\moc_ImageWindow.cpp">
+      <Filter>Generated Files\Debug_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Debug\moc_ImageWindow.cpp">
+      <Filter>Generated Files\Debug_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Release-DLL\moc_ImageWindow.cpp">
+      <Filter>Generated Files\Release-DLL_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x6
