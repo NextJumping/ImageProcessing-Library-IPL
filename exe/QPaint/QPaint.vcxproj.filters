@@ -98,4 +98,20 @@
     <ClCompile Include="GeneratedFiles\x64-Debug-DLL\moc_MorphologicalDialog.cpp">
       <Filter>Generated Files\Debug-DLL_x64</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Win32-Debug\moc_MorphologicalDialog.cpp"
+    <ClCompile Include="GeneratedFiles\Win32-Debug\moc_MorphologicalDialog.cpp">
+      <Filter>Generated Files\Debug_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Debug\moc_MorphologicalDialog.cpp">
+      <Filter>Generated Files\Debug_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Release-DLL\moc_MorphologicalDialog.cpp">
+      <Filter>Generated Files\Release-DLL_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Release-DLL\moc_MorphologicalDialog.cpp">
+      <Filter>Generated Files\Release-DLL_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Release\moc_MorphologicalDialog.cpp">
+      <Filter>Generated Files\Release_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Release\moc_MorphologicalDialog.cpp">
+      <Filt
