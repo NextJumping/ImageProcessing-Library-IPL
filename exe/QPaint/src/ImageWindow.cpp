@@ -175,3 +175,263 @@ void ImageWindow::negative(){
 	//(*wImage)+= wImage->getMaxValueVol();
 	clock_t endTime = clock();
 	std::string diffTime = getString(endTime-startTime);
+
+	QMessageBox::about(this, tr("Time (cycles)"),
+		tr(diffTime.c_str())
+	);
+	imageLabel->setPixmap(QPixmap::fromImage(Image::Convert::toQt(*wImage)));
+}
+// --- MorphologicalDialog ---														//MorphologicalDialog
+void ImageWindow::openMorphologicalDialog(){
+	if(wImage==nullptr){return;}
+
+	MorphologicalDialog dialog(dataManager,wImage);
+	if(dialog.exec()){
+		switch(dialog.operatorChoice){
+			/*case 0: Image::dilate(wImage);    break;
+			case 1:	Image::erode(wImage);     break;
+			case 2:	Image::open(wImage);      break;
+			case 3:	Image::close(wImage);     break;
+			case 4:	Image::topHat(wImage);    break;
+			case 5:	Image::bottomHat(wImage); break;//*/
+			default:                          break;
+		}	
+
+		//imageLabel->setPixmap(QPixmap::fromImage(wImage->castAsQImage()));
+	}
+
+}
+
+// --- Open Command ---														// Open File
+void ImageWindow::open(){
+
+	QString fileName = QFileDialog::getOpenFileName(this,tr("Open File"), QDir::currentPath());
+	if(fileName.isEmpty()==true){return;}
+
+	wImage = new Image::Image<PixelType>(Image::IO::read<PixelType>(dataManager,fileName.toStdString()));
+
+	imageLabel->setPixmap(QPixmap::fromImage(Image::Convert::toQt(*wImage)));
+
+	scaleFactor = 1.0;
+
+	fitToWindowAct->setEnabled(true);
+	saveAct       ->setEnabled(true);
+	printAct      ->setEnabled(true);
+
+	negativeAct   ->setEnabled(true);
+	blurAct       ->setEnabled(true);
+	morphologicalDialogAct->setEnabled(true);
+
+	updateActions();
+
+	if(fitToWindowAct->isChecked()==false){imageLabel->adjustSize();}
+	scrollArea->resize(wImage->getWidth()*20, wImage->getHeight()*20);
+	resize(wImage->getWidth()+3, wImage->getHeight()+25);
+
+}
+
+// --- Save Command ---
+void ImageWindow::save(){
+
+	QString filePathName = QFileDialog::getSaveFileName(this,tr("Save File"), QDir::currentPath(), tr("Images (*.png *.jpg *.bmp *.tiff)"));
+	if (filePathName.isEmpty()==true) {return;}
+	
+	Image::IO::write(*wImage,filePathName.toStdString());
+	
+}
+
+// --- Print Command ---
+void ImageWindow::print(){
+	QPrintDialog printDialog(&printer, this);
+	if (printDialog.exec()){
+		QPainter painter(&printer);
+		QRect rect = painter.viewport();
+
+		QSize size = imageLabel->size();
+		size.scale(rect.size(), Qt::KeepAspectRatio);
+		painter.setViewport(rect.x(), rect.y(), size.width(), size.height());
+		painter.setWindow(imageLabel->pixmap()->rect());
+
+		painter.drawPixmap(0,0,*imageLabel->pixmap());
+	}
+}
+
+// --- Zooms ---															//Zooms
+void ImageWindow::zoomIn(){scaleImage(1.25);}
+void ImageWindow::zoomOut(){scaleImage(0.8);}
+
+// Scale Image																// Scale Image
+void ImageWindow::scaleImage(double factor){
+	Q_ASSERT(imageLabel->pixmap());
+	scaleFactor *= factor;
+	imageLabel->resize(scaleFactor * imageLabel->pixmap()->size());
+
+	adjustScrollBar(scrollArea->horizontalScrollBar(), factor);
+	adjustScrollBar(scrollArea->verticalScrollBar(), factor);
+
+	zoomInAct->setEnabled(scaleFactor < 5.0);
+	zoomOutAct->setEnabled(scaleFactor > 0.2);
+}
+
+// --- Normal Size ---
+void ImageWindow::normalSize(){
+	imageLabel->adjustSize();
+	scaleFactor = 1.0;
+}
+
+// --- Exit ---
+void ImageWindow::exit(){
+	emit close();
+}
+
+// --- Fit to Window ---
+ void ImageWindow::fitToWindow(){
+	bool fitToWindow = fitToWindowAct->isChecked();
+	scrollArea->setWidgetResizable(fitToWindow);
+	if (fitToWindow==false) {normalSize();}
+	updateActions();
+}
+
+// --- About ---
+void ImageWindow::about(){
+	QMessageBox::about(this, tr("About Image Viewer"),
+			tr("<p>I am Blurb!</p>"));
+}
+
+// --- Actions ---
+void ImageWindow::createActions(){
+	openAct = new QAction(tr("&Open..."), this);
+	openAct->setShortcut(tr("Ctrl+O"));
+	connect(openAct, SIGNAL(triggered()), this, SLOT(open()));
+
+	printAct = new QAction(tr("&Print"), this);
+	printAct->setShortcut(tr("Ctrl+P"));
+	printAct->setEnabled(false);
+	connect(printAct, SIGNAL(triggered()), this, SLOT(print()));
+
+	saveAct = new QAction(tr("&Save"), this);
+	saveAct->setShortcut(tr("Ctrl+S"));
+	saveAct->setEnabled(false);
+	connect(saveAct, SIGNAL(triggered()), this, SLOT(save()));
+
+	exitAct = new QAction(tr("E&xit"), this);
+	exitAct->setShortcut(tr("Ctrl+Q"));
+	connect(exitAct, SIGNAL(triggered()), this, SLOT(exit()));
+
+	zoomInAct = new QAction(tr("Zoom &In (25%)"), this);
+	zoomInAct->setShortcut(tr("Ctrl++"));
+	zoomInAct->setEnabled(false);
+	connect(zoomInAct, SIGNAL(triggered()), this, SLOT(zoomIn()));
+
+	zoomOutAct = new QAction(tr("Zoom &Out (25%)"), this);
+	zoomOutAct->setShortcut(tr("Ctrl+-"));
+	zoomOutAct->setEnabled(false);
+	connect(zoomOutAct, SIGNAL(triggered()), this, SLOT(zoomOut()));
+
+	normalSizeAct = new QAction(tr("&Normal Size"), this);
+	normalSizeAct->setShortcut(tr("Ctrl+S"));
+	normalSizeAct->setEnabled(false);
+	connect(normalSizeAct, SIGNAL(triggered()), this, SLOT(normalSize()));
+
+	fitToWindowAct = new QAction(tr("&Fit to Window"), this);
+	fitToWindowAct->setEnabled(false);
+	fitToWindowAct->setCheckable(true);
+	connect(fitToWindowAct, SIGNAL(triggered()), this, SLOT(fitToWindow()));
+
+	aboutAct = new QAction(tr("&About"), this);
+	connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
+
+	negativeAct = new QAction(tr("Ne&gative"), this);
+	negativeAct->setEnabled(false);
+	connect(negativeAct, SIGNAL(triggered()), this, SLOT(negative()));
+
+	blurAct = new QAction(tr("&Blur"), this);
+	blurAct->setEnabled(false);
+	connect(blurAct, SIGNAL(triggered()), this, SLOT(blur()));
+	
+	morphologicalDialogAct = new QAction(tr("&Morphological Operator"), this);
+	morphologicalDialogAct->setEnabled(false);
+	connect(morphologicalDialogAct, SIGNAL(triggered()), this, SLOT(openMorphologicalDialog()));
+
+	undoAct = new QAction(tr("&Undo"), this);
+	undoAct->setShortcut(tr("Ctrl+Z"));
+	undoAct->setEnabled(false);
+
+	redoAct = new QAction(tr("&Redo"), this);
+	redoAct->setShortcut(tr("Ctrl+A"));
+	redoAct->setEnabled(false);
+
+	cutAct = new QAction(tr("Cu&t"), this);
+	cutAct->setShortcut(tr("Ctrl+X"));
+	cutAct->setEnabled(false);
+
+	copyAct = new QAction(tr("&Copy"), this);
+	copyAct->setShortcut(tr("Ctrl+C"));
+	copyAct->setEnabled(false);
+
+	pasteAct = new QAction(tr("&Paste"), this);
+	pasteAct->setShortcut(tr("Ctrl+V"));
+	pasteAct->setEnabled(false);
+
+}
+
+
+// --- Menus ---
+void ImageWindow::createMenus(){
+	fileMenu = new QMenu(tr("&File"), this);
+	fileMenu->addAction(openAct);
+	fileMenu->addAction(saveAct);
+	fileMenu->addSeparator();
+	fileMenu->addAction(printAct);
+	fileMenu->addSeparator();
+	fileMenu->addAction(exitAct);
+
+	editMenu = new QMenu(tr("&Edit"),this);
+	editMenu->addAction(undoAct);
+	editMenu->addAction(redoAct);
+	editMenu->addSeparator();
+	editMenu->addAction(cutAct);
+	editMenu->addAction(copyAct);
+	editMenu->addAction(pasteAct);
+
+	toolsMenu = new QMenu(tr("&Tools"),this);
+
+	effectsMenu = new QMenu(tr("Effects"), this);
+	effectsMenu->addAction(negativeAct);
+	effectsMenu->addAction(blurAct);
+	effectsMenu->addSeparator();
+	effectsMenu->addAction(morphologicalDialogAct);
+
+	zoomMenu = new QMenu(tr("&Zoom"), this);
+	zoomMenu->addAction(zoomInAct);
+	zoomMenu->addAction(zoomOutAct);
+	zoomMenu->addAction(normalSizeAct);
+	zoomMenu->addSeparator();
+	zoomMenu->addAction(fitToWindowAct);
+
+	modeMenu = new QMenu(tr("&Mode"),this);
+
+	helpMenu = new QMenu(tr("&Help"), this);
+	helpMenu->addAction(aboutAct);
+
+	menuBar()->addMenu(fileMenu);
+	menuBar()->addMenu(editMenu);
+	menuBar()->addMenu(toolsMenu);
+	menuBar()->addMenu(effectsMenu);
+	menuBar()->addMenu(zoomMenu);
+	menuBar()->addMenu(modeMenu);
+	menuBar()->addMenu(helpMenu);
+}
+
+// --- Update Actions ---													//Update Actions
+void ImageWindow::updateActions(){
+	zoomInAct->setEnabled(!fitToWindowAct->isChecked());
+	zoomOutAct->setEnabled(!fitToWindowAct->isChecked());
+	normalSizeAct->setEnabled(!fitToWindowAct->isChecked());
+}
+
+// --- Adjust Scroll Bar ---												//Adjust Scroll Bar
+void ImageWindow::adjustScrollBar(QScrollBar *scrollBar, double factor){
+	scrollBar->setValue(int(factor * scrollBar->value() + ((factor - 1) * scrollBar->pageStep()/2)));
+}
+
