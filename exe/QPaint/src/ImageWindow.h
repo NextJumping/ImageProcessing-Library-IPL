@@ -68,3 +68,32 @@ class ImageWindow : public QMainWindow {
 		QAction *redoAct;
 		QAction *cutAct;
 		QAction *copyAct;
+		QAction *pasteAct;
+
+	//Zoom
+		QAction *zoomInAct;
+		QAction *zoomOutAct;
+		QAction *normalSizeAct;
+		QAction *fitToWindowAct;
+
+	//Image Actions
+		QAction *negativeAct;
+		QAction *blurAct;
+		QAction *morphologicalDialogAct;
+
+	//Menus
+		QMenu *fileMenu;
+		QMenu *editMenu;
+		QMenu *toolsMenu;
+		QMenu *effectsMenu;
+		QMenu *zoomMenu;
+		QMenu *modeMenu;
+		QMenu *helpMenu;
+	
+		Image::Image<PixelType> * wImage;
+		Data::DataManager * dataManager;
+
+};
+
+
+#endif
