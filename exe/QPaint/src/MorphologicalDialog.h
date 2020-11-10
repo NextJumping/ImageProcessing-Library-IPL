@@ -67,4 +67,21 @@ class MorphologicalDialog : public QDialog {
 		QGroupBox    * kernelSelector;
 		QRadioButton * crossButton;
 		QRadioButton * squareButton;
-		QRad
+		QRadioButton * circleButton;
+		QRadioButton * diamondButton;
+
+		QLabel  * sizeLabel;
+		QSlider * sizeSlider;
+
+		QPushButton *applyButton;
+		QPushButton *cancelButton;
+
+		const Image::Image<PixelType> * const previewBeforeImage;
+		Image::Image<PixelType> * previewAfterImage;
+		Data::DataManager * dataManager;
+
+		long lastSize;
+
+};
+
+#endif
