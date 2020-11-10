@@ -25,4 +25,46 @@ class ImageWindow : public QMainWindow {
 		ImageWindow(Data::DataManager * const _dataManager);
 		~ImageWindow();
 
-		typedef Pixel::P
+		typedef Pixel::PixelRGBi1u PixelType;
+
+	private slots:
+		void open();
+		void print();
+		void save();
+		void zoomIn();
+		void zoomOut();
+		void normalSize();
+		void fitToWindow();
+		void about();
+		void exit();
+
+		void negative();
+		void blur();
+
+		void openMorphologicalDialog();
+
+	private:
+		void createActions();
+		void createMenus();
+		void updateActions();
+		void scaleImage(double factor);
+		void adjustScrollBar(QScrollBar * scrollBar, double factor);
+
+		QPrinter printer;
+		QImageWriter imageWriter;
+		QLabel * imageLabel;
+		QScrollArea *scrollArea;
+		double scaleFactor;
+
+	//File
+		QAction *openAct;
+		QAction *saveAct;
+		QAction *printAct;
+		QAction *exitAct;
+		QAction *aboutAct;
+
+	//Edit
+		QAction *undoAct;
+		QAction *redoAct;
+		QAction *cutAct;
+		QAction *copyAct;
