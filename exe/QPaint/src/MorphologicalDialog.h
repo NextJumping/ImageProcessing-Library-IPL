@@ -35,4 +35,36 @@ class MorphologicalDialog : public QDialog {
 	//signals:
 	//	void applyOperator();
 
-	private slots
+	private slots:
+
+		void updatePreview();
+		void updateSize(int _size);
+	//	void applyOperator();
+
+	private:
+
+		QLabel * instructions;
+		QLabel * operationDescription;
+		
+		QLabel * previewBeforeTitle;
+		QLabel * previewAfterTitle;
+
+		QLabel * previewBeforeImageLabel;
+		QLabel * previewAfterImageLabel;
+
+		QButtonGroup * operationButtonGroup;
+		QGroupBox    * operationSelector;
+		QRadioButton * dilateButton;
+		QRadioButton * erodeButton;
+		QRadioButton * openButton;
+		QRadioButton * closeButton;
+		QRadioButton * tophatButton;
+		QRadioButton * bottomhatButton;
+		QRadioButton * blurButton;
+		QRadioButton * unmaskSharpButton;
+
+		QButtonGroup * kernelButtonGroup;
+		QGroupBox    * kernelSelector;
+		QRadioButton * crossButton;
+		QRadioButton * squareButton;
+		QRad
