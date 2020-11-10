@@ -270,3 +270,40 @@ MorphologicalDialog::MorphologicalDialog(Data::DataManager * const _dataManager,
 	QHBoxLayout * sizeLayout = new QHBoxLayout;
 	sizeLayout->addWidget(sizeLabel);
 	sizeLayout->addWidget(sizeSpinBox);
+	sizeLayout->addWidget(sizeSlider);
+	sizeLayout->addStretch();
+	//--------------------------------------------------------
+
+	//--------------------------------------------------------
+	applyButton = new QPushButton(tr("&Apply"));
+	applyButton->setDefault(false);
+	applyButton->setEnabled(true);
+	QObject::connect(applyButton, SIGNAL(clicked()) , this,  SLOT(accept()));
+	
+	cancelButton = new QPushButton(tr("&Cancel"));
+	cancelButton->setDefault(true);
+	cancelButton->setEnabled(true);
+	QObject::connect(cancelButton, SIGNAL(clicked()) , this,  SLOT(reject()));
+
+	QHBoxLayout * buttonLayout = new QHBoxLayout;
+	buttonLayout->addStretch();
+	buttonLayout->addWidget(applyButton);
+	buttonLayout->addWidget(cancelButton);
+	//--------------------------------------------------------
+
+	//--------------------------------------------------------
+	QVBoxLayout * mainLayout = new QVBoxLayout;
+	mainLayout->addWidget(instructions);
+	mainLayout->addLayout(operationPreviewLayout);
+	mainLayout->addLayout(sizeLayout);
+	mainLayout->addWidget(operationDescription);
+	mainLayout->addLayout(buttonLayout);
+	setLayout(mainLayout);
+	//--------------------------------------------------------
+	
+	setWindowTitle(tr("Apply a Morphological Operation"));
+	
+	setFixedHeight(sizeHint().height());
+	setFixedWidth(sizeHint().width());
+
+}
