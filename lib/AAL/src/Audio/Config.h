@@ -21,4 +21,10 @@ class AAL_DLL_EXPORT Config {
 
 	private:
 		I8u channels;
-		I8u f
+		I8u freq;
+		I8u sampleSize;
+};
+
+}
+
+#endif 
