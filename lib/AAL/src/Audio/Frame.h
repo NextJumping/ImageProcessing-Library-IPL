@@ -33,4 +33,20 @@ class AAL_DLL_EXPORT Frame {
 		}
 
 		const AudioData * const & getData() const {return data;}
-		const F8  
+		const F8  & getTimeStamp()  const {return timeStamp ;}
+		const I8u & getFrameIndex() const {return frameIndex;}
+
+		void release(){
+			if(data!=nullptr){
+				delete data;data=nullptr;
+			}
+		}
+	private:
+		AudioData * data;
+		F8  timeStamp;
+		I8u frameIndex;
+};
+
+}
+
+#endif 
