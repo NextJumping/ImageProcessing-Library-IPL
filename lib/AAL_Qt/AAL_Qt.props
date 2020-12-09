@@ -8,4 +8,7 @@
 	<ItemDefinitionGroup>
 		<ClCompile>
 			<AdditionalIncludeDirectories>$(IPL)/lib/AAL_Qt/src;$(QTDIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-		
+		</ClCompile>
+	</ItemDefinitionGroup>
+	<ItemGroup />
+</Project>
