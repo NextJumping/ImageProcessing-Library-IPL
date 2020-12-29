@@ -16,4 +16,19 @@
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
- 
+    <Filter Include="Generated Files\Debug_Win32">
+      <UniqueIdentifier>{0A061F96-BEA6-4250-A95D-1D4B46DAF95E}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug_x64">
+      <UniqueIdentifier>{936810F9-C652-430A-9FB8-A4DD49F204B9}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release-DLL_Win32">
+      <UniqueIdentifier>{F176A529-F583-4448-9AF0-39792337E63D}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release-DLL
