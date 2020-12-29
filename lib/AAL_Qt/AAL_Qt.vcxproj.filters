@@ -47,4 +47,23 @@
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Audio">
-      <UniqueIdentifier>{33632da
+      <UniqueIdentifier>{33632da5-af6c-4fcd-b94d-cce55abccab3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio\Source Files">
+      <UniqueIdentifier>{305a36ee-aa27-4ba6-ac48-7e155c4b9d4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Audio\Header Files">
+      <UniqueIdentifier>{f60f415e-1797-482c-847a-fbb030306ca2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\AAL_Qt.h" />
+    <ClInclude Include="src\Audio\QueueQtTarget.h">
+      <Filter>Audio\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Audio\AudioQtDevice.h">
+      <Filter>Audio\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="
