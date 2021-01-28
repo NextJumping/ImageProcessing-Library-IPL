@@ -81,4 +81,20 @@
     <ClCompile Include="GeneratedFiles\Win32-Release-DLL\moc_AudioQtDevice.cpp">
       <Filter>Generated Files\Release-DLL_Win32</Filter>
     </ClCompile>
-    <ClCompile Include="Generat
+    <ClCompile Include="GeneratedFiles\x64-Release-DLL\moc_AudioQtDevice.cpp">
+      <Filter>Generated Files\Release-DLL_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Win32-Release\moc_AudioQtDevice.cpp">
+      <Filter>Generated Files\Release_Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\x64-Release\moc_AudioQtDevice.cpp">
+      <Filter>Generated Files\Release_x64</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Audio\QueueQtTarget.cpp">
+      <Filter>Audio\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Audio\AudioQtDevice.cpp">
+      <Filter>Audio\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
