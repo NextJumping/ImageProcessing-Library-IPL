@@ -5,4 +5,13 @@
 #include <ACore.h>
 
 #ifdef BUILD_DLL
-	#if
+	#ifdef AAL_QT_BUILD
+		#define AAL_QT_DLL_EXPORT __declspec(dllexport)
+	#else
+		#define AAL_QT_DLL_EXPORT __declspec(dllimport)
+	#endif
+#else
+	#define AAL_QT_DLL_EXPORT
+#endif
+
+#endif
