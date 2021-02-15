@@ -30,4 +30,32 @@ typedef unsigned long long I8un;
 //TODO: Create structures for Ix types
 
 typedef I1n  I1 ;
-typedef I1un I1u
+typedef I1un I1u;
+typedef I2n  I2 ;
+typedef I2un I2u;
+typedef I4n  I4 ;
+typedef I4un I4u;
+typedef I8n  I8 ;
+typedef I8un I8u;
+
+///////////////////////////////////////////////
+
+typedef float  F4n;
+typedef double F8n; //double or long double
+
+#include <Data/Float.h>
+//NOTE: This is required to break an include cycle
+#ifdef DATA__Float_H_END
+
+//TODO: Enhance F4c and F8c to serve as default floating-point types
+typedef F4n F4;
+typedef F8n F8;
+
+///////////////////////////////////////////////
+
+
+#endif 
+
+#endif 
+
+#endif 
