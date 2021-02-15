@@ -32,3 +32,5 @@ class AAL_QT_DLL_EXPORT AudioQtDevice : public QObject {
 };
 
 }
+
+#endif 
