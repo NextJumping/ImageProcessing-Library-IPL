@@ -229,3 +229,17 @@
     <ClCompile Include="platform\msvc\src\Thread\QueueControlPacket.cpp">
       <Filter>platform-msvc\Thread\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="platform\msvc\src\Thread\QueueDataPacket.cpp">
+      <Filter>platform-msvc\Thread\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\msvc\src\Thread\QueuePipe.cpp">
+      <Filter>platform-msvc\Thread\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\msvc\src\Thread\QueueReaderAgent.cpp">
+      <Filter>platform-msvc\Thread\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\msvc\src\System\Time.cpp">
+      <Filter>platform-msvc\System\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
