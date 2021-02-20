@@ -39,4 +39,22 @@ typedef I8un I8u;
 
 ///////////////////////////////////////////////
 
-typedef f
+typedef float  F4n; //float
+typedef double F8n; //double or long double
+
+#include <Data/Float.h>
+//NOTE: This is required to break an include cycle
+#ifdef DATA__Float_H_END
+
+//TODO: Enhance F4c and F8c to serve as default floating-point types
+typedef F4n F4;
+typedef F8n F8;
+
+///////////////////////////////////////////////
+
+
+#endif 
+
+#endif 
+
+#endif 
