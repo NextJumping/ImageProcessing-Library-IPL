@@ -9,4 +9,8 @@ F8 ACORE_DLL_EXPORT getTime(){
 	LARGE_INTEGER pc;
 	QueryPerformanceCounter(&pc);
 	LARGE_INTEGER freq;
-	QueryPerform
+	QueryPerformanceFrequency(&freq);
+	return static_cast<F8>(pc.QuadPart) / static_cast<F8>(freq.QuadPart);
+}
+
+}
