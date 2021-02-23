@@ -131,3 +131,43 @@ void ACORE_DLL_EXPORT ReaderAgent::run(){
 									milliSecDelay = static_cast<I4u>(timeDelta * 1000.0);
 									lastTimeDelta = timeDelta;
 									Concurrency::wait(milliSecDelay);
+								}else{
+									milliSecDelay = static_cast<I4u>(lastTimeDelta * 1000.0);//Guess
+									Concurrency::wait(milliSecDelay);
+								}
+							}else{
+								milliSecDelay = static_cast<I4u>(lastTimeDelta * 1000.0);//Guess
+								Concurrency::wait(milliSecDelay);
+							}
+						}
+						target->send(dataPacket.takeData());
+					break;
+					case Thread::Queue::DataPacket::MessageType::config :
+						target->config(dataPacket.takeData());
+					break;
+					case Thread::Queue::DataPacket::MessageType::flush :
+						dataFlushActive = true;
+						active = false;
+						target->stop();
+						lastTimeStamp=0.0;
+						lastTimeDelta=0.0;
+						dataFlushID = dataPacket.getFlushID();
+						target->release(dataPacket.takeData());
+					break;
+					case Thread::Queue::DataPacket::MessageType::quit :
+						target->release(dataPacket.takeData());
+						done();
+						return;
+					break;
+				}
+			}else{
+				Concurrency::Context::Yield();
+			}
+		}
+	}
+	done();
+}
+
+}
+
+}
