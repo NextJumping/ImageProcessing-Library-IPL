@@ -24,4 +24,22 @@ class ACORE_DLL_EXPORT DataManager {
 
 	//Memory Pool
 		void * const getMemoryFromPool(const I4  & numBytes);
-		void * const getMemo
+		void * const getMemoryFromPool(const I4u & numBytes);
+		void * const getMemoryFromPool(const I8u & numBytes);
+		B1 releaseFromPool(const void * const dataPtr);
+		B1 releaseFromPool(const void * const dataPtr,const I4  & numBytes);
+		B1 releaseFromPool(const void * const dataPtr,const I4u & numBytes);
+		B1 releaseFromPool(const void * const dataPtr,const I8u & numBytes);
+		
+		I8u releaseFreeFromPool();
+
+	private:
+
+		class DataManager_d;
+		DataManager_d * _this;
+
+};
+
+}
+
+#endif
