@@ -137,3 +137,41 @@ void * const DataManager::getMemoryFromPool(const I8u &_numBytes){
 }
 
 B1 DataManager::releaseFromPool(const void * const dataPtr){
+	if(dataPtr==nullptr){return false;}
+	std::lock_guard<std::mutex> lock(_this->criticalSection);
+	auto dataMapIter = _this->dataMap.begin();
+	for(;dataMapIter!=_this->dataMap.end();++dataMapIter){
+		if(dataMapIter->second.release(dataPtr)==true){
+			return true;
+		}
+	}
+	// TODO: Error!
+	return false;
+}
+B1 DataManager::releaseFromPool(const void * const dataPtr,const I4  & numBytes){
+	if(dataPtr==nullptr){return false;}
+	std::lock_guard<std::mutex> lock(_this->criticalSection);
+	return _this->dataMap[numBytes].release(dataPtr);
+}
+B1 DataManager::releaseFromPool(const void * const dataPtr,const I4u & numBytes){
+	if(dataPtr==nullptr){return false;}
+	std::lock_guard<std::mutex> lock(_this->criticalSection);
+	return _this->dataMap[numBytes].release(dataPtr);
+}
+B1 DataManager::releaseFromPool(const void * const dataPtr,const I8u & numBytes){
+	if(dataPtr==nullptr){return false;}
+	std::lock_guard<std::mutex> lock(_this->criticalSection);
+	return _this->dataMap[numBytes].release(dataPtr);
+}
+
+I8u DataManager::releaseFreeFromPool(){
+	std::lock_guard<std::mutex> lock(_this->criticalSection);
+	I8u amountFreed = 0;
+	auto dataMapIter = _this->dataMap.begin();
+	for(;dataMapIter!=_this->dataMap.end();++dataMapIter){
+		amountFreed+=dataMapIter->second.cleanupFree();
+	}
+	return amountFreed;
+}
+
+}
