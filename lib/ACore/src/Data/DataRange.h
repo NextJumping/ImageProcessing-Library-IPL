@@ -54,4 +54,9 @@ typedef DataRange_BaseDepth<I4 ,4> DataRange_I4_I2u ;
 typedef DataRange_BaseDepth<I4u,1> DataRange_I4u_I1u;
 typedef DataRange_BaseDepth<I4u,2> DataRange_I4u_I2u;
 
-typedef DataRange_BaseDepth<F4
+typedef DataRange_BaseDepth<F4 ,1> DataRange_F4_1;
+typedef DataRange_BaseDepth<F8 ,1> DataRange_F8_1;
+
+}
+
+#endif
