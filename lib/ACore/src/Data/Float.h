@@ -60,4 +60,28 @@ class ACORE_DLL_EXPORT F4c {
 		};
 		FINLINE          F4c(){}
 		FINLINE          F4c(const F4n & _f):f(_f){}
-		FINLINE explicit F4c(const I4u & _u,
+		FINLINE explicit F4c(const I4u & _u,const B1 & dummy):u(_u){}
+		FINLINE operator F4n(){return f;}
+
+	    FINLINE B1  sign()     const { return (u >> 31) != 0; }
+		FINLINE I4u mantissa() const { return  u & ((1 << 23) - 1); }
+		FINLINE I4u exponent() const { return (u >> 23) & 0xFF; }
+
+};
+
+//Half precision floating point based on https://gist.github.com/2156668 (revision 685a30) and http://fgiesen.wordpress.com/2012/03/28/half-to-float-done-quic/ by rygorous
+//TODO: Use the SEE version of float_to_half_SSE2()
+class ACORE_DLL_EXPORT F2c {
+	public:
+		union {
+			I2u u;
+			struct {
+				I2u mantissa : 10;
+				I2u exponent : 5;
+				I2u sign : 1;
+			} s ;
+		};
+
+		FINLINE B1  sign()     const { return (u >> 15) != 0; }
+		FINLINE I2u mantissa() const { return u & ((1 << 10) - 1); }
+		FINLINE I2u 
