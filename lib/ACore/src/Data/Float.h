@@ -84,4 +84,22 @@ class ACORE_DLL_EXPORT F2c {
 
 		FINLINE B1  sign()     const { return (u >> 15) != 0; }
 		FINLINE I2u mantissa() const { return u & ((1 << 10) - 1); }
-		FINLINE I2u 
+		FINLINE I2u exponent() const { return (u >> 10) & 0x1F; }
+
+		F2c(const F4c & f){
+			u=0;
+
+			if (f.s.exponent == 255){ // Inf or NaN (all exponent bits set)
+				s.exponent = 31;
+				s.mantissa = f.s.mantissa ? 0x200 : 0; // NaN->qNaN and Inf->Inf
+			}else{ // Normalized number
+				// Exponent unbias the single, then bias the halfp
+				int newexp = f.s.exponent - 127 + 15;
+				if (newexp >= 31){ // Overflow, return signed infinity
+					s.exponent = 31;
+				}else if (newexp <= 0){ // Underflow
+					if ((14 - newexp) <= 24){ // Mantissa might be non-zero
+						I4u mant = f.s.mantissa | 0x800000; // Hidden 1 bit
+						s.mantissa = mant >> (14 - newexp);
+						if ((mant >> (13 - newexp)) & 1){ // Check for rounding
+							u++; // Round, m
