@@ -28,4 +28,22 @@ class ACORE_DLL_EXPORT Boolean {
 		FINLINE B1n operator ==(const NumberType & _value) const ;
 
 		FINLINE void setAs(const ThisType   &  other);
-		FINLINE void setAs(const NumberType & _val
+		FINLINE void setAs(const NumberType & _value);
+
+	//Operators
+		//With NumberType:
+		FINLINE ThisType & operator -=(const NumberType & number);
+		FINLINE ThisType & operator +=(const NumberType & number);
+		FINLINE ThisType & operator *=(const NumberType & number);
+		FINLINE ThisType & operator /=(const NumberType & number);
+
+		FINLINE ThisType operator-(const NumberType & number) const ;
+		FINLINE ThisType operator+(const NumberType & number) const ;
+		FINLINE ThisType operator*(const NumberType & number) const ;
+		FINLINE ThisType operator/(const NumberType & number) const ;
+
+		//With ThisType:
+		FINLINE ThisType & operator -=(const ThisType & other);
+		FINLINE ThisType & operator +=(const ThisType & other);
+		FINLINE ThisType & operator *=(const ThisType & other);
+		FINLINE ThisType & operator /
