@@ -46,4 +46,25 @@ class ACORE_DLL_EXPORT Boolean {
 		FINLINE ThisType & operator -=(const ThisType & other);
 		FINLINE ThisType & operator +=(const ThisType & other);
 		FINLINE ThisType & operator *=(const ThisType & other);
-		FINLINE ThisType & operator /
+		FINLINE ThisType & operator /=(const ThisType & other);
+
+		FINLINE ThisType operator-(const ThisType & other) const ;
+		FINLINE ThisType operator+(const ThisType & other) const ;
+		FINLINE ThisType operator*(const ThisType & other) const ;
+		FINLINE ThisType operator/(const ThisType & other) const ;
+
+		friend FINLINE ThisType operator-(const NumberType & number, const ThisType & other);
+		friend FINLINE ThisType operator+(const NumberType & number, const ThisType & other);
+		friend FINLINE ThisType operator*(const NumberType & number, const ThisType & other);
+		friend FINLINE ThisType operator/(const NumberType & number, const ThisType & other);
+
+};
+
+}
+
+#include "Boolean_cpp.h"
+
+//NOTE: This is used to break an include cycle with DataTypes.h
+#define META__Boolean_H_END
+
+#endif
