@@ -102,4 +102,45 @@ class ACORE_DLL_EXPORT F2c {
 						I4u mant = f.s.mantissa | 0x800000; // Hidden 1 bit
 						s.mantissa = mant >> (14 - newexp);
 						if ((mant >> (13 - newexp)) & 1){ // Check for rounding
-							u++; // Round, m
+							u++; // Round, might overflow into exp bit, but this is OK
+						}
+					}
+				}else{
+					s.exponent = newexp;
+					s.mantissa = f.s.mantissa >> 13;
+					if (f.s.mantissa & 0x1000){ // Check for rounding
+						u++; // Round, might overflow to inf, this is OK
+					}
+				}
+			}
+
+			s.sign = f.s.sign;
+		}
+
+		operator F4c(){
+			F4c o;
+
+			if (s.exponent == 0){ // Zero / Denormal
+				o.u = magic.u + s.mantissa;
+				o.f -= magic.f;
+			}else{
+				o.s.mantissa = s.mantissa << 13;
+				if (s.exponent == 0x1f){ // Inf/NaN
+					o.s.exponent = 255;
+				}else{
+					o.s.exponent = 127 - 15 + s.exponent;
+				}
+			}
+
+			o.s.sign = s.sign;
+			return o;
+		}
+	private:
+		static const F4c magic;
+
+};
+
+//NOTE: This is used to break an include cycle with DataTypes.h
+#define DATA__Float_H_END
+
+#endif 
