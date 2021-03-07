@@ -25,4 +25,12 @@ TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator /=(const ThisType &other) {value/=othe
 
 TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator-(const ThisType &other) const {return ThisType(*this)-=other;}
 TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator+(const ThisType &other) const {return ThisType(*this)+=other;}
-TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator*(const ThisType &o
+TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator*(const ThisType &other) const {return ThisType(*this)*=other;}
+TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator/(const ThisType &other) const {return ThisType(*this)/=other;}
+
+#undef TEMPLATE_DEF
+#undef TYPE_DEF
+
+}
+
+#endif
