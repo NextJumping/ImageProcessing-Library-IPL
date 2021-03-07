@@ -19,4 +19,10 @@ TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator  =(const ThisType &_struct) {
 }
 
 TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator -=(const ThisType &other) {value-=other.value;return static_cast<ThisType &>(this->ParentType::operator -=(other));}
-TEMPLATE_DEF TYPE_DEF &TYPE_DEF::op
+TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator +=(const ThisType &other) {value+=other.value;return static_cast<ThisType &>(this->ParentType::operator +=(other));}
+TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator *=(const ThisType &other) {value*=other.value;return static_cast<ThisType &>(this->ParentType::operator *=(other));}
+TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator /=(const ThisType &other) {value/=other.value;return static_cast<ThisType &>(this->ParentType::operator /=(other));}
+
+TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator-(const ThisType &other) const {return ThisType(*this)-=other;}
+TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator+(const ThisType &other) const {return ThisType(*this)+=other;}
+TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator*(const ThisType &o
