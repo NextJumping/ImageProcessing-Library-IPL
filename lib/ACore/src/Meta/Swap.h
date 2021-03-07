@@ -14,4 +14,4 @@ template <typename Type> FINLINE void swap(Type & first,Type & second){
 
 }
 
-#e
+#endif
