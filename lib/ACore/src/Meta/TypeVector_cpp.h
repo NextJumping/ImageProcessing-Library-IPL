@@ -39,4 +39,34 @@ TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator /=(const ElementType &scalar){value/=s
 
 TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator-(const ElementType &scalar) const {return ThisType(*this)-=scalar;}
 TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator+(const ElementType &scalar) const {return ThisType(*this)+=scalar;}
-TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator*(cons
+TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator*(const ElementType &scalar) const {return ThisType(*this)*=scalar;}
+TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator/(const ElementType &scalar) const {return ThisType(*this)/=scalar;}
+
+//With Vector
+TEMPLATE_DEF TYPE_DEF::TypeVector(const ThisType &_vector)
+	:value(_vector.value)
+	,parent(_vector.parent)
+{
+}
+
+TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator  =(const ThisType &_vector) {
+	value=_vector.value;
+	parent=_vector.parent;
+	return (*this);
+}
+
+TEMPLATE_DEF bool TYPE_DEF::operator ==(const ThisType &_vector) const {
+	if(value!=_vector.value){
+		return false;
+	}
+	return (parent==_vector.parent);
+}
+
+TEMPLATE_DEF bool TYPE_DEF::operator ==(const ElementType &_scalar) const {
+	if(value!=_scalar){
+		return false;
+	}
+	return parent==_scalar;
+}
+
+TEMPLATE_DEF TYPE_D
