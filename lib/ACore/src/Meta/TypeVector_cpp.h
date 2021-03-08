@@ -30,4 +30,13 @@ TEMPLATE_DEF void TYPE_DEF::setAsMax(const ElementType &scalar){
 // Operators:
 //With Scalar
 TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator  =(const ElementType &_scalar){value=_scalar;parent=_scalar;return (*this);}
-TEMPLATE_DEF TYPE_DEF::TypeVector(const ElementType
+TEMPLATE_DEF TYPE_DEF::TypeVector(const ElementType &_scalar):value(_scalar),parent(_scalar){}
+
+TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator -=(const ElementType &scalar){value-=scalar;parent-=scalar;return (*this);}
+TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator +=(const ElementType &scalar){value+=scalar;parent+=scalar;return (*this);}
+TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator *=(const ElementType &scalar){value*=scalar;parent*=scalar;return (*this);}
+TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator /=(const ElementType &scalar){value/=scalar;parent/=scalar;return (*this);}
+
+TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator-(const ElementType &scalar) const {return ThisType(*this)-=scalar;}
+TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator+(const ElementType &scalar) const {return ThisType(*this)+=scalar;}
+TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator*(cons
