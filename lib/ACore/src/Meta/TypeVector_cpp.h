@@ -69,4 +69,11 @@ TEMPLATE_DEF bool TYPE_DEF::operator ==(const ElementType &_scalar) const {
 	return parent==_scalar;
 }
 
-TEMPLATE_DEF TYPE_D
+TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator -=(const ThisType &vector) {value-=vector.value;parent-=vector.parent;return (*this);}
+TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator +=(const ThisType &vector) {value+=vector.value;parent+=vector.parent;return (*this);}
+TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator *=(const ThisType &vector) {value*=vector.value;parent*=vector.parent;return (*this);}
+TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator /=(const ThisType &vector) {value/=vector.value;parent/=vector.parent;return (*this);}
+
+TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator-(const ThisType &vector) const {return ThisType(*this)-=vector;}
+TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator+(const ThisType &vector) const {return ThisType(*this)+=vector;}
+TEMPLATE_DEF TYPE_DEF TYPE_DEF::o
