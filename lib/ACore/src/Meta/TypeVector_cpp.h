@@ -76,4 +76,12 @@ TEMPLATE_DEF TYPE_DEF &TYPE_DEF::operator /=(const ThisType &vector) {value/=vec
 
 TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator-(const ThisType &vector) const {return ThisType(*this)-=vector;}
 TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator+(const ThisType &vector) const {return ThisType(*this)+=vector;}
-TEMPLATE_DEF TYPE_DEF TYPE_DEF::o
+TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator*(const ThisType &vector) const {return ThisType(*this)*=vector;}
+TEMPLATE_DEF TYPE_DEF TYPE_DEF::operator/(const ThisType &vector) const {return ThisType(*this)/=vector;}
+
+#undef TEMPLATE_DEF
+#undef TYPE_DEF
+
+}
+
+#endif
