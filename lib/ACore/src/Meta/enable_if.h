@@ -22,4 +22,11 @@ template <
 	class Cond,
 	class T = void
 > class enable_if
-	: pub
+	: public enable_if_c<Cond::value, T>
+{
+};
+
+}
+
+#endif
+
