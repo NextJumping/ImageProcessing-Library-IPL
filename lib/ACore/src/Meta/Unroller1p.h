@@ -15,4 +15,22 @@ template <
 	public:
 		FINLINE static void process(DataType * & dataPtr,const ParameterType &parameter){
 			Unroller1p<DataType,AlgorithmType,ParameterType,halfLength>::process(dataPtr,parameter);
-			Unroller1p<DataType,AlgorithmType,ParameterType,halfLength>::process(dataPtr,parame
+			Unroller1p<DataType,AlgorithmType,ParameterType,halfLength>::process(dataPtr,parameter);
+		}
+};
+
+template <
+	typename DataType,
+	typename AlgorithmType,
+	typename ParameterType
+> class Unroller1p<DataType,AlgorithmType,ParameterType,1> {
+	public:
+		FINLINE static void process(DataType * & dataPtr,const ParameterType &parameter){
+			AlgorithmType::process(dataPtr,parameter);
+			++dataPtr;
+		}
+};
+
+}
+
+#endif
