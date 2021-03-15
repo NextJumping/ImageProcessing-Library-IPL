@@ -21,4 +21,24 @@ namespace Meta {
 	}
 	template <
 		typename Type,
-		typen
+		typename Parameter1,
+		typename Parameter2
+	> std::unique_ptr<Type> make_unique(Parameter1 && parameter1,Parameter1 && parameter2){
+		return std::unique_ptr<Type>(new Type(Meta::forward(parameter1),Meta::forward(parameter2)));
+	}
+	template <
+		typename Type,
+		typename Parameter1,
+		typename Parameter2,
+		typename Parameter3,
+		typename Parameter4
+	> std::unique_ptr<Type> make_unique(Parameter1 && parameter1,Parameter2 && parameter2,Parameter3 && parameter3){
+		return std::unique_ptr<Type>(new Type(Meta::forward(parameter1),Meta::forward(parameter2),Meta::forward(parameter3)));
+	}
+	template <
+		typename Type,
+		typename Parameter1,
+		typename Parameter2,
+		typename Parameter3,
+		typename Parameter4
+	> std::unique_ptr<Type> make_unique(Parameter1 && parameter1,Paramete
