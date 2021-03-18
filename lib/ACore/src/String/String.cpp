@@ -49,4 +49,12 @@ ACORE_DLL_EXPORT std::string getString(const F8 & number){
 }
 
 ACORE_DLL_EXPORT bool hasEnding(const std::string & fullString, const std::string & ending){
-    if(fullString.length() >= ending.leng
+    if(fullString.length() >= ending.length()) {
+        return (0 == fullString.compare(fullString.length() - ending.length(), ending.length(), ending));
+    } else {
+        return false;
+    }
+}
+
+}
+
