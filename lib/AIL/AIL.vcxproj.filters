@@ -224,3 +224,373 @@
       <Filter>Filter\Min\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Filter\MinFilter1xHbasic.cpp">
+      <Filter>Filter\Min\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Filter\MinFilterWx1.cpp">
+      <Filter>Filter\Min\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Filter\MinFilterWx1basic.cpp">
+      <Filter>Filter\Min\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Filter\MinFilterWxH.cpp">
+      <Filter>Filter\Min\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Filter\BlackTopHatFilter.cpp">
+      <Filter>Filter\Morph\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Filter\CloseFilter.cpp">
+      <Filter>Filter\Morph\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Filter\DilateFilter.cpp">
+      <Filter>Filter\Morph\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Filter\ErodeFilter.cpp">
+      <Filter>Filter\Morph\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Filter\OpenFilter.cpp">
+      <Filter>Filter\Morph\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Filter\WhiteTopHatFilter.cpp">
+      <Filter>Filter\Morph\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Image\Image.cpp">
+      <Filter>Image\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Image\ImageBase.cpp">
+      <Filter>Image\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Image\ImageKernel.cpp">
+      <Filter>Image\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Image\ImageSize.cpp">
+      <Filter>Image\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Paint\Circle.cpp">
+      <Filter>Paint\Generators\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Paint\Cross.cpp">
+      <Filter>Paint\Generators\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Paint\Gaussian.cpp">
+      <Filter>Paint\Generators\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pixel\PixelRange.cpp">
+      <Filter>Pixel\Base Types\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pixel\PixelRGB.cpp">
+      <Filter>Pixel\Pixel Types\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pixel\PixelTypeID.cpp">
+      <Filter>Pixel\Pixel Types\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pixel\PixelYUV.cpp">
+      <Filter>Pixel\Pixel Types\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Image\image_cast.cpp">
+      <Filter>Image\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pixel\PixelY.cpp">
+      <Filter>Pixel\Pixel Types\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pixel\PixelRGBA.cpp">
+      <Filter>Pixel\Pixel Types\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Filter\BoxFilter1xH.cpp">
+      <Filter>Filter\Box\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Filter\BoxFilterWx1.cpp">
+      <Filter>Filter\Box\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Image\ImageView.cpp">
+      <Filter>Image\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Algorithm\BaseAlgorithm1x1.h">
+      <Filter>Algorithm\BaseAlgorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BaseAlgorithm1xH.h">
+      <Filter>Algorithm\BaseAlgorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BaseAlgorithm3x3.h">
+      <Filter>Algorithm\BaseAlgorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BaseAlgorithmWx1.h">
+      <Filter>Algorithm\BaseAlgorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BaseAlgorithmWxH.h">
+      <Filter>Algorithm\BaseAlgorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BaseAlgorithm1xHparametersType.h">
+      <Filter>Algorithm\BaseAlgorithms\ParameterTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BaseAlgorithmWx1ParametersType.h">
+      <Filter>Algorithm\BaseAlgorithms\ParameterTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BaseAlgorithmWxHparametersType.h">
+      <Filter>Algorithm\BaseAlgorithms\ParameterTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BaseAlgorithm1x1_cpp.h">
+      <Filter>Algorithm\BaseAlgorithms\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BaseAlgorithm1xH_cpp.h">
+      <Filter>Algorithm\BaseAlgorithms\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BaseAlgorithm3x3_cpp.h">
+      <Filter>Algorithm\BaseAlgorithms\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BaseAlgorithmWx1_cpp.h">
+      <Filter>Algorithm\BaseAlgorithms\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BaseAlgorithmWxH_cpp.h">
+      <Filter>Algorithm\BaseAlgorithms\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\Basic1xHbaseAlgorithm.h">
+      <Filter>Algorithm\BasicAlgorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BasicWx1baseAlgorithm.h">
+      <Filter>Algorithm\BasicAlgorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\Basic1xHbaseAlgorithmParametersType.h">
+      <Filter>Algorithm\BasicAlgorithms\ParameterTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BasicWx1baseAlgorithmParametersType.h">
+      <Filter>Algorithm\BasicAlgorithms\ParameterTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\Simple1xHbooleanOperationBaseAlgorithm.h">
+      <Filter>Filter\Base Operation\Header Files\SimpleWxHbooleanOperation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\SimpleWx1booleanOperationBaseAlgorithm.h">
+      <Filter>Filter\Base Operation\Header Files\SimpleWxHbooleanOperation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\SimpleWxHbooleanOperation.h">
+      <Filter>Filter\Base Operation\Header Files\SimpleWxHbooleanOperation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\SimpleWxHbooleanOperationBaseAlgorithm.h">
+      <Filter>Filter\Base Operation\Header Files\SimpleWxHbooleanOperation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\SimpleWxHbooleanOperationParametersType.h">
+      <Filter>Filter\Base Operation\Header Files\SimpleWxHbooleanOperation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\Simple1xHdataOperationBaseAlgorithm.h">
+      <Filter>Filter\Base Operation\Header Files\SimpleWxHdataOperation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\SimpleWx1dataOperationBaseAlgorithm.h">
+      <Filter>Filter\Base Operation\Header Files\SimpleWxHdataOperation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\SimpleWxHdataOperation.h">
+      <Filter>Filter\Base Operation\Header Files\SimpleWxHdataOperation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\SimpleWxHdataOperationBaseAlgorithm.h">
+      <Filter>Filter\Base Operation\Header Files\SimpleWxHdataOperation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\SimpleWxHdataOperationParametersType.h">
+      <Filter>Filter\Base Operation\Header Files\SimpleWxHdataOperation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\ImageOperation.h">
+      <Filter>Filter\Base Operation\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BaseLinearFilter.h">
+      <Filter>Filter\Linear\BaseLinearFilter\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BaseLinearFilterAlgorithm.h">
+      <Filter>Filter\Linear\BaseLinearFilter\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BaseLinearFilterParametersType.h">
+      <Filter>Filter\Linear\BaseLinearFilter\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\LinearFilter1xH.h">
+      <Filter>Filter\Linear\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\LinearFilterWx1.h">
+      <Filter>Filter\Linear\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\LinearFilterWxH.h">
+      <Filter>Filter\Linear\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BaseMaxFilter.h">
+      <Filter>Filter\Max\BaseMaxFilter\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BaseMaxFilterAlgorithm.h">
+      <Filter>Filter\Max\BaseMaxFilter\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\MaxFilter1xH.h">
+      <Filter>Filter\Max\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\MaxFilter1xHbasic.h">
+      <Filter>Filter\Max\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\MaxFilterWx1.h">
+      <Filter>Filter\Max\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\MaxFilterWx1basic.h">
+      <Filter>Filter\Max\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\MaxFilterWxH.h">
+      <Filter>Filter\Max\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BaseMinFilter.h">
+      <Filter>Filter\Min\BaseMinFilter\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BaseMinFilterAlgorithm.h">
+      <Filter>Filter\Min\BaseMinFilter\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\MinFilter1xH.h">
+      <Filter>Filter\Min\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\MinFilter1xHbasic.h">
+      <Filter>Filter\Min\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\MinFilterWx1.h">
+      <Filter>Filter\Min\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\MinFilterWx1basic.h">
+      <Filter>Filter\Min\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\MinFilterWxH.h">
+      <Filter>Filter\Min\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BlackTopHatFilter.h">
+      <Filter>Filter\Morph\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\CloseFilter.h">
+      <Filter>Filter\Morph\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\DilateFilter.h">
+      <Filter>Filter\Morph\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\ErodeFilter.h">
+      <Filter>Filter\Morph\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\MorphFilterAlgorithm.h">
+      <Filter>Filter\Morph\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\MorphKernelType.h">
+      <Filter>Filter\Morph\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\OpenFilter.h">
+      <Filter>Filter\Morph\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\WhiteTopHatFilter.h">
+      <Filter>Filter\Morph\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Image\Image.h">
+      <Filter>Image\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Image\ImageBase.h">
+      <Filter>Image\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Image\ImageKernel.h">
+      <Filter>Image\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Image\ImageSize.h">
+      <Filter>Image\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Image\ImageView.h">
+      <Filter>Image\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paint\Circle.h">
+      <Filter>Paint\Generators\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paint\Cross.h">
+      <Filter>Paint\Generators\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Paint\Gaussian.h">
+      <Filter>Paint\Generators\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pixel\PixelDataType1.h">
+      <Filter>Pixel\Base Types\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pixel\PixelDataType3.h">
+      <Filter>Pixel\Base Types\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pixel\PixelDataTypeY2.h">
+      <Filter>Pixel\Base Types\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pixel\PixelRange.h">
+      <Filter>Pixel\Base Types\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pixel\PixelFunctionTemplateMacro.h">
+      <Filter>Pixel\Macros</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pixel\PixelTemplateMacros.h">
+      <Filter>Pixel\Macros</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pixel\PixelRGB.h">
+      <Filter>Pixel\Pixel Types\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pixel\PixelTypeID.h">
+      <Filter>Pixel\Pixel Types\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pixel\PixelYUV.h">
+      <Filter>Pixel\Pixel Types\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pixel\pixel_cast.h">
+      <Filter>Pixel\Pixel_Cast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AIL.h" />
+    <ClInclude Include="src\Pixel\PixelDataType3A.h">
+      <Filter>Pixel\Base Types\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pixel\PixelRGBA.h">
+      <Filter>Pixel\Pixel Types\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Image\image_cast.h">
+      <Filter>Image\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pixel\PixelY.h">
+      <Filter>Pixel\Pixel Types\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BoxFilter1xH.h">
+      <Filter>Filter\Box\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BaseBoxFilter.h">
+      <Filter>Filter\Box\BaseBoxFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BaseBoxFilterAlgorithm.h">
+      <Filter>Filter\Box\BaseBoxFilter</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BoxFilter1xHparametersType.h">
+      <Filter>Filter\Box\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BoxFilterWx1parametersType.h">
+      <Filter>Filter\Box\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Filter\BoxFilterWx1.h">
+      <Filter>Filter\Box\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\Algorithm1x1.h">
+      <Filter>Algorithm\Algorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\Algorithm1x1_cpp.h">
+      <Filter>Algorithm\Algorithms\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\Algorithm3x3.h">
+      <Filter>Algorithm\Algorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\Algorithm1xH.h">
+      <Filter>Algorithm\Algorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\AlgorithmWx1.h">
+      <Filter>Algorithm\Algorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\AlgorithmWxH.h">
+      <Filter>Algorithm\Algorithms\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\Algorithm3x3_cpp.h">
+      <Filter>Algorithm\Algorithms\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\Algorithm1xH_cpp.h">
+      <Filter>Algorithm\Algorithms\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\AlgorithmWx1_cpp.h">
+      <Filter>Algorithm\Algorithms\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\AlgorithmWxH_cpp.h">
+      <Filter>Algorithm\Algorithms\Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Algorithm\BaseOperationTempType.h">
+      <Filter>Algorithm\TempTypes</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
