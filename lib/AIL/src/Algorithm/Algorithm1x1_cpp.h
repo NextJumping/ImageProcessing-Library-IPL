@@ -57,3 +57,62 @@ template <
 }
 
 template <
+	typename AlgorithmType,
+	typename PixelDataType
+> void Algorithm1x1(
+	Image::ImageView<PixelDataType> & image)
+{
+	#ifdef PPL
+		if(image.isSimpleView()==false){return;}
+		auto grid = image.makeGrid(100,100,0,0,1,1);
+		Concurrency::parallel_for<I8u>(0,grid.size(),[&](I8u i){
+			BaseAlgorithm1x1<AlgorithmType,PixelDataType>(grid[i]);
+		});
+	#else
+		BaseAlgorithm1x1<AlgorithmType,PixelDataType>(image);
+	#endif
+}
+
+template <
+	typename AlgorithmType,
+	typename PixelDataType,
+	typename ParameterType
+> void Algorithm1x1p(
+	Image::ImageView<PixelDataType> & image,
+	const ParameterType & parameter)
+{
+	#ifdef PPL
+		if(image.isSimpleView()==false){return;}
+		auto grid = image.makeGrid(100,100,0,0,1,1);
+		Concurrency::parallel_for<I8u>(0,grid.size(),[&](I8u i){
+			BaseAlgorithm1x1p<AlgorithmType,PixelDataType>(grid[i],parameter);
+		});
+	#else
+		BaseAlgorithm1x1p<AlgorithmType,PixelDataType>(image,parameter);
+	#endif
+}
+
+template <
+	typename AlgorithmType,
+	typename PixelDataType
+> void Algorithm1x1p(
+	Image::ImageView<PixelDataType> & srcImage,
+	const Image::ImageView<PixelDataType> & parameterImage)
+{
+	#ifdef PPL
+		if(srcImage.getSize()!=parameterImage.getSize()){return;}
+		if((srcImage.isSimpleView()==false)||(parameterImage.isSimpleView()==false)){return;}
+		auto srcGrid       = srcImage.makeGrid(      100,100,0,0,1,1);
+		auto parameterGrid = parameterImage.makeGrid(100,100,0,0,1,1);
+		Concurrency::parallel_for<I8u>(0,srcGrid.size(),[&](I8u i){
+			BaseAlgorithm1x1p<AlgorithmType,PixelDataType>(srcGrid[i],parameterGrid[i]);
+		});
+	#else
+		BaseAlgorithm1x1p<AlgorithmType,PixelDataType>(srcImage,parameterImage);
+	#endif
+}
+
+}
+
+
+#endif 
