@@ -11,4 +11,11 @@ template <
 	typename PixelType
 > void Algorithm3x3 (
 	const Image::ImageView<PixelType> & srcImage,
-	Image::ImageView<PixelType> & d
+	Image::ImageView<PixelType> & dstImage
+);
+
+}
+
+#include "Algorithm3x3_cpp.h"
+
+#endif
