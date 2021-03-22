@@ -29,4 +29,15 @@ template <
 		I4 x = 0;
 
 		//First Row - First Pixel
-		AlgorithmType::process(dstImageDataPtr,srcImageDataPtr              ,srcIm
+		AlgorithmType::process(dstImageDataPtr,srcImageDataPtr              ,srcImageDataPtr              ,srcImageDataPtr+1              ,
+											   srcImageDataPtr              ,srcImageDataPtr              ,srcImageDataPtr+1              ,
+											   srcImageDataPtr+srcImageWidth,srcImageDataPtr+srcImageWidth,srcImageDataPtr+srcImageWidthp1);
+		++dstImageDataPtr;
+		++srcImageDataPtr;
+
+		//First Row - Inside Pixels
+		for(x=1; x<srcImageWidthm1; ++x){
+			AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-1              ,srcImageDataPtr              ,srcImageDataPtr+1              ,
+												   srcImageDataPtr-1              ,srcImageDataPtr              ,srcImageDataPtr+1              ,
+												   srcImageDataPtr+srcImageWidthm1,srcImageDataPtr+srcImageWidth,srcImageDataPtr+srcImageWidthp1);
+			++dstImageDataPtr;
