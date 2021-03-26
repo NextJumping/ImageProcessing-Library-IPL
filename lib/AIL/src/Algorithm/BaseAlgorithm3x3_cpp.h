@@ -53,4 +53,17 @@ template <
 		for(y=1; y<srcImageHeightm1; ++y){	
 			//Inside Row - First Pixel
 			AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageWidth,srcImageDataPtr-srcImageWidth,srcImageDataPtr-srcImageWidthm1,
-												   srcImageDataPtr              ,srcImageDataPtr              ,
+												   srcImageDataPtr              ,srcImageDataPtr              ,srcImageDataPtr+1              ,
+												   srcImageDataPtr+srcImageWidth,srcImageDataPtr+srcImageWidth,srcImageDataPtr+srcImageWidthp1);
+			++dstImageDataPtr;
+			++srcImageDataPtr;
+			//Inside Row - Inside Pixels
+			for(x=1; x<srcImageWidthm1; ++x){
+				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageWidthp1,srcImageDataPtr-srcImageWidth,srcImageDataPtr-srcImageWidthm1,
+													   srcImageDataPtr-1              ,srcImageDataPtr              ,srcImageDataPtr+1              ,
+													   srcImageDataPtr+srcImageWidthm1,srcImageDataPtr+srcImageWidth,srcImageDataPtr+srcImageWidthp1);
+				++dstImageDataPtr;
+				++srcImageDataPtr;
+			}
+			//Inside Row - Last Pixel
+			AlgorithmType::process(ds
