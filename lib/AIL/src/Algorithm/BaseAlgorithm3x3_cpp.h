@@ -66,4 +66,16 @@ template <
 				++srcImageDataPtr;
 			}
 			//Inside Row - Last Pixel
-			AlgorithmType::process(ds
+			AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageWidthp1,srcImageDataPtr-srcImageWidth,srcImageDataPtr-srcImageWidth,
+												   srcImageDataPtr-1              ,srcImageDataPtr              ,srcImageDataPtr              ,
+												   srcImageDataPtr+srcImageWidthm1,srcImageDataPtr+srcImageWidth,srcImageDataPtr+srcImageWidth);
+			++dstImageDataPtr;
+			++srcImageDataPtr;
+		}
+
+		//Last Row - First pixel
+		AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageWidth,srcImageDataPtr-srcImageWidth,srcImageDataPtr-srcImageWidthm1,
+											   srcImageDataPtr              ,srcImageDataPtr              ,srcImageDataPtr+1              ,
+											   srcImageDataPtr              ,srcImageDataPtr              ,srcImageDataPtr+1              );
+		++dstImageDataPtr;
+		++srcImageDa
