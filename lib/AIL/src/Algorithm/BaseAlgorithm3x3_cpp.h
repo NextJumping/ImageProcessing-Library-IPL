@@ -41,3 +41,16 @@ template <
 												   srcImageDataPtr-1              ,srcImageDataPtr              ,srcImageDataPtr+1              ,
 												   srcImageDataPtr+srcImageWidthm1,srcImageDataPtr+srcImageWidth,srcImageDataPtr+srcImageWidthp1);
 			++dstImageDataPtr;
+			++srcImageDataPtr;
+		}
+		//First Row - Last Pixel
+		AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-1              ,srcImageDataPtr              ,srcImageDataPtr              ,
+											   srcImageDataPtr-1              ,srcImageDataPtr              ,srcImageDataPtr              ,
+											   srcImageDataPtr+srcImageWidthm1,srcImageDataPtr+srcImageWidth,srcImageDataPtr+srcImageWidth);
+		++dstImageDataPtr;
+		++srcImageDataPtr;
+
+		for(y=1; y<srcImageHeightm1; ++y){	
+			//Inside Row - First Pixel
+			AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageWidth,srcImageDataPtr-srcImageWidth,srcImageDataPtr-srcImageWidthm1,
+												   srcImageDataPtr              ,srcImageDataPtr              ,
