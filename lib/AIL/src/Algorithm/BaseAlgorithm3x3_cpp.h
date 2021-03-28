@@ -108,4 +108,20 @@ template <
 		auto dstImageDataPtr = dstImage.getDataPtr();
 		auto srcImageDataPtr = srcImage.getDataPtr();
 	
-		I4 y = 0; // TODO: Write these loops to get rid of x and y ... and make sure that the complier still 
+		I4 y = 0; // TODO: Write these loops to get rid of x and y ... and make sure that the complier still unrolls the loops
+		I4 x = 0;
+
+		if(srcImage.hasYbeginSection()==true){
+			if(srcImage.hasXbeginSection()==true){
+				//First Row - First Pixel
+				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr               ,srcImageDataPtr               ,srcImageDataPtr+1              ,
+													   srcImageDataPtr               ,srcImageDataPtr               ,srcImageDataPtr+1              ,
+													   srcImageDataPtr+srcImageStride,srcImageDataPtr+srcImageStride,srcImageDataPtr+srcImageStridep1);
+			}
+			++dstImageDataPtr;
+			++srcImageDataPtr;
+
+			//First Row - Inside Pixels
+			for(x=1;x<srcImageWidthm1;++x){
+				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-1               ,srcImageDataPtr               ,srcImageDataPtr+1              ,
+													   srcImage
