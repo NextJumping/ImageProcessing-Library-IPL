@@ -78,4 +78,17 @@ template <
 											   srcImageDataPtr              ,srcImageDataPtr              ,srcImageDataPtr+1              ,
 											   srcImageDataPtr              ,srcImageDataPtr              ,srcImageDataPtr+1              );
 		++dstImageDataPtr;
-		++srcImageDa
+		++srcImageDataPtr;
+
+		//Last Row - Inside Pixels
+		for(x=1; x<srcImageWidthm1; ++x){
+			AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageWidthp1,srcImageDataPtr-srcImageWidth,srcImageDataPtr-srcImageWidthm1,
+												   srcImageDataPtr-1              ,srcImageDataPtr              ,srcImageDataPtr+1              ,
+												   srcImageDataPtr-1              ,srcImageDataPtr              ,srcImageDataPtr+1              );
+			++dstImageDataPtr;
+			++srcImageDataPtr;
+		}
+
+		//Last Row - Last Pixel
+		AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageWidthp1,srcImageDataPtr-srcImageWidth,srcImageDataPtr-srcImageWidth,
+											   srcImageDataPtr-1              ,srcImageDataPtr              ,srcImage
