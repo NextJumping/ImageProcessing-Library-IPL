@@ -124,4 +124,19 @@ template <
 			//First Row - Inside Pixels
 			for(x=1;x<srcImageWidthm1;++x){
 				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-1               ,srcImageDataPtr               ,srcImageDataPtr+1              ,
-													   srcImage
+													   srcImageDataPtr-1               ,srcImageDataPtr               ,srcImageDataPtr+1              ,
+													   srcImageDataPtr+srcImageStridem1,srcImageDataPtr+srcImageStride,srcImageDataPtr+srcImageStridep1);
+				++dstImageDataPtr;
+				++srcImageDataPtr;
+			}
+
+			if(srcImage.hasXendSection()==true){
+				//First Row - Last Pixel
+				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-1               ,srcImageDataPtr               ,srcImageDataPtr              ,
+													   srcImageDataPtr-1               ,srcImageDataPtr               ,srcImageDataPtr              ,
+													   srcImageDataPtr+srcImageStridem1,srcImageDataPtr+srcImageStride,srcImageDataPtr+srcImageStride);
+			}
+			++dstImageDataPtr;
+			++srcImageDataPtr;
+		}else{
+			dstImageDataPtr+=srcImageWidth
