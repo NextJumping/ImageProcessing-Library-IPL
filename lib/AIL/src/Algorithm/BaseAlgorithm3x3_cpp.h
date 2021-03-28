@@ -91,4 +91,21 @@ template <
 
 		//Last Row - Last Pixel
 		AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageWidthp1,srcImageDataPtr-srcImageWidth,srcImageDataPtr-srcImageWidth,
-											   srcImageDataPtr-1              ,srcImageDataPtr              ,srcImage
+											   srcImageDataPtr-1              ,srcImageDataPtr              ,srcImageDataPtr              ,
+											   srcImageDataPtr-1              ,srcImageDataPtr              ,srcImageDataPtr              );
+
+	}else{
+		auto srcImageHeightm1 = srcImage.getHeight()-1;
+
+		const auto & srcImageWidth   = srcImage.getWidth();
+			  auto   srcImageWidthm1 = srcImage.getWidth()-1;
+			  auto   srcImageWidthp1 = srcImage.getWidth()+1;
+
+		const auto & srcImageStride   = srcImage.getStride();
+			  auto   srcImageStridem1 = srcImage.getStride()-1;
+			  auto   srcImageStridep1 = srcImage.getStride()+1;
+
+		auto dstImageDataPtr = dstImage.getDataPtr();
+		auto srcImageDataPtr = srcImage.getDataPtr();
+	
+		I4 y = 0; // TODO: Write these loops to get rid of x and y ... and make sure that the complier still 
