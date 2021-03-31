@@ -153,4 +153,18 @@ template <
 				for (x=1; x<srcImageWidthm1; ++x){
 					AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageStridep1,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStridem1,
 														   srcImageDataPtr-1               ,srcImageDataPtr               ,srcImageDataPtr+1              ,
-														   srcImageDataPtr+srcImageStridem1,srcImageDataPtr+srcImageStride,srcImageDataPtr+srcI
+														   srcImageDataPtr+srcImageStridem1,srcImageDataPtr+srcImageStride,srcImageDataPtr+srcImageStridep1);
+					++dstImageDataPtr;
+					++srcImageDataPtr;
+				}
+				++dstImageDataPtr;
+				++srcImageDataPtr;
+				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
+				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
+			}
+		}else if((srcImage.hasXbeginSection()==true)&&(srcImage.hasXendSection()==false)){
+			for(y=1; y<srcImageHeightm1; ++y){	
+				//Inside Row - First Pixel
+				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStridem1,
+													   srcImageDataPtr               ,srcImageDataPtr               ,srcImageDataPtr+1              ,
+													   srcImageDataPtr+srcImageStride,srcImageDataPtr+srcImageStride,srcImageDataPtr+srcIma
