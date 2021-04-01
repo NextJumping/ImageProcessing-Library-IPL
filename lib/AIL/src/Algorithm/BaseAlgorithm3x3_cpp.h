@@ -196,4 +196,16 @@ template <
 					++srcImageDataPtr;
 				}
 				//Inside Row - Last Pixel
-				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageStridep1,srcImageDataPtr-srcIma
+				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageStridep1,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStride,
+													   srcImageDataPtr-1               ,srcImageDataPtr               ,srcImageDataPtr              ,
+													   srcImageDataPtr+srcImageStridem1,srcImageDataPtr+srcImageStride,srcImageDataPtr+srcImageStride);
+				++dstImageDataPtr;
+				++srcImageDataPtr;
+				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
+				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
+			}
+		}else{
+			for(y=1; y<srcImageHeightm1; ++y){	
+				//Inside Row - First Pixel
+				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStridem1,
+													   srcImageDataPtr               ,srcImageDataPtr              
