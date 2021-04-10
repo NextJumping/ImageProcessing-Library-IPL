@@ -234,4 +234,18 @@ template <
 		if(srcImage.hasYendSection()==true){
 			if(srcImage.hasXbeginSection()==true){
 				//Last Row - First pixel
-				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStride,srcImageDataPt
+				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStridem1,
+														srcImageDataPtr              ,srcImageDataPtr               ,srcImageDataPtr+1               ,
+														srcImageDataPtr              ,srcImageDataPtr               ,srcImageDataPtr+1               );
+			}
+			++dstImageDataPtr;
+			++srcImageDataPtr;
+		
+			//Last Row - Inside Pixels
+			for (x=1; x<srcImageWidthm1; ++x){
+				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageStridep1,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStridem1,
+													   srcImageDataPtr-1               ,srcImageDataPtr              ,srcImageDataPtr+1               ,
+													   srcImageDataPtr-1               ,srcImageDataPtr              ,srcImageDataPtr+1               );
+				++dstImageDataPtr;
+				++srcImageDataPtr;
+	
