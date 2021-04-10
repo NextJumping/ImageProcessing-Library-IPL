@@ -221,4 +221,17 @@ template <
 					++srcImageDataPtr;
 				}
 				//Inside Row - Last Pixel
-				AlgorithmType::process(dstImageDa
+				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageStridep1,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStride,
+													   srcImageDataPtr-1               ,srcImageDataPtr               ,srcImageDataPtr              ,
+													   srcImageDataPtr+srcImageStridem1,srcImageDataPtr+srcImageStride,srcImageDataPtr+srcImageStride);
+				++dstImageDataPtr;
+				++srcImageDataPtr;
+				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
+				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
+			}
+		}
+
+		if(srcImage.hasYendSection()==true){
+			if(srcImage.hasXbeginSection()==true){
+				//Last Row - First pixel
+				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStride,srcImageDataPt
