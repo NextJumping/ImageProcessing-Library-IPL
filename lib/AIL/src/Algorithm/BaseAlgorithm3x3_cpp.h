@@ -208,4 +208,17 @@ template <
 			for(y=1; y<srcImageHeightm1; ++y){	
 				//Inside Row - First Pixel
 				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStridem1,
-													   srcImageDataPtr               ,srcImageDataPtr              
+													   srcImageDataPtr               ,srcImageDataPtr               ,srcImageDataPtr+1              ,
+													   srcImageDataPtr+srcImageStride,srcImageDataPtr+srcImageStride,srcImageDataPtr+srcImageStridep1);
+				++dstImageDataPtr;
+				++srcImageDataPtr;
+				//Inside Row - Inside Pixels
+				for(x=1; x<srcImageWidthm1; ++x){
+					AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageStridep1,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStridem1,
+														   srcImageDataPtr-1               ,srcImageDataPtr               ,srcImageDataPtr+1              ,
+														   srcImageDataPtr+srcImageStridem1,srcImageDataPtr+srcImageStride,srcImageDataPtr+srcImageStridep1);
+					++dstImageDataPtr;
+					++srcImageDataPtr;
+				}
+				//Inside Row - Last Pixel
+				AlgorithmType::process(dstImageDa
