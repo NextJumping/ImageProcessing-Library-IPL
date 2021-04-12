@@ -248,4 +248,18 @@ template <
 													   srcImageDataPtr-1               ,srcImageDataPtr              ,srcImageDataPtr+1               );
 				++dstImageDataPtr;
 				++srcImageDataPtr;
-	
+			}
+
+			if(srcImage.hasXendSection()==true){
+				//Last Row - Last Pixel
+				AlgorithmType::process(dstImageDataPtr,srcImageDataPtr-srcImageStridep1,srcImageDataPtr-srcImageStride,srcImageDataPtr-srcImageStride,
+													   srcImageDataPtr-1               ,srcImageDataPtr              ,srcImageDataPtr              ,
+													   srcImageDataPtr-1               ,srcImageDataPtr              ,srcImageDataPtr              );
+			}
+		}
+	}
+}
+
+}
+
+#endif
