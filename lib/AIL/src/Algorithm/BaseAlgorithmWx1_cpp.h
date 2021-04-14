@@ -96,3 +96,78 @@ template <
 				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
 			}
 		}else if((srcImage.hasXbeginSection()==true)&&(srcImage.hasXendSection()==false)){
+			for(;y<srcImageHeight;++y){
+
+				//First Pixels of Row
+				for(x=0;x<xOffset;++x){
+					AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
+					++dstImageDataPtr;
+				}
+				//Inside Row
+				for(;dstImageDataPtr!=dstImageDataPtrRowEnd;){
+					AlgorithmType::process(dstImageDataPtr,srcImageDataPtr,parameter);
+					++dstImageDataPtr;
+					++srcImageDataPtr;
+				}
+				dstImageDataPtrRowEnd+=dstImageStride;
+
+				dstImageDataPtr+=filterWidth_1 - xOffset;
+				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
+
+				srcImageDataPtr+=filterWidth_1;
+				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
+			}
+		}else if((srcImage.hasXbeginSection()==false)&&(srcImage.hasXendSection()==true)){
+			for(;y<srcImageHeight;++y){
+				dstImageDataPtr+=xOffset;
+				//Inside Row
+				for(;dstImageDataPtr!=dstImageDataPtrRowEnd;){
+					AlgorithmType::process(dstImageDataPtr,srcImageDataPtr,parameter);
+					++dstImageDataPtr;
+					++srcImageDataPtr;
+				}
+				//Last Pixels of Row
+				for(x=srcImageWidth_filterWidthOffset;x<srcImageWidth;++x){
+					AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
+					++dstImageDataPtr;
+				}
+				dstImageDataPtrRowEnd+=dstImageStride;
+
+				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
+
+				srcImageDataPtr+=filterWidth_1;
+				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
+			}
+		}else{
+			for(;y<srcImageHeight;++y){
+				//First Pixels of Row
+				for(x=0;x<xOffset;++x){
+					AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
+					++dstImageDataPtr;
+				}
+				//Inside Row
+				for(;dstImageDataPtr!=dstImageDataPtrRowEnd;){
+					AlgorithmType::process(dstImageDataPtr,srcImageDataPtr,parameter);
+					++dstImageDataPtr;
+					++srcImageDataPtr;
+				}
+				//Last Pixels of Row
+				for(x=srcImageWidth_filterWidthOffset;x<srcImageWidth;++x){
+					AlgorithmType::process(dstImageDataPtr,srcImage,parameter,x,y);
+					++dstImageDataPtr;
+				}
+				dstImageDataPtrRowEnd+=dstImageStride;
+
+				dstImageDataPtr+=dstImage.getNumPixelsBetweenRows();
+
+				srcImageDataPtr+=filterWidth;//TEST!
+				srcImageDataPtr+=srcImage.getNumPixelsBetweenRows();
+			}
+		}
+	}
+
+}
+
+};
+
+#endif
