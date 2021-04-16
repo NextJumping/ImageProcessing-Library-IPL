@@ -1,0 +1,3 @@
+
+#ifndef IMAGE__BasicWx1baseAlgorithmParametersType_H
+#define IMAGE__BasicWx1ba
