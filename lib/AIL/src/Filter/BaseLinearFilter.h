@@ -27,4 +27,13 @@ template <
 
 		void resetTotalColor();
 
-		FINLINE const typename PixelType::
+		FINLINE const typename PixelType::ComputationType & getTotalColor() const {return totalColor;}
+
+	protected:
+		typename PixelType::ComputationType totalColor; //TODO: pick a better name
+
+};
+
+}
+
+#endif
