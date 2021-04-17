@@ -39,4 +39,11 @@ template <
 			TempType & tempData,
 			const ParametersType & parameters)
 		{
-			tempData.result
+			tempData.resultPixel.setComp(tempData.tempPixel/parameters.size);
+		}
+
+};
+
+}
+
+#endif
