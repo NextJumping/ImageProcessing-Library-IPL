@@ -26,4 +26,25 @@ template <
 			tempData.tempPixel =srcImageData*filterData;
 		}
 
-		static FINLINE void in
+		static FINLINE void inner(
+			TempType & tempData,
+			const ParametersType & parameters,
+			const PixelComputationType & srcImageData,
+			const PixelComputationType & filterData)
+		{
+			tempData.tempPixel+=srcImageData*filterData;
+		}
+
+		static FINLINE void final(
+			TempType & tempData,
+			const ParametersType & parameters)
+		{
+			tempData.tempPixel/=parameters.totalColor;
+			tempData.resultPixel.setComp(tempData.tempPixel);
+		}
+
+};
+
+}
+
+#endif
