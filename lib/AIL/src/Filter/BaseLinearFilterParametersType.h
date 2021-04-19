@@ -10,4 +10,31 @@ namespace Filter {
 template <
 	typename PixelDataType,
 	typename PixelComputationType
-> class BaseLinearFilterParametersT
+> class BaseLinearFilterParametersType
+	: public SimpleWxHdataOperationParametersType<PixelDataType>
+{
+	public:
+
+		BaseLinearFilterParametersType(
+			const Image::ImageView<PixelDataType> & _filter,
+			const I4 & _xOffset,
+			const I4 & _yOffset,
+			const I4 & _srcImageWidth,
+			const PixelComputationType _totalColor
+		)
+			:SimpleWxHdataOperationParametersType<PixelDataType>(
+				_filter,
+				_xOffset,
+				_yOffset,
+				_srcImageWidth
+			)
+			,totalColor(_totalColor)
+		{
+		}
+
+		const PixelComputationType totalColor;
+};
+
+}
+
+#endif
