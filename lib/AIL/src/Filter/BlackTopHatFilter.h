@@ -1,0 +1,20 @@
+
+#ifndef FILTER__BlackTopHatFilter_H
+#define FILTER__BlackTopHatFilter_H
+
+#include "AIL.h"
+#include "ImageOperation.h"
+#include "MorphKernelType.h"
+
+namespace Filter {
+
+template <
+	typename PixelType
+> class AIL_DLL_EXPORT BlackTopHatFilter
+	: public ImageOperation<PixelType>
+{
+
+	public:
+		BlackTopHatFilter():iterations(3),type(MorphKernelType::square){};
+		BlackTopHatFilter(const I4 & _iterations):iterations(_iterations),type(MorphKernelType::square){};
+		BlackTopHatFilter(const I4 & _iterations,const MorphKernelType & _type):iterations(_iterations),type(_t

@@ -33,4 +33,15 @@ template <
 			tempData.tempPixel.setAsMin(srcImageData);
 		}
 
-		static FI
+		static FINLINE void final(
+			TempType & tempData,
+			const ParametersType & parameters)
+		{
+			tempData.resultPixel.setComp(tempData.tempPixel);
+		}
+
+};
+
+}
+
+#endif
