@@ -14,4 +14,23 @@ template <
 	typedef typename PixelType::DataType        PixelDataType;
 	typedef typename PixelType::ComputationType PixelComputationType;
 
-	BoxFilter1xHparametersType<PixelData
+	BoxFilter1xHparametersType<PixelDataType,PixelComputationType> parameters(yOffset,filterHeight,srcImage.getWidth(),PixelType::ComputationRange::getMinPixel(),PixelComputationType(filterHeight));
+
+	Algorithm::Algorithm1xH<
+		Algorithm::Basic1xHbaseAlgorithm<
+			BaseBoxFilterAlgorithm<
+				PixelDataType,
+				PixelComputationType,
+				BoxFilter1xHparametersType<PixelDataType,PixelComputationType>,
+				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
+			>,
+			PixelDataType,
+			PixelComputationType,
+			BoxFilter1xHparametersType<PixelDataType,PixelComputationType>,
+			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
+		>,
+		PixelDataType,
+		BoxFilter1xHparametersType<PixelDataType,PixelComputationType>
+	>(
+		srcImage.getDataView(),
+		dstImage.getDataView(
