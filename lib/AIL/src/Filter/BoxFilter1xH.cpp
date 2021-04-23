@@ -33,4 +33,13 @@ template <
 		BoxFilter1xHparametersType<PixelDataType,PixelComputationType>
 	>(
 		srcImage.getDataView(),
-		dstImage.getDataView(
+		dstImage.getDataView(),
+		parameters
+	);
+
+}
+
+}
+
+#include <Pixel/PixelTemplateMacros.h>
+CREATE_PIXEL_TEMPLATE_CALLS(Filter::BoxFilter1xH)
