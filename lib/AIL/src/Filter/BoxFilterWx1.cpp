@@ -17,4 +17,29 @@ template <
 	BoxFilterWx1parametersType<PixelDataType,PixelComputationType> parameters(xOffset,filterWidth,PixelType::ComputationRange::getMinPixel(),PixelComputationType(filterWidth));
 
 	Algorithm::AlgorithmWx1<
-		Algor
+		Algorithm::BasicWx1baseAlgorithm<
+			BaseBoxFilterAlgorithm<
+				PixelDataType,
+				PixelComputationType,
+				BoxFilterWx1parametersType<PixelDataType,PixelComputationType>,
+				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
+			>,
+			PixelDataType,
+			PixelComputationType,
+			BoxFilterWx1parametersType<PixelDataType,PixelComputationType>,
+			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
+		>,
+		PixelDataType,
+		BoxFilterWx1parametersType<PixelDataType,PixelComputationType>
+	>(
+		srcImage.getDataView(),
+		dstImage.getDataView(),
+		parameters
+	);
+
+}
+
+}
+
+#include <Pixel/PixelTemplateMacros.h>
+CREATE_PIXEL_TEMPLATE_CALLS(Filter::BoxFilterWx1)
