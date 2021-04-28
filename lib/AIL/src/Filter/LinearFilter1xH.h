@@ -19,4 +19,10 @@ template <
 		{
 		};
 
-		void 
+		void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const ;
+
+};
+
+}
+
+#endif
