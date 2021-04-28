@@ -10,4 +10,27 @@ namespace Filter {
 
 template <
 	typename PixelType
-> void LinearFilter1xH<PixelType>::applyTo(const Image::Image<Pixe
+> void LinearFilter1xH<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
+
+	typedef typename PixelType::DataType        PixelDataType;
+	typedef typename PixelType::ComputationType PixelComputationType;
+
+	BaseLinearFilterParametersType<PixelDataType,PixelComputationType> parameters(
+		getFilterData().getDataView(),
+		getXoffset(),
+		getYoffset(),
+		srcImage.getWidth(),
+		getTotalColor()
+	);
+
+	Algorithm::Algorithm1xH<
+		Simple1xHdataOperationBaseAlgorithm<
+			BaseLinearFilterAlgorithm<
+				PixelDataType,
+				PixelComputationType,
+				BaseLinearFilterParametersType<PixelDataType,PixelComputationType>,
+				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
+			>,
+			PixelDataType,
+			PixelComputationType,
+			BaseLin
