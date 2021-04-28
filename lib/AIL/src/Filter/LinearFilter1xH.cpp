@@ -33,4 +33,20 @@ template <
 			>,
 			PixelDataType,
 			PixelComputationType,
-			BaseLin
+			BaseLinearFilterParametersType<PixelDataType,PixelComputationType>,
+			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
+		>,
+		PixelDataType,
+		BaseLinearFilterParametersType<PixelDataType,PixelComputationType>
+	>(
+		srcImage.getDataView(),
+		dstImage.getDataView(),
+		parameters
+	);
+
+}
+
+}
+
+#include <Pixel/PixelTemplateMacros.h>
+CREATE_PIXEL_TEMPLATE_CALLS(Filter::LinearFilter1xH)
