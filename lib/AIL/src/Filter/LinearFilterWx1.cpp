@@ -41,4 +41,12 @@ template <
 	>(
 		srcImage.getDataView(),
 		dstImage.getDataView(),
-		paramet
+		parameters
+	);
+
+}
+
+}
+
+#include <Pixel/PixelTemplateMacros.h>
+CREATE_PIXEL_TEMPLATE_CALLS(Filter::LinearFilterWx1)
