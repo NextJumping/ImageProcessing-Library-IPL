@@ -15,4 +15,28 @@ template <
 	typedef typename PixelType::DataType        PixelDataType;
 	typedef typename PixelType::ComputationType PixelComputationType;
 
-	BaseLinearFilterPar
+	BaseLinearFilterParametersType<PixelDataType,PixelComputationType> parameters(
+		getFilterData().getDataView(),
+		getXoffset(),
+		getYoffset(),
+		srcImage.getWidth(),
+		getTotalColor()
+	);
+
+	Algorithm::AlgorithmWxH<
+		SimpleWxHdataOperationBaseAlgorithm<
+			BaseLinearFilterAlgorithm<
+				PixelDataType,
+				PixelComputationType,
+				BaseLinearFilterParametersType<PixelDataType,PixelComputationType>,
+				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
+			>,
+			PixelDataType,
+			PixelComputationType,
+			BaseLinearFilterParametersType<PixelDataType,PixelComputationType>,
+			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
+		>,
+		PixelDataType,
+		BaseLinearFilterParametersType<PixelDataType,PixelComputationType>
+	>(
+		srcImage.getData
