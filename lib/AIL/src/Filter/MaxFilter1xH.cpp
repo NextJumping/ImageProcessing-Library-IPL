@@ -24,4 +24,25 @@ template <
 			BaseMaxFilterAlgorithm<
 				PixelDataType,
 				PixelComputationType,
-				SimpleWxHbooleanOperationParameters
+				SimpleWxHbooleanOperationParametersType,
+				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
+			>,
+			PixelDataType,
+			PixelComputationType,
+			SimpleWxHbooleanOperationParametersType,
+			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
+		>,
+		PixelDataType,
+		SimpleWxHbooleanOperationParametersType
+	>(
+		srcImage.getDataView(),
+		dstImage.getDataView(),
+		parameters
+	);
+
+}
+
+}
+
+#include <Pixel/PixelTemplateMacros.h>
+CREATE_PIXEL_TEMPLATE_CALLS(Filter::MaxFilter1xH)
