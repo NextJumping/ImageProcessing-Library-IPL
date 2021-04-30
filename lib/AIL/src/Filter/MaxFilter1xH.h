@@ -13,4 +13,15 @@ template <
 {
 
 	public:
-		MaxFilter1xH(Image::Image<Pixel::PixelYb1> && _filt
+		MaxFilter1xH(Image::Image<Pixel::PixelYb1> && _filterData)
+			:BaseMaxFilter<PixelType>(Meta::forward(_filterData))
+		{
+		};
+
+		void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const ;
+
+};
+
+}
+
+#endif
