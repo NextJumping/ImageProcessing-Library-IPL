@@ -1,39 +1,38 @@
 
-#include "MaxFilterWx1.h"
+
+#include "MaxFilterWx1basic.h"
 #include <Algorithm/AlgorithmWx1.h>
 #include "BaseMaxFilterAlgorithm.h"
-#include "SimpleWxHbooleanOperationParametersType.h"
-#include "SimpleWx1booleanOperationBaseAlgorithm.h"
+#include <Algorithm/BasicWx1baseAlgorithmParametersType.h>
+#include <Algorithm/BasicWx1baseAlgorithm.h>
 #include <Algorithm/BaseOperationTempType.h>
 
 namespace Filter {
 
 template <
 	typename PixelType
-> void AIL_DLL_EXPORT MaxFilterWx1<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
+> void AIL_DLL_EXPORT MaxFilterWx1basic<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
 
 	typedef typename PixelType::DataType        PixelDataType;
 	typedef typename PixelType::ComputationType PixelComputationType;
 
-	filterData.calculateKernelSkipData(srcImage.getWidth());
-
-	SimpleWxHbooleanOperationParametersType parameters(getFilterData(),getXoffset(),getYoffset());
+	Algorithm::BasicWx1baseAlgorithmParametersType parameters(xOffset,filterWidth);
 
 	Algorithm::AlgorithmWx1<
-		SimpleWx1booleanOperationBaseAlgorithm<
+		Algorithm::BasicWx1baseAlgorithm<
 			BaseMaxFilterAlgorithm<
 				PixelDataType,
 				PixelComputationType,
-				SimpleWxHbooleanOperationParametersType,
+				Algorithm::BasicWx1baseAlgorithmParametersType,
 				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 			>,
 			PixelDataType,
 			PixelComputationType,
-			SimpleWxHbooleanOperationParametersType,
+			Algorithm::BasicWx1baseAlgorithmParametersType,
 			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 		>,
 		PixelDataType,
-		SimpleWxHbooleanOperationParametersType
+		Algorithm::BasicWx1baseAlgorithmParametersType 
 	>(
 		srcImage.getDataView(),
 		dstImage.getDataView(),
@@ -45,4 +44,4 @@ template <
 }
 
 #include <Pixel/PixelTemplateMacros.h>
-CREATE_PIXEL_TEMPLATE_CALLS(Filter::MaxFilterWx1)
+CREATE_PIXEL_TEMPLATE_CALLS(Filter::MaxFilterWx1basic)
