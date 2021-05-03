@@ -10,4 +10,25 @@ namespace Filter {
 
 template <
 	typename PixelType
-> void AIL_DLL_EXPORT MinFilter1xHbasic<PixelType>::applyTo(c
+> void AIL_DLL_EXPORT MinFilter1xHbasic<PixelType>::applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const {
+
+	typedef typename PixelType::DataType        PixelDataType;
+	typedef typename PixelType::ComputationType PixelComputationType;
+
+	Algorithm::Basic1xHbaseAlgorithmParametersType parameters(yOffset,filterHeight,srcImage.getWidth());
+
+	Algorithm::Algorithm1xH<
+		Algorithm::Basic1xHbaseAlgorithm<
+			BaseMinFilterAlgorithm<
+				PixelDataType,
+				PixelComputationType,
+				Algorithm::Basic1xHbaseAlgorithmParametersType,
+				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
+			>,
+			PixelDataType,
+			PixelComputationType,
+			Algorithm::Basic1xHbaseAlgorithmParametersType,
+			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
+		>,
+		PixelDataType,
+		
