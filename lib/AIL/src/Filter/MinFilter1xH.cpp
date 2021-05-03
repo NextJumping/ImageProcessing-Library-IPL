@@ -28,4 +28,21 @@ template <
 				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 			>,
 			PixelDataType,
-			Pixel
+			PixelComputationType,
+			SimpleWxHbooleanOperationParametersType,
+			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
+		>,
+		PixelDataType,
+		SimpleWxHbooleanOperationParametersType
+	>(
+		srcImage.getDataView(),
+		dstImage.getDataView(),
+		parameters
+	);
+
+}
+
+}
+
+#include <Pixel/PixelTemplateMacros.h>
+CREATE_PIXEL_TEMPLATE_CALLS(Filter::MinFilter1xH)
