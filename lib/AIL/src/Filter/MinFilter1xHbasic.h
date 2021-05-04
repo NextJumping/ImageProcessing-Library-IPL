@@ -28,4 +28,16 @@ template <
 		};
 
 		FINLINE const I4 & getHeight()  const {return filterHeight;}
-		FINLINE const I4 & getYoffset() cons
+		FINLINE const I4 & getYoffset() const {return yOffset;}
+
+		void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const ;
+
+	private:
+		const I4 filterHeight;
+		const I4 yOffset;
+
+};
+
+}
+
+#endif
