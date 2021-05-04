@@ -31,4 +31,16 @@ template <
 			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 		>,
 		PixelDataType,
-		
+		Algorithm::Basic1xHbaseAlgorithmParametersType
+	>(
+		srcImage.getDataView(),
+		dstImage.getDataView(),
+		parameters
+	);
+
+}
+
+}
+
+#include <Pixel/PixelTemplateMacros.h>
+CREATE_PIXEL_TEMPLATE_CALLS(Filter::MinFilter1xHbasic)
