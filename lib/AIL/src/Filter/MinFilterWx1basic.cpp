@@ -25,4 +25,22 @@ template <
 				Algorithm::BasicWx1baseAlgorithmParametersType,
 				Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
 			>,
-			PixelDataT
+			PixelDataType,
+			PixelComputationType,
+			Algorithm::BasicWx1baseAlgorithmParametersType,
+			Algorithm::BaseOperationTempType<PixelDataType,PixelComputationType>
+		>,
+		PixelDataType,
+		Algorithm::BasicWx1baseAlgorithmParametersType
+	>(
+		srcImage.getDataView(),
+		dstImage.getDataView(),
+		parameters
+	);
+
+}
+
+}
+
+#include <Pixel/PixelTemplateMacros.h>
+CREATE_PIXEL_TEMPLATE_CALLS(Filter::MinFilterWx1basic)
