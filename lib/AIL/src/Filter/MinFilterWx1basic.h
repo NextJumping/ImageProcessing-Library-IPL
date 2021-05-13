@@ -18,4 +18,26 @@ template <
 			,xOffset( (_filterWidth - 1) / 2 )
 		{
 		};
-		MinFilterWx
+		MinFilterWx1basic(
+			const I4 & _filterWidth,
+			const I4 & _xOffset
+		)
+			:filterWidth(_filterWidth)
+			,xOffset(_xOffset)
+		{
+		};
+
+		FINLINE const I4 & getWidth()   const {return filterWidth;}
+		FINLINE const I4 & getXoffset() const {return xOffset;}
+
+		void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const ;
+
+	private:
+		const I4 filterWidth;
+		const I4 xOffset;
+
+};
+
+}
+
+#endif
