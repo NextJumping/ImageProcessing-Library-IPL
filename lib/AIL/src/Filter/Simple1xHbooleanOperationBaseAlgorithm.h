@@ -35,4 +35,26 @@ template <
 			}
 			for(;yf<y+(parameters.filterHeight-parameters.yOffset); ++yf){
 				if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
-					DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(x,yf).getAsComp<PixelComputationType
+					DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(x,yf).getAsComp<PixelComputationType::NumberType>());
+				}
+				++filterDataPtr;
+			}
+			DerivedAlgorithmType::final(tempData,parameters);
+			(*dstImageDataPtr)=tempData.resultPixel;
+		}
+		static FINLINE void process(
+			PixelDataType * const & dstImageDataPtr,
+			const PixelDataType * const & srcImageDataPtrIn,
+			const ParametersType & parameters)
+		{
+			TempType tempData;
+			DerivedAlgorithmType::initial(tempData,parameters);
+			auto srcImageDataPtr   = srcImageDataPtrIn;
+			auto filterSkipDataPtr = parameters.filterSkipDataPtr;
+
+			srcImageDataPtr+=(*filterSkipDataPtr);
+			++filterSkipDataPtr;
+			DerivedAlgorithmType::first(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>());
+			srcImageDataPtr+=(*filterSkipDataPtr);
+			++filterSkipDataPtr;
+			for(;filterSkipDataPtr!=par
