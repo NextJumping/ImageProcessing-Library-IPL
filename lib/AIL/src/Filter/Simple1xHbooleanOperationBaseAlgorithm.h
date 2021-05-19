@@ -20,4 +20,19 @@ template <
 			const ParametersType & parameters,
 			const I4 & x,
 			const I4 & y)
-	
+		{
+			TempType tempData;
+			DerivedAlgorithmType::initial(tempData,parameters);
+			auto filterDataPtr = parameters.filterDataPtr;
+			I4 yf=y-parameters.yOffset;
+			for(;yf<y+(parameters.filterHeight-parameters.yOffset); ++yf){
+				if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
+					DerivedAlgorithmType::first(tempData,parameters,srcImage.getPixel(x,yf).getAsComp<PixelComputationType::NumberType>());
+					++filterDataPtr;
+					break;
+				}
+				++filterDataPtr;
+			}
+			for(;yf<y+(parameters.filterHeight-parameters.yOffset); ++yf){
+				if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
+					DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(x,yf).getAsComp<PixelComputationType
