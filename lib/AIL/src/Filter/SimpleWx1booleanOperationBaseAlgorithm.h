@@ -34,4 +34,24 @@ template <
 				++filterDataPtr;
 			}
 			for(;xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
-				if(Pixel::BooleanTestType
+				if(Pixel::BooleanTestType::isIncluded((*filterDataPtr))==true){
+					DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(xf,y).getAsComp<PixelComputationType::NumberType>());
+				}
+				++filterDataPtr;
+			}
+			DerivedAlgorithmType::final(tempData,parameters);
+			(*dstImageDataPtr)=tempData.resultPixel;
+		}
+		static FINLINE void process(
+			PixelDataType * const & dstImageDataPtr,
+			const PixelDataType * const & srcImageDataPtrIn,
+			const ParametersType & parameters)
+		{
+			TempType tempData;
+			DerivedAlgorithmType::initial(tempData,parameters);
+			auto srcImageDataPtr   = srcImageDataPtrIn;
+			auto filterSkipDataPtr = parameters.filterSkipDataPtr;
+
+			srcImageDataPtr+=(*filterSkipDataPtr);
+			++filterSkipDataPtr;
+			DerivedAlgorithmType::first(tempData,parameters,(*srcImageDataPtr).get
