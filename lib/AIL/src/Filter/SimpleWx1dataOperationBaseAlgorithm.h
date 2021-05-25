@@ -11,4 +11,21 @@ template <
 	typename PixelDataType,
 	typename PixelComputationType,
 	typename ParametersType,
-	typename TempT
+	typename TempType
+> class SimpleWx1dataOperationBaseAlgorithm {
+	public:
+		static FINLINE void process(
+			PixelDataType * const & dstImageDataPtr,
+			const Image::ImageView<PixelDataType> & srcImage,
+			const ParametersType & parameters,
+			const I4 & x,
+			const I4 & y)
+		{
+			TempType tempData;
+			DerivedAlgorithmType::initial(tempData,parameters);
+			auto filterDataPtr = parameters.filterDataPtr;
+			I4 xf=x-parameters.xOffset;
+			DerivedAlgorithmType::first(tempData,parameters,srcImage.getPixel(xf,y).getAsComp<PixelComputationType::NumberType>(),(*filterDataPtr).getAsComp<PixelComputationType::NumberType>());
+			++filterDataPtr;++xf;
+			for(;xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
+				DerivedAlgorithmType::inner(tempData,param
