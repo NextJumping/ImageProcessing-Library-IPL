@@ -54,4 +54,19 @@ template <
 
 			srcImageDataPtr+=(*filterSkipDataPtr);
 			++filterSkipDataPtr;
-			DerivedAlgorithmType::first(tempData,parameters,(*srcImageDataPtr).get
+			DerivedAlgorithmType::first(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>());
+			srcImageDataPtr+=(*filterSkipDataPtr);
+			++filterSkipDataPtr;
+			for (;filterSkipDataPtr!=parameters.filterSkipDataPtrEnd;){
+				DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>());
+				srcImageDataPtr+=(*filterSkipDataPtr);
+				++filterSkipDataPtr;
+			}
+			DerivedAlgorithmType::final(tempData,parameters);
+			(*dstImageDataPtr)=tempData.resultPixel;
+		}
+};
+
+}
+
+#endif
