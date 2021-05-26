@@ -28,4 +28,19 @@ template <
 			DerivedAlgorithmType::first(tempData,parameters,srcImage.getPixel(xf,y).getAsComp<PixelComputationType::NumberType>(),(*filterDataPtr).getAsComp<PixelComputationType::NumberType>());
 			++filterDataPtr;++xf;
 			for(;xf<x+(parameters.filterWidth-parameters.xOffset); ++xf){
-				DerivedAlgorithmType::inner(tempData,param
+				DerivedAlgorithmType::inner(tempData,parameters,srcImage.getPixel(xf,y).getAsComp<PixelComputationType::NumberType>(),(*filterDataPtr).getAsComp<PixelComputationType::NumberType>());
+				++filterDataPtr;
+			}
+			DerivedAlgorithmType::final(tempData,parameters);
+			(*dstImageDataPtr)=tempData.resultPixel;
+		}
+		static FINLINE void process(
+			PixelDataType * const & dstImageDataPtr,
+			const PixelDataType * const & srcImageDataPtrIn,
+			const ParametersType & parameters)
+		{
+			TempType tempData;
+			DerivedAlgorithmType::initial(tempData,parameters);
+			auto srcImageDataPtr = srcImageDataPtrIn;
+			auto filterDataPtr   = parameters.filterDataPtr;
+			DerivedAlgorithmType::first(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::Numbe
