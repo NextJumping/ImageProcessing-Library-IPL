@@ -43,4 +43,19 @@ template <
 			DerivedAlgorithmType::initial(tempData,parameters);
 			auto srcImageDataPtr = srcImageDataPtrIn;
 			auto filterDataPtr   = parameters.filterDataPtr;
-			DerivedAlgorithmType::first(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::Numbe
+			DerivedAlgorithmType::first(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>(),(*filterDataPtr).getAsComp<PixelComputationType::NumberType>());
+			++filterDataPtr;
+			++srcImageDataPtr;
+			for(;filterDataPtr!=parameters.filterDataPtrEnd;){
+				DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>(),(*filterDataPtr).getAsComp<PixelComputationType::NumberType>());
+				++filterDataPtr;
+				++srcImageDataPtr;
+			}
+			DerivedAlgorithmType::final(tempData,parameters);
+			(*dstImageDataPtr)=tempData.resultPixel;
+		}
+};
+
+}
+
+#endif
