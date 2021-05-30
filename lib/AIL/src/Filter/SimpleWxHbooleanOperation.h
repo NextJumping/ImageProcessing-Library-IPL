@@ -31,4 +31,22 @@ template <
 		FINLINE void setYoffset(const I4 & _yOffset){yOffset=_yOffset;}
 
 		FINLINE       B1 & operator()(const I4 & x,const I4 & y)       {return filterData(x,y);};
-		FINLINE const B1 & operator()(const I4 & x,const I4 & y) const {
+		FINLINE const B1 & operator()(const I4 & x,const I4 & y) const {return filterData(x,y);};
+
+		virtual void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const = 0 ;
+
+	protected:
+		SimpleWxHbooleanOperation(Image::Image<Pixel::PixelYb1> && _filterData)
+			:filterData(Meta::forward(_filterData))
+			,xOffset((filterData.getKernel().getWidth()-1)/2)
+			,yOffset((filterData.getKernel().getHeight()-1)/2)
+		{
+		};
+
+		void createFilterSkipData(const I4 & imageWidth);
+
+};
+
+}
+
+#endif
