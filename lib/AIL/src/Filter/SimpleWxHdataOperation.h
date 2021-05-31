@@ -29,4 +29,22 @@ template <
 		FINLINE void setYoffset(const I4 & _yOffset){yOffset=_yOffset;}
 
 		FINLINE       PixelType & operator()(const I4 & x,const I4 & y)       {return filterData(x,y);};
-		FINLINE const PixelType & operator()(const I4 & x,const I4 & y) const {return filterData(x,y)
+		FINLINE const PixelType & operator()(const I4 & x,const I4 & y) const {return filterData(x,y);};
+
+		virtual void applyTo(const Image::Image<PixelType> & srcImage,Image::Image<PixelType> & dstImage) const = 0 ;
+
+		virtual ~SimpleWxHdataOperation(){}
+
+	protected:
+		SimpleWxHdataOperation(Image::Image<PixelType> && _filterData)
+			:filterData(Meta::forward(_filterData))
+			,xOffset((filterData.getWidth()-1)/2)
+			,yOffset((filterData.getHeight()-1)/2)
+		{
+		};
+
+};
+
+}
+
+#endif
