@@ -44,4 +44,16 @@ template <
 		}
 		static FINLINE void process(
 			PixelDataType * const & dstImageDataPtr,
-			const PixelDataType * const & srcImage
+			const PixelDataType * const & srcImageDataPtrIn,
+			const ParametersType & parameters)
+		{
+			TempType tempData;
+			DerivedAlgorithmType::initial(tempData,parameters);
+			auto srcImageDataPtr     = srcImageDataPtrIn;
+			auto filterDataPtr       = parameters.filterDataPtr;
+			auto filterDataPtrRowEnd = parameters.filterDataPtr+parameters.filterWidth; //TODO: store this information in the parameters and just use a lookup?
+			DerivedAlgorithmType::first(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>(),(*filterDataPtr).getAsComp<PixelComputationType::NumberType>());
+			++filterDataPtr;
+			++srcImageDataPtr;
+			for(;filterDataPtr!=parameters.filterDataPtrEnd;){
+				for(;filterDataPtr!=filterDataPtrRow
