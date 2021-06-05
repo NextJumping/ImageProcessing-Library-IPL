@@ -56,4 +56,20 @@ template <
 			++filterDataPtr;
 			++srcImageDataPtr;
 			for(;filterDataPtr!=parameters.filterDataPtrEnd;){
-				for(;filterDataPtr!=filterDataPtrRow
+				for(;filterDataPtr!=filterDataPtrRowEnd;){
+					DerivedAlgorithmType::inner(tempData,parameters,(*srcImageDataPtr).getAsComp<PixelComputationType::NumberType>(),(*filterDataPtr).getAsComp<PixelComputationType::NumberType>());
+					++filterDataPtr;
+					++srcImageDataPtr;
+				}
+				filterDataPtrRowEnd+=parameters.filterWidth;
+				srcImageDataPtr+=parameters.srcImageWidth_filterWidth;
+			}
+			DerivedAlgorithmType::final(tempData,parameters);
+			(*dstImageDataPtr)=tempData.resultPixel;
+		}
+
+};
+
+}
+
+#endif
