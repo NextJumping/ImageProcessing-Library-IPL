@@ -87,4 +87,19 @@ template <
 template <
 	typename PixelType,
 	typename InclusionTestType
-> I4 ImageKernel
+> I4 ImageKernel<PixelType,InclusionTestType>::calculateKernelSize(const Image<PixelType> & image){
+	I4 _kernelSize = 0;
+	auto imageDataPtr = image.getDataPtr();
+	for(;imageDataPtr!=image.getDataPtrEnd();){ //TODO: find a good way to put this into Algorithm1x1
+		if(InclusionTestType::isIncluded(*imageDataPtr)==true){
+			_kernelSize+=1;
+		}
+		++imageDataPtr;
+	}
+	return _kernelSize;
+}
+
+}
+
+#include <Pixel/PixelTemplateMacros.h>
+template class Image::ImageKernel<Pixel::PixelYb1,Pixel::BooleanTestType>;
