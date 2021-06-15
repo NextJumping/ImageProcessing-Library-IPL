@@ -60,4 +60,31 @@ template <
 	kernelSkipDataPtrEnd=nullptr;
 
 	kernelSkipDataPtr = static_cast<I4*>(Data::DataManager::getMemory(sizeof(I4) * (kernelSize+2)));
-	kernelSkipDataPtrEnd=kernel
+	kernelSkipDataPtrEnd=kernelSkipDataPtr+kernelSize+1;
+
+	auto kernelSkipDataPtrTemp = const_cast<I4 *>(kernelSkipDataPtr);
+
+	I4 kernelDataSkipNum = 0;
+	I4 kernelDataCount   = 0;
+	auto dataPtr = kernel.getDataPtr();
+	for(I4 y=0; y<kernel.getHeight(); ++y){ //TODO: make this faster
+		for(I4 x=0; x<kernel.getWidth(); ++x){
+			if(InclusionTestType::isIncluded(*dataPtr)==true){
+				kernelSkipDataPtrTemp[kernelDataCount] = kernelDataSkipNum;
+				++kernelDataCount;
+				kernelDataSkipNum=1;
+			}else{
+				++kernelDataSkipNum;
+			}
+			++dataPtr;
+		}
+		kernelDataSkipNum+=parentImageWidth-kernel.getWidth();
+	}
+	kernelSkipDataPtrTemp[kernelDataCount] = 1;
+	//TODO: assert(kernelDataCount==kernelSize);
+}
+
+template <
+	typename PixelType,
+	typename InclusionTestType
+> I4 ImageKernel
