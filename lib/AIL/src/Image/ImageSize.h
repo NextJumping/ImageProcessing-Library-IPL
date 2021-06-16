@@ -34,4 +34,24 @@ class AIL_DLL_EXPORT ImageSize {
 		friend FINLINE bool operator<(const ThisType & other1, const ThisType & other2){
 			return (other1.getNumPixels() < other2.getNumPixels());
 		}
-		friend FINLINE bool o
+		friend FINLINE bool operator!=(const ThisType & other1, const ThisType & other2){
+			return (other1.getWidth()!=other2.getWidth())||(other1.getHeight()!=other2.getHeight());
+		}
+		friend FINLINE bool operator==(const ThisType & other1, const ThisType & other2){
+			return (other1.getWidth()==other2.getWidth())&&(other1.getHeight()==other2.getHeight());
+		}
+
+	private:
+		I4 width;
+		I4 width_1;
+
+		I4 height;
+		I4 height_1;
+
+		I4 numPixels;
+};
+
+}
+
+#endif
+
