@@ -33,4 +33,4 @@ template<class DstPixelType,class SrcPixelType> AIL_DLL_EXPORT typename Meta::di
 #define FUNCTION_SIGNATURE_2 & _image)
 
 #include <Pixel/PixelFunctionTemplateMacro.h>
-//-
+//-------------------------------------------------------//*/
