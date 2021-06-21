@@ -31,4 +31,18 @@ template <typename PixelType> AIL_DLL_EXPORT Image::Image<PixelType> MakeGaussia
 		}
 	}
 	image/=total;
-	return imag
+	return image;
+}
+
+}
+
+//-------------------------------------------------------
+#define FUNCTION_TEMPLATE_RETURN
+#define ONLY_F
+
+#define FUNCTION_RETURN AIL_DLL_EXPORT Image::Image
+#define FUNCTION_NAME Paint::MakeGaussian
+#define FUNCTION_SIGNATURE (const I4 & width, const I4 & height,const F8 & sigma)
+
+#include <Pixel/PixelFunctionTemplateMacro.h>
+//-------------------------------------------------------
