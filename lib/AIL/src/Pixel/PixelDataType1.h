@@ -41,4 +41,15 @@ template <
 		FINLINE ThisType & operator -=(const NumberType & scalar){x-=scalar;return (*this);}
 		FINLINE ThisType & operator +=(const NumberType & scalar){x+=scalar;return (*this);}
 		FINLINE ThisType & operator *=(const NumberType & scalar){x*=scalar;return (*this);}
-		FINLINE ThisType & 
+		FINLINE ThisType & operator /=(const NumberType & scalar){x/=scalar;return (*this);}
+		
+		FINLINE ThisType operator-(const NumberType & scalar) const {return ThisType(*this)-=scalar;}
+		FINLINE ThisType operator+(const NumberType & scalar) const {return ThisType(*this)+=scalar;}
+		FINLINE ThisType operator*(const NumberType & scalar) const {return ThisType(*this)*=scalar;}
+		FINLINE ThisType operator/(const NumberType & scalar) const {return ThisType(*this)/=scalar;}
+
+		//With Pixel:
+		FINLINE ThisType & operator -=(const ThisType & pixel){x-=pixel.x;return (*this);}
+		FINLINE ThisType & operator +=(const ThisType & pixel){x+=pixel.x;return (*this);}
+		FINLINE ThisType & operator *=(const ThisType & pixel){x*=pixel.x;return (*this);}
+		FINLINE ThisType & ope
