@@ -52,4 +52,13 @@ template <
 		FINLINE ThisType & operator -=(const ThisType & pixel){x-=pixel.x;return (*this);}
 		FINLINE ThisType & operator +=(const ThisType & pixel){x+=pixel.x;return (*this);}
 		FINLINE ThisType & operator *=(const ThisType & pixel){x*=pixel.x;return (*this);}
-		FINLINE ThisType & ope
+		FINLINE ThisType & operator /=(const ThisType & pixel){x/=pixel.x;return (*this);}
+
+		FINLINE ThisType operator-(const ThisType & pixel) const {return ThisType(*this)-=pixel;}
+		FINLINE ThisType operator+(const ThisType & pixel) const {return ThisType(*this)+=pixel;}
+		FINLINE ThisType operator*(const ThisType & pixel) const {return ThisType(*this)*=pixel;}
+		FINLINE ThisType operator/(const ThisType & pixel) const {return ThisType(*this)/=pixel;}
+
+		friend FINLINE ThisType operator-(const NumberType & scalar, const ThisType & pixel){return PixelDataType1<NumberType>(scalar)-pixel;}
+		friend FINLINE ThisType operator+(const NumberType & scalar, const ThisType & pixel){return PixelDataType1<NumberType>(scalar)+pixel;}
+		friend FINLINE ThisType operator*(const NumberType & sc
