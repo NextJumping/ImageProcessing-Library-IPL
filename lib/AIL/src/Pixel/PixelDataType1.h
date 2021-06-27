@@ -77,4 +77,12 @@ template <
 };
 
 typedef PixelDataType1<B1 > PixelDataType1b1;
-typedef PixelDataType1<
+typedef PixelDataType1<I1u> PixelDataType1i1u;
+typedef PixelDataType1<I4 > PixelDataType1i4;
+typedef PixelDataType1<F4 > PixelDataType1f4;
+typedef PixelDataType1<F8 > PixelDataType1f8;
+
+}
+
+
+#endif
