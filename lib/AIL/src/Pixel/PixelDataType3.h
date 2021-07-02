@@ -25,4 +25,14 @@ template <
 		FINLINE bool operator ==(const ThisType   & _pixel ) const {if(x==_pixel.x){if(y==_pixel.y){if(z==_pixel.z){return true;}}}return false;}
 		FINLINE bool operator ==(const NumberType & _scalar) const {if(x==scalar  ){if(y==scalar  ){if(z==scalar  ){return true;}}}return false;}
 
-		template <typename DiffNumberType> FINLINE const void setComp(const PixelDataType3<DiffNumberType> & _pixel){x=_pixel.get<0>();
+		template <typename DiffNumberType> FINLINE const void setComp(const PixelDataType3<DiffNumberType> & _pixel){x=_pixel.get<0>();y=_pixel.get<1>();z=_pixel.get<2>();};
+
+		template <typename DiffNumberType> FINLINE PixelDataType3<DiffNumberType> getAsComp() const {return PixelDataType3<DiffNumberType>(x,y,z);};
+
+		FINLINE void setAs   (const ThisType & _pixel){x=_pixel.x;y=_pixel.y;z=_pixel.z;}
+		FINLINE void setAsMin(const ThisType &  pixel){if(x>pixel.x){x=pixel.x;}if(y>pixel.y){y=pixel.y;}if(z>pixel.z){z=pixel.z;}}
+		FINLINE void setAsMax(const ThisType &  pixel){if(x<pixel.x){x=pixel.x;}if(y<pixel.y){y=pixel.y;}if(z<pixel.z){z=pixel.z;}}
+
+		FINLINE void setAs   (const NumberType & _scalar){x=_scalar;y=_scalar;z=_scalar;}
+		FINLINE void setAsMin(const NumberType &  scalar){if(x>scalar){x=scalar;}if(y>scalar){y=scalar;}if(z>scalar){z=scalar;}}
+		FINLINE void setAsMax(const NumberType &  scalar){i
