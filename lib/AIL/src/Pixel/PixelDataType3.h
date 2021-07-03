@@ -35,4 +35,15 @@ template <
 
 		FINLINE void setAs   (const NumberType & _scalar){x=_scalar;y=_scalar;z=_scalar;}
 		FINLINE void setAsMin(const NumberType &  scalar){if(x>scalar){x=scalar;}if(y>scalar){y=scalar;}if(z>scalar){z=scalar;}}
-		FINLINE void setAsMax(const NumberType &  scalar){i
+		FINLINE void setAsMax(const NumberType &  scalar){if(x<scalar){x=scalar;}if(y<scalar){y=scalar;}if(z<scalar){z=scalar;}}
+
+	//Operators
+		//With Scalar:
+		FINLINE ThisType & operator -=(const NumberType & scalar){x-=scalar;y-=scalar;z-=scalar;return (*this);}
+		FINLINE ThisType & operator +=(const NumberType & scalar){x+=scalar;y+=scalar;z+=scalar;return (*this);}
+		FINLINE ThisType & operator *=(const NumberType & scalar){x*=scalar;y*=scalar;z*=scalar;return (*this);}
+		FINLINE ThisType & operator /=(const NumberType & scalar){x/=scalar;y/=scalar;z/=scalar;return (*this);}
+		
+		FINLINE ThisType operator-(const NumberType & scalar) const {return ThisType(*this)-=scalar;}
+		FINLINE ThisType operator+(const NumberType & scalar) const {return ThisType(*this)+=scalar;}
+		FINLINE ThisType o
