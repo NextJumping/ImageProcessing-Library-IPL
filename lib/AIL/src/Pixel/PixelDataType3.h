@@ -75,4 +75,21 @@ template <
 		template <              > FINLINE       NumberType & get<1>()       {return y;}
 		template <              > FINLINE       NumberType & get<2>()       {return z;}
 
-		template <int TypeNumber> FINLINE vo
+		template <int TypeNumber> FINLINE void set(const NumberType & _otherElement){this->get<TypeNumber>()=_otherElement;}
+
+	protected:
+		NumberType x;
+		NumberType y;
+		NumberType z;
+};
+
+typedef PixelDataType3<I1u> PixelDataType3i1u;
+typedef PixelDataType3<I2 > PixelDataType3i2;
+typedef PixelDataType3<I2u> PixelDataType3i2u;
+typedef PixelDataType3<I4 > PixelDataType3i4;
+typedef PixelDataType3<F4 > PixelDataType3f4;
+typedef PixelDataType3<F8 > PixelDataType3f8;
+
+}
+
+#endif
