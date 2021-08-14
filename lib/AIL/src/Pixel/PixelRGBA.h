@@ -49,3 +49,17 @@ template <
 		FINLINE const NumberType & getR() const {return this->get<Rposition>();}
 		FINLINE const NumberType & getG() const {return this->get<Gposition>();}
 		FINLINE const NumberType & getB() const {return this->get<Bposition>();}
+		FINLINE const NumberType & getA() const {return this->get<Aposition>();}
+
+};
+
+typedef PixelRGBAbaseType<I1u,I4,PixelRange_XYZAi1u   ,0,1,2,3> PixelRGBAi1utd;
+typedef PixelRGBAbaseType<I4 ,I4,PixelRange_XYZAi4    ,0,1,2,3> PixelRGBAi4td;
+typedef PixelRGBAbaseType<I4 ,I4,PixelRange_XYZAi4_i1u,0,1,2,3> PixelRGBAi4_i1utd;
+typedef PixelRGBAbaseType<I4 ,I4,PixelRange_XYZAi4_i2u,0,1,2,3> PixelRGBAi4_i2utd;
+typedef PixelRGBAbaseType<F8 ,F8,PixelRange_XYZAf8    ,0,1,2,3> PixelRGBAf8td;
+
+typedef PixelRGBAbaseType<I1u,I4,PixelRange_AXYZi1u   ,1,2,3,0> PixelARGBi1utd;
+typedef PixelRGBAbaseType<I4 ,I4,PixelRange_AXYZi4    ,1,2,3,0> PixelARGBi4td;
+typedef PixelRGBAbaseType<I4 ,I4,PixelRange_AXYZi4_i1u,1,2,3,0> PixelARGBi4_i1utd;
+typedef 
