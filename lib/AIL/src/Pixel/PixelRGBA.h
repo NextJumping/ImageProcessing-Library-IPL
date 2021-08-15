@@ -75,4 +75,15 @@ class AIL_DLL_EXPORT PixelRGBAi4 : public PixelRGBAi4td {
 	public:
 		typedef I4                             NumberType;
 		typedef PixelRGBAi4td::DataType        DataType;
-		typedef Pix
+		typedef PixelRGBAi4td::ComputationType ComputationType;
+		typedef PixelRGBAi4                    ComputationPixel;
+		typedef PixelRange_XYZAi4_i1u          ComputationRange;
+		typedef PixelRGBAi4td                  ParentType;
+		typedef PixelRGBAi4                    ThisType;
+
+		FINLINE explicit PixelRGBAi4(){}
+		FINLINE explicit PixelRGBAi4(const NumberType      & _scalar):ParentType(_scalar){}
+		FINLINE          PixelRGBAi4(const DataType        & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelRGBAi4(const ThisType        & _pixel ):ParentType(_pixel ){}
+
+		FINLINE explicit PixelRGBAi4(const NumberType & _r,const NumberType & _g,const NumberType & _b,const NumberType & _a){setR(_r);setG(_g);setB(_b);se
