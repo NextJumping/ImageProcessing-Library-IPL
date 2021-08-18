@@ -118,4 +118,18 @@ class AIL_DLL_EXPORT PixelRGBAf8 : public PixelRGBAf8td {
 		typedef PixelRGBAf8                    ThisType;
 
 		FINLINE explicit PixelRGBAf8(){}
-		FINLINE explicit PixelRGBAf8(con
+		FINLINE explicit PixelRGBAf8(const NumberType      & _scalar):ParentType(_scalar){}
+		FINLINE          PixelRGBAf8(const DataType        & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelRGBAf8(const ThisType        & _pixel ):ParentType(_pixel ){}
+
+		FINLINE explicit PixelRGBAf8(const NumberType & _r,const NumberType & _g,const NumberType & _b,const NumberType & _a){setR(_r);setG(_g);setB(_b);setA(_a);}
+};
+
+class AIL_DLL_EXPORT PixelARGBi4 : public PixelARGBi4td {
+	public:
+		typedef I4                             NumberType;
+		typedef PixelARGBi4td::DataType        DataType;
+		typedef PixelARGBi4td::ComputationType ComputationType;
+		typedef PixelARGBi4td                  ComputationPixel;
+		typedef PixelRange_AXYZi4_i1u          ComputationRange;
+		type
