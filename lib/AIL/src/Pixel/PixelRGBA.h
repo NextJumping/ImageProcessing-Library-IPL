@@ -132,4 +132,19 @@ class AIL_DLL_EXPORT PixelARGBi4 : public PixelARGBi4td {
 		typedef PixelARGBi4td::ComputationType ComputationType;
 		typedef PixelARGBi4td                  ComputationPixel;
 		typedef PixelRange_AXYZi4_i1u          ComputationRange;
-		type
+		typedef PixelARGBi4td                  ParentType;
+		typedef PixelARGBi4                    ThisType;
+
+		FINLINE explicit PixelARGBi4(){}
+		FINLINE explicit PixelARGBi4(const NumberType      & _scalar):ParentType(_scalar){}
+		FINLINE          PixelARGBi4(const DataType        & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelARGBi4(const ThisType        & _pixel ):ParentType(_pixel ){}
+
+		FINLINE explicit PixelARGBi4(const NumberType & _r,const NumberType & _g,const NumberType & _b,const NumberType & _a){setR(_r);setG(_g);setB(_b);setA(_a);}
+};
+
+class AIL_DLL_EXPORT PixelARGBi1u : public PixelARGBi1utd {
+	public:
+		typedef I1u                             NumberType;
+		typedef PixelARGBi1utd::DataType        DataType;
+		typed
