@@ -191,4 +191,20 @@ class AIL_DLL_EXPORT PixelBGRAi4 : public PixelBGRAi4td {
 
 		FINLINE explicit PixelBGRAi4(){}
 		FINLINE explicit PixelBGRAi4(const NumberType      & _scalar):ParentType(_scalar){}
-		FINLINE          PixelBGRAi4(const DataType  
+		FINLINE          PixelBGRAi4(const DataType        & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelBGRAi4(const ThisType        & _pixel ):ParentType(_pixel ){}
+
+		FINLINE explicit PixelBGRAi4(const NumberType & _r,const NumberType & _g,const NumberType & _b,const NumberType & _a){setR(_r);setG(_g);setB(_b);setA(_a);}
+};
+
+class AIL_DLL_EXPORT PixelBGRAi1u : public PixelBGRAi1utd {
+	public:
+		typedef I1u                             NumberType;
+		typedef PixelBGRAi1utd::DataType        DataType;
+		typedef PixelBGRAi1utd::ComputationType ComputationType;
+		typedef PixelBGRAi4                     ComputationPixel;
+		typedef PixelRange_ZYXAi4_i1u           ComputationRange;
+		typedef PixelBGRAi1utd                  ParentType;
+		typedef PixelBGRAi1u                    ThisType;
+
+		FINLINE explicit P
