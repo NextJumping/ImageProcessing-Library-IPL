@@ -220,4 +220,19 @@ class AIL_DLL_EXPORT PixelBGRAf8 : public PixelBGRAf8td {
 		typedef F8                             NumberType;
 		typedef PixelBGRAf8td::DataType        DataType;
 		typedef PixelBGRAf8td::ComputationType ComputationType;
-		typedef PixelBGRAf8        
+		typedef PixelBGRAf8                    ComputationPixel;
+		typedef PixelRange_ZYXAf8              ComputationRange;
+		typedef PixelBGRAf8td                  ParentType;
+		typedef PixelBGRAf8                    ThisType;
+
+		FINLINE explicit PixelBGRAf8(){}
+		FINLINE explicit PixelBGRAf8(const NumberType      & _scalar):ParentType(_scalar){}
+		FINLINE          PixelBGRAf8(const DataType        & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelBGRAf8(const ThisType        & _pixel ):ParentType(_pixel ){}
+
+		FINLINE explicit PixelBGRAf8(const NumberType & _r,const NumberType & _g,const NumberType & _b,const NumberType & _a){setR(_r);setG(_g);setB(_b);setA(_a);}
+};
+
+}
+
+#endif
