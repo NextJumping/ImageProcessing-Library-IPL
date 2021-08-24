@@ -207,4 +207,17 @@ class AIL_DLL_EXPORT PixelBGRAi1u : public PixelBGRAi1utd {
 		typedef PixelBGRAi1utd                  ParentType;
 		typedef PixelBGRAi1u                    ThisType;
 
-		FINLINE explicit P
+		FINLINE explicit PixelBGRAi1u(){}
+		FINLINE explicit PixelBGRAi1u(const NumberType      & _scalar):ParentType(_scalar){}
+		FINLINE          PixelBGRAi1u(const DataType        & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelBGRAi1u(const ThisType        & _pixel ):ParentType(_pixel ){}
+
+		FINLINE explicit PixelBGRAi1u(const NumberType & _r,const NumberType & _g,const NumberType & _b,const NumberType & _a){setR(_r);setG(_g);setB(_b);setA(_a);}
+};
+
+class AIL_DLL_EXPORT PixelBGRAf8 : public PixelBGRAf8td {
+	public:
+		typedef F8                             NumberType;
+		typedef PixelBGRAf8td::DataType        DataType;
+		typedef PixelBGRAf8td::ComputationType ComputationType;
+		typedef PixelBGRAf8        
