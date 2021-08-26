@@ -114,3 +114,82 @@ const I4                  PixelRange_AXYZi4_i2u::minValue = I4(0x0000);
 const I4                  PixelRange_AXYZi4_i2u::maxValue = I4(0xffff);
 
 const PixelDataTypeAXYZf4 PixelRange_AXYZf4::minPixel   = PixelDataTypeAXYZf4(0.0f);
+const PixelDataTypeAXYZf4 PixelRange_AXYZf4::maxPixel   = PixelDataTypeAXYZf4(1.0f);
+const F4                  PixelRange_AXYZf4::minValue   = F4(0.0f);
+const F4                  PixelRange_AXYZf4::maxValue   = F4(1.0f);
+
+const PixelDataTypeAXYZf8 PixelRange_AXYZf8::minPixel   = PixelDataTypeAXYZf8(0.0);
+const PixelDataTypeAXYZf8 PixelRange_AXYZf8::maxPixel   = PixelDataTypeAXYZf8(1.0);
+const F8                  PixelRange_AXYZf8::minValue   = F8(0.0);
+const F8                  PixelRange_AXYZf8::maxValue   = F8(1.0);
+
+///////////////////////////////////////////////////////////////////
+
+const PixelDataTypeZYXAi1u PixelRange_ZYXAi1u::minPixel  = PixelDataTypeZYXAi1u(0x00);
+const PixelDataTypeZYXAi1u PixelRange_ZYXAi1u::maxPixel  = PixelDataTypeZYXAi1u(0xff);
+const I1u                  PixelRange_ZYXAi1u::minValue  = I1u(0x00);
+const I1u                  PixelRange_ZYXAi1u::maxValue  = I1u(0xff);
+
+const PixelDataTypeZYXAi4 PixelRange_ZYXAi4::minPixel   = PixelDataTypeZYXAi4(0x00);
+const PixelDataTypeZYXAi4 PixelRange_ZYXAi4::maxPixel   = PixelDataTypeZYXAi4(0xff);
+const I4                  PixelRange_ZYXAi4::minValue   = I4(0x00);
+const I4                  PixelRange_ZYXAi4::maxValue   = I4(0xff);
+
+const PixelDataTypeZYXAi4 PixelRange_ZYXAi4_i1u::minPixel = PixelDataTypeZYXAi4(0x00);
+const PixelDataTypeZYXAi4 PixelRange_ZYXAi4_i1u::maxPixel = PixelDataTypeZYXAi4(0xff);
+const I4                  PixelRange_ZYXAi4_i1u::minValue = I4(0x00);
+const I4                  PixelRange_ZYXAi4_i1u::maxValue = I4(0xff);
+
+const PixelDataTypeZYXAi4 PixelRange_ZYXAi4_i2u::minPixel = PixelDataTypeZYXAi4(0x0000);
+const PixelDataTypeZYXAi4 PixelRange_ZYXAi4_i2u::maxPixel = PixelDataTypeZYXAi4(0xffff);
+const I4                  PixelRange_ZYXAi4_i2u::minValue = I4(0x0000);
+const I4                  PixelRange_ZYXAi4_i2u::maxValue = I4(0xffff);
+
+const PixelDataTypeZYXAf4 PixelRange_ZYXAf4::minPixel   = PixelDataTypeZYXAf4(0.0f);
+const PixelDataTypeZYXAf4 PixelRange_ZYXAf4::maxPixel   = PixelDataTypeZYXAf4(1.0f);
+const F4                  PixelRange_ZYXAf4::minValue   = F4(0.0f);
+const F4                  PixelRange_ZYXAf4::maxValue   = F4(1.0f);
+
+const PixelDataTypeZYXAf8 PixelRange_ZYXAf8::minPixel   = PixelDataTypeZYXAf8(0.0);
+const PixelDataTypeZYXAf8 PixelRange_ZYXAf8::maxPixel   = PixelDataTypeZYXAf8(1.0);
+const F8                  PixelRange_ZYXAf8::minValue   = F8(0.0);
+const F8                  PixelRange_ZYXAf8::maxValue   = F8(1.0);
+
+///////////////////////////////////////////////////////////////////
+
+const PixelDataTypeY2_0i2  PixelRange_Y2_0i2_i1u::minPixel = PixelDataTypeY2_0i2(0x00);
+const PixelDataTypeY2_0i2  PixelRange_Y2_0i2_i1u::maxPixel = PixelDataTypeY2_0i2(0xff);
+const I2                   PixelRange_Y2_0i2_i1u::minValue = I2(0x00);
+const I2                   PixelRange_Y2_0i2_i1u::maxValue = I2(0xff);
+
+const PixelDataTypeY2_0i2  PixelRange_Y2_0i2::minPixel = PixelDataTypeY2_0i2(0x0000);
+const PixelDataTypeY2_0i2  PixelRange_Y2_0i2::maxPixel = PixelDataTypeY2_0i2(0x7fff);
+const I2                   PixelRange_Y2_0i2::minValue = I2(0x0000);
+const I2                   PixelRange_Y2_0i2::maxValue = I2(0xffff);
+
+const PixelDataTypeY2_0i4  PixelRange_Y2_0i4::minPixel = PixelDataTypeY2_0i4(0x00);
+const PixelDataTypeY2_0i4  PixelRange_Y2_0i4::maxPixel = PixelDataTypeY2_0i4(0xff);
+const I4                   PixelRange_Y2_0i4::minValue = I4(0x00);
+const I4                   PixelRange_Y2_0i4::maxValue = I4(0xff);
+
+const PixelDataTypeY2_0i4  PixelRange_Y2_0i4_i1u::minPixel = PixelDataTypeY2_0i4(0x00);
+const PixelDataTypeY2_0i4  PixelRange_Y2_0i4_i1u::maxPixel = PixelDataTypeY2_0i4(0xff);
+const I4                   PixelRange_Y2_0i4_i1u::minValue = I4(0x00);
+const I4                   PixelRange_Y2_0i4_i1u::maxValue = I4(0xff);
+
+const PixelDataTypeY2_0i4  PixelRange_Y2_0i4_i2u::minPixel = PixelDataTypeY2_0i4(0x0000);
+const PixelDataTypeY2_0i4  PixelRange_Y2_0i4_i2u::maxPixel = PixelDataTypeY2_0i4(0xffff);
+const I4                   PixelRange_Y2_0i4_i2u::minValue = I4(0x0000);
+const I4                   PixelRange_Y2_0i4_i2u::maxValue = I4(0xffff);
+
+const PixelDataTypeY2_0f4  PixelRange_Y2_0f4::minPixel = PixelDataTypeY2_0f4(0.0f,-0.5f,-0.5f);
+const PixelDataTypeY2_0f4  PixelRange_Y2_0f4::maxPixel = PixelDataTypeY2_0f4(1.0f, 0.5f, 0.5f);
+const F4                   PixelRange_Y2_0f4::minValue = F4(0.0f);
+const F4                   PixelRange_Y2_0f4::maxValue = F4(1.0f);
+
+const PixelDataTypeY2_0f8  PixelRange_Y2_0f8::minPixel = PixelDataTypeY2_0f8(0.0,-0.5,-0.5);
+const PixelDataTypeY2_0f8  PixelRange_Y2_0f8::maxPixel = PixelDataTypeY2_0f8(1.0,0.5,0.5);
+const F8                   PixelRange_Y2_0f8::minValue = F8(0.0);
+const F8                   PixelRange_Y2_0f8::maxValue = F8(1.0);
+
+}
