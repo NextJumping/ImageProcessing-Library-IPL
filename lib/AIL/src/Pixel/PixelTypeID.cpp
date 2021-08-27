@@ -19,4 +19,19 @@ std::string getTypeName(const PixelTypeID & typeID){
 		case PixelTypeID::BGRf4  : return "BGRf4"  ; break;
 		case PixelTypeID::BGRf8  : return "BGRf8"  ; break;
 		case PixelTypeID::YUVi1u : return "YUVi1u" ; break;
-		case PixelTypeID::YUVi4  : return "
+		case PixelTypeID::YUVi4  : return "YUVi4"  ; break;
+		case PixelTypeID::YUVf4  : return "YUVf4"  ; break;
+		case PixelTypeID::YUVf8  : return "YUVf8"  ; break;
+		case PixelTypeID::YIQi1u : return "YIQi1u" ; break;
+		case PixelTypeID::YIQi4  : return "YIQi4"  ; break;
+		case PixelTypeID::YIQf4  : return "YIQf4"  ; break;
+		case PixelTypeID::YIQf8  : return "YIQf8"  ; break;
+		case PixelTypeID::LABi1u : return "LABi1u" ; break;
+		case PixelTypeID::LABi4  : return "LABi4"  ; break;
+		case PixelTypeID::LABf4  : return "LABf4"  ; break;
+		case PixelTypeID::LABf8  : return "LABf8"  ; break;
+		case PixelTypeID::HSVi1u : return "HSVi1u" ; break;
+		case PixelTypeID::HSVi4  : return "HSVi4"  ; break;
+		case PixelTypeID::HSVf4  : return "HSVf4"  ; break;
+		case PixelTypeID::HSVf8  : return "HSVf8"  ; break;
+		case Pixe
