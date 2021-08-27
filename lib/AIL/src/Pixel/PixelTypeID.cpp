@@ -34,4 +34,12 @@ std::string getTypeName(const PixelTypeID & typeID){
 		case PixelTypeID::HSVi4  : return "HSVi4"  ; break;
 		case PixelTypeID::HSVf4  : return "HSVf4"  ; break;
 		case PixelTypeID::HSVf8  : return "HSVf8"  ; break;
-		case Pixe
+		case PixelTypeID::RGBAi1u: return "RGBAi1u"; break;
+		case PixelTypeID::RGBAi4 : return "RGBAi4" ; break;
+		case PixelTypeID::RGBAf4 : return "RGBAf4" ; break;
+		case PixelTypeID::RGBAf8 : return "RGBAf8" ; break;
+	}
+	return "Error";
+}
+
+}
