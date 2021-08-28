@@ -52,4 +52,8 @@ enum class PixelTypeID {
 
 };
 
-std::string getTypeName(co
+std::string getTypeName(const PixelTypeID & typeID);
+
+};
+
+#endif
