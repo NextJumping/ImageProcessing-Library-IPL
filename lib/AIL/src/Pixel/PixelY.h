@@ -37,4 +37,21 @@ template <
 
 };
 
-typedef PixelYbaseType<B1 ,I4,PixelRange_1b1 > PixelYb1
+typedef PixelYbaseType<B1 ,I4,PixelRange_1b1 > PixelYb1td;
+typedef PixelYbaseType<I1u,I4,PixelRange_1i1u> PixelYi1utd;
+typedef PixelYbaseType<I4 ,I4,PixelRange_1i4 > PixelYi4td;
+
+class AIL_DLL_EXPORT PixelYi4 : public PixelYi4td {
+	public:
+		typedef I4                          NumberType;
+		typedef PixelYi4td::DataType        DataType;
+		typedef PixelYi4td::ComputationType ComputationType;
+		typedef PixelYi4td                  ComputationPixel;
+		typedef PixelRange_1i4_i1u          ComputationRange;
+		typedef PixelRange_1i4_i1u          RangeType;
+		typedef PixelYi4td                  ParentType;
+		typedef PixelYi4                    ThisType;
+
+		FINLINE explicit PixelYi4(){}
+		FINLINE explicit PixelYi4(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          PixelYi4(const DataType   & _pix
