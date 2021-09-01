@@ -54,4 +54,22 @@ class AIL_DLL_EXPORT PixelYi4 : public PixelYi4td {
 
 		FINLINE explicit PixelYi4(){}
 		FINLINE explicit PixelYi4(const NumberType & _scalar):ParentType(_scalar){}
-		FINLINE          PixelYi4(const DataType   & _pix
+		FINLINE          PixelYi4(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelYi4(const ThisType   & _pixel ):ParentType(_pixel ){}
+
+};
+
+class AIL_DLL_EXPORT PixelYb1 : public PixelYb1td {
+	public:
+		typedef B1                          NumberType;
+		typedef PixelYb1td::DataType        DataType;
+		typedef PixelYb1td::ComputationType ComputationType;
+		typedef PixelYi4                    ComputationPixel;
+		typedef PixelRange_1i4_i1u          ComputationRange;
+		typedef PixelRange_1b1              RangeType;
+		typedef PixelYb1td                  ParentType;
+		typedef PixelYb1                    ThisType;
+
+		FINLINE explicit PixelYb1(){}
+		FINLINE explicit PixelYb1(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          PixelYb1(const DataType   & _pixel ):Pa
