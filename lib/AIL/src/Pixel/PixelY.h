@@ -94,4 +94,16 @@ class AIL_DLL_EXPORT PixelYi1u : public PixelYi1utd {
 		typedef PixelRange_1i4_i1u           ComputationRange;
 		typedef PixelRange_1i1u              RangeType;
 		typedef PixelYi1utd                  ParentType;
-		typedef PixelYi1u                    ThisTy
+		typedef PixelYi1u                    ThisType;
+
+		FINLINE explicit PixelYi1u(){}
+		FINLINE explicit PixelYi1u(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          PixelYi1u(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelYi1u(const ThisType   & _pixel ):ParentType(_pixel ){}
+
+};
+
+}
+
+
+#endif
