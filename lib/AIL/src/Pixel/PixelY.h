@@ -72,4 +72,26 @@ class AIL_DLL_EXPORT PixelYb1 : public PixelYb1td {
 
 		FINLINE explicit PixelYb1(){}
 		FINLINE explicit PixelYb1(const NumberType & _scalar):ParentType(_scalar){}
-		FINLINE          PixelYb1(const DataType   & _pixel ):Pa
+		FINLINE          PixelYb1(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelYb1(const ThisType   & _pixel ):ParentType(_pixel ){}
+
+};
+
+//TODO: Move this to a seperate 'TestType' file ?
+class BooleanTestType {
+	public:
+		static FINLINE B1 isIncluded(const Pixel::PixelYb1 & boolToTest){
+			return boolToTest.getY();
+		}
+};
+
+class AIL_DLL_EXPORT PixelYi1u : public PixelYi1utd {
+	public:
+		typedef I1u                          NumberType;
+		typedef PixelYi1utd::DataType        DataType;
+		typedef PixelYi1utd::ComputationType ComputationType;
+		typedef PixelYi4                     ComputationPixel;
+		typedef PixelRange_1i4_i1u           ComputationRange;
+		typedef PixelRange_1i1u              RangeType;
+		typedef PixelYi1utd                  ParentType;
+		typedef PixelYi1u                    ThisTy
