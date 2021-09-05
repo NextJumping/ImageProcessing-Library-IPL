@@ -45,4 +45,21 @@ template <
 		
 		FINLINE NumberType & getY() {return this->get<Yposition>();}
 		FINLINE NumberType & getU() {return this->get<Uposition>();}
-		FINLINE NumberType & getV() {return this
+		FINLINE NumberType & getV() {return this->get<Vposition>();}
+
+		FINLINE const NumberType & getY() const {return this->get<Yposition>();}
+		FINLINE const NumberType & getU() const {return this->get<Uposition>();}
+		FINLINE const NumberType & getV() const {return this->get<Vposition>();}
+
+};
+
+typedef PixelYUVbaseType<I1u,I4,PixelRange_Y2_0i1u   ,0,1,2> PixelYUVi1utd;
+typedef PixelYUVbaseType<I4 ,I4,PixelRange_Y2_0i4    ,0,1,2> PixelYUVi4td;
+typedef PixelYUVbaseType<I4 ,I4,PixelRange_Y2_0i4_i1u,0,1,2> PixelYUVi4_i1utd;
+typedef PixelYUVbaseType<F4 ,F8,PixelRange_Y2_0f4    ,0,1,2> PixelYUVf4td;
+typedef PixelYUVbaseType<F8 ,F8,PixelRange_Y2_0f8    ,0,1,2> PixelYUVf8td;
+
+class AIL_DLL_EXPORT PixelYUVf8 : public PixelYUVf8td {
+	public:
+		typedef F8                            NumberType;
+		typedef PixelYUVf8td::DataType        DataType
