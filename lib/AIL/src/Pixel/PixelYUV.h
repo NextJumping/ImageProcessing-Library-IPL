@@ -62,4 +62,22 @@ typedef PixelYUVbaseType<F8 ,F8,PixelRange_Y2_0f8    ,0,1,2> PixelYUVf8td;
 class AIL_DLL_EXPORT PixelYUVf8 : public PixelYUVf8td {
 	public:
 		typedef F8                            NumberType;
-		typedef PixelYUVf8td::DataType        DataType
+		typedef PixelYUVf8td::DataType        DataType;
+		typedef PixelYUVf8td::ComputationType ComputationType;
+		typedef PixelYUVf8                    ComputationPixel;
+		typedef PixelRange_Y2_0f8             ComputationRange;
+		typedef PixelRange_Y2_0f8             RangeType;
+		typedef PixelYUVf8td                  ParentType;
+		typedef PixelYUVf8                    ThisType;
+
+		FINLINE explicit PixelYUVf8(){}
+		FINLINE explicit PixelYUVf8(const NumberType & _scalar):ParentType(_scalar){}
+		FINLINE          PixelYUVf8(const DataType   & _pixel ):ParentType(_pixel ){}
+		FINLINE          PixelYUVf8(const ThisType   & _pixel ):ParentType(_pixel ){}
+
+		FINLINE explicit PixelYUVf8(const NumberType & _y,const NumberType & _u,const NumberType & _v){setY(_y);setU(_u);setV(_v);}
+};
+
+}
+
+#endif
