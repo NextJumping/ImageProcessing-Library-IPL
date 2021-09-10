@@ -40,4 +40,20 @@ template <> FINLINE PixelYb1 pixel_cast<PixelYb1>(const PixelRGBi4 & _color){
 	tempY = static_cast<I8>(_color.getR())*299; // TODO: Check the asm generated for this line
 	tempY+= static_cast<I8>(_color.getG())*587;
 	tempY+= static_cast<I8>(_color.getB())*114;
-	if(tempY>127500){return PixelYb1(true);}return PixelYb1(false
+	if(tempY>127500){return PixelYb1(true);}return PixelYb1(false); // 127500 = 0.5 * 255 * 1000
+}
+template <> FINLINE PixelYb1 pixel_cast<PixelYb1>(const PixelRGBf8 & _color){
+	F8 tempY;
+	tempY = _color.getR()*0.299; // TODO: Check the asm generated for this line
+	tempY+= _color.getG()*0.587;
+	tempY+= _color.getB()*0.114;
+	if(tempY>0.5){return PixelYb1(true);}return PixelYb1(false);
+}
+template <> FINLINE PixelYb1 pixel_cast<PixelYb1>(const PixelARGBi1u & _color){
+	I8 tempY;
+	tempY = static_cast<I8>(_color.getR())*299; // TODO: Check the asm generated for this line
+	tempY+= static_cast<I8>(_color.getG())*587;
+	tempY+= static_cast<I8>(_color.getB())*114;
+	if(tempY>127500){return PixelYb1(true);}return PixelYb1(false); // 127500 = 0.5 * 255 * 1000
+}
+template <> FINLINE PixelYb1 pixel_cast<PixelYb1>(const PixelARGBi4 & _col
