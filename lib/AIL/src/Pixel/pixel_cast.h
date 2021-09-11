@@ -71,3 +71,17 @@ template <> FINLINE PixelYb1 pixel_cast<PixelYb1>(const PixelYUVf8 & _color){
 template <> FINLINE PixelYi1u pixel_cast<PixelYi1u>(const PixelYb1 & _color){
 	if(_color.getY()==true){return PixelYi1u::RangeType::maxPixel;}return PixelYi1u::RangeType::minPixel;
 }
+template <> FINLINE PixelYi1u pixel_cast<PixelYi1u>(const PixelYi4 & _color){return PixelYi1u(_color.getY());}
+template <> FINLINE PixelYi1u pixel_cast<PixelYi1u>(const PixelRGBi4 & _color){
+	I8 tempY;
+	tempY = static_cast<I8>(_color.getR())*299; // TODO: Check the asm generated for this line
+	tempY+= static_cast<I8>(_color.getG())*587;
+	tempY+= static_cast<I8>(_color.getB())*114;
+	return PixelYi1u(static_cast<I1u>(tempY/1000));//TODO: Redo the calculation so that this can be a shift (aka /1024)
+}
+template <> FINLINE PixelYi1u pixel_cast<PixelYi1u>(const PixelRGBi1u & _color){
+	I8 tempY;
+	tempY = static_cast<I8>(_color.getR())*299; // TODO: Check the asm generated for this line
+	tempY+= static_cast<I8>(_color.getG())*587;
+	tempY+= static_cast<I8>(_color.getB())*114;
+	return PixelYi1
