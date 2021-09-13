@@ -98,4 +98,18 @@ template <> FINLINE PixelYi1u pixel_cast<PixelYi1u>(const PixelARGBi1u & _color)
 	tempY = static_cast<I8>(_color.getR())*299; // TODO: Check the asm generated for this line
 	tempY+= static_cast<I8>(_color.getG())*587;
 	tempY+= static_cast<I8>(_color.getB())*114;
-	return PixelYi1u(static_cast<I1u>(tempY/1000));//TODO: Redo the calculation so th
+	return PixelYi1u(static_cast<I1u>(tempY/1000));//TODO: Redo the calculation so that this can be a shift (aka /1024)
+}
+template <> FINLINE PixelYi1u pixel_cast<PixelYi1u>(const PixelARGBi4 & _color){
+	I8 tempY;
+	tempY = static_cast<I8>(_color.getR())*299; // TODO: Check the asm generated for this line
+	tempY+= static_cast<I8>(_color.getG())*587;
+	tempY+= static_cast<I8>(_color.getB())*114;
+	return PixelYi1u(static_cast<I1u>(tempY/1000));//TODO: Redo the calculation so that this can be a shift (aka /1024)
+}
+template <> FINLINE PixelYi1u pixel_cast<PixelYi1u>(const PixelYUVf8 & _color){
+	return PixelYi1u(static_cast<I1u>(_color.getY()));
+}
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+template <> FINLINE PixelYi4 pixel_cast<PixelYi4>(const PixelYb1
