@@ -174,4 +174,13 @@ template <> FINLINE PixelRGBi1u pixel_cast<PixelRGBi1u>(const PixelRGBf8 & _colo
 		static_cast<I1u>((_color.getB()*255.0)))
 	;
 }
-template <> FINLINE PixelRGBi1u pi
+template <> FINLINE PixelRGBi1u pixel_cast<PixelRGBi1u>(const PixelRGBi4   & _color){return PixelRGBi1u(_color.getR(),_color.getG(),_color.getB());}
+template <> FINLINE PixelRGBi1u pixel_cast<PixelRGBi1u>(const PixelARGBi1u & _color){return PixelRGBi1u(_color.getR(),_color.getG(),_color.getB());}
+template <> FINLINE PixelRGBi1u pixel_cast<PixelRGBi1u>(const PixelARGBi4  & _color){return PixelRGBi1u(_color.getR(),_color.getG(),_color.getB());}
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+template <> FINLINE PixelRGBi4 pixel_cast<PixelRGBi4>(const PixelYb1 & _color){
+	if(_color.getY()==true){return PixelRGBi4::RangeType::maxPixel;}return PixelRGBi4::RangeType::minPixel;
+}
+template <> FINLINE PixelRGBi4 pixel_cast<PixelRGBi4>(const PixelYi1u & _color){
+	
