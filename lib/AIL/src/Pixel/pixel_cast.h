@@ -208,4 +208,15 @@ template <> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const PixelYi4  & _col
 
 template <> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const PixelRGBf8 & _color){
 	return PixelARGBi1u(
-		static_cast<I1u>
+		static_cast<I1u>((_color.getR()*255.0)),
+		static_cast<I1u>((_color.getG()*255.0)),
+		static_cast<I1u>((_color.getB()*255.0)),
+		0xff)
+	;
+}
+template <> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const PixelRGBi1u & _color){return PixelARGBi1u(_color.getR(),_color.getG(),_color.getB(),0xff);}
+template <> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const PixelRGBi4  & _color){return PixelARGBi1u(_color.getR(),_color.getG(),_color.getB(),0xff);}
+template <> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const PixelARGBi4 & _color){return PixelARGBi1u(_color.getR(),_color.getG(),_color.getB(),_color.getA());}
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+template <> FINLINE PixelARGBi4 pixel_ca
