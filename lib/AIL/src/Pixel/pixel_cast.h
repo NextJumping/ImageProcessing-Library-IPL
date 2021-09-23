@@ -219,4 +219,18 @@ template <> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const PixelRGBi4  & _c
 template <> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const PixelARGBi4 & _color){return PixelARGBi1u(_color.getR(),_color.getG(),_color.getB(),_color.getA());}
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
-template <> FINLINE PixelARGBi4 pixel_ca
+template <> FINLINE PixelARGBi4 pixel_cast<PixelARGBi4>(const PixelYb1 & _color){
+	if(_color.getY()==true){return PixelARGBi4::RangeType::maxPixel;}return PixelARGBi4(0,0,0,0xff);
+}
+template <> FINLINE PixelARGBi4 pixel_cast<PixelARGBi4>(const PixelYi1u & _color){return PixelARGBi4(_color.getY(),_color.getY(),_color.getY(),0xff);}
+template <> FINLINE PixelARGBi4 pixel_cast<PixelARGBi4>(const PixelYi4  & _color){return PixelARGBi4(_color.getY(),_color.getY(),_color.getY(),0xff);}
+
+template <> FINLINE PixelARGBi4 pixel_cast<PixelARGBi4>(const PixelRGBf8 & _color){
+	return PixelARGBi4(
+		static_cast<I1u>((_color.getR()*255.0)),
+		static_cast<I1u>((_color.getG()*255.0)),
+		static_cast<I1u>((_color.getB()*255.0)),
+		0xff)
+	;
+}
+template <> FINLINE PixelARGBi4 pixel_cast<PixelARGBi4>(const PixelRGBi1u  & _color){return PixelARGBi4(_color.getR(),_color.ge
