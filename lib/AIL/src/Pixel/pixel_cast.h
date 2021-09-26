@@ -233,4 +233,12 @@ template <> FINLINE PixelARGBi4 pixel_cast<PixelARGBi4>(const PixelRGBf8 & _colo
 		0xff)
 	;
 }
-template <> FINLINE PixelARGBi4 pixel_cast<PixelARGBi4>(const PixelRGBi1u  & _color){return PixelARGBi4(_color.getR(),_color.ge
+template <> FINLINE PixelARGBi4 pixel_cast<PixelARGBi4>(const PixelRGBi1u  & _color){return PixelARGBi4(_color.getR(),_color.getG(),_color.getB(),0xff);}
+template <> FINLINE PixelARGBi4 pixel_cast<PixelARGBi4>(const PixelRGBi4   & _color){return PixelARGBi4(_color.getR(),_color.getG(),_color.getB(),0xff);}
+template <> FINLINE PixelARGBi4 pixel_cast<PixelARGBi4>(const PixelARGBi1u & _color){return PixelARGBi4(_color.getR(),_color.getG(),_color.getB(),_color.getA());}
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelYb1 & _color){
+	if(_color.getY()==true){return PixelRGBf8::RangeType::maxPixel;}return PixelRGBf8::RangeType::minPixel;
+}
+template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelYi1u & _color){return Pixel
