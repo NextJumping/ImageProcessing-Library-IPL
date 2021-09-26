@@ -241,4 +241,22 @@ template <> FINLINE PixelARGBi4 pixel_cast<PixelARGBi4>(const PixelARGBi1u & _co
 template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelYb1 & _color){
 	if(_color.getY()==true){return PixelRGBf8::RangeType::maxPixel;}return PixelRGBf8::RangeType::minPixel;
 }
-template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelYi1u & _color){return Pixel
+template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelYi1u & _color){return PixelRGBf8(_color.getY());}
+template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelYi4  & _color){return PixelRGBf8(_color.getY());}
+template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelRGBi1u & _color){
+	return PixelRGBf8(
+		(static_cast<F8>(_color.getR()) / 255.0),
+		(static_cast<F8>(_color.getG()) / 255.0),
+		(static_cast<F8>(_color.getB()) / 255.0))
+	;
+}
+template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelRGBi4 & _color){
+	return PixelRGBf8(
+		(static_cast<F8>(_color.getR()) / 255.0),
+		(static_cast<F8>(_color.getG()) / 255.0),
+		(static_cast<F8>(_color.getB()) / 255.0))
+	;
+}
+template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelARGBi1u & _color){
+	return PixelRGBf8(
+		(static_cast<F8>(_co
