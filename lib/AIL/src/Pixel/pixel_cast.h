@@ -278,4 +278,13 @@ template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelYUVf8 & _color)
 		(_color.getY() +  1.772   *_color.getU()                          ))
 	;
 }
-////////////////
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelYb1 & _color){
+	if(_color.getY()==true){return PixelYUVf8::RangeType::maxPixel;}return PixelYUVf8::RangeType::minPixel;
+}
+template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelYi1u & _color){return PixelYUVf8(_color.getY());}
+template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelYi4  & _color){return PixelYUVf8(_color.getY());}
+template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelRGBf8 & _color){
+	PixelYUVf8 newPixel;
+	newPixel.getY() =  0.299    * _color.getR() +  0.587    * _color.getG() +  0.114    * _color.getB(); // See Poynton Y`PbPr http://www.poynton.com/notes/co
