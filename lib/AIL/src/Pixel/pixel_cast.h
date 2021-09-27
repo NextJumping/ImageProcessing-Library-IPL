@@ -259,4 +259,23 @@ template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelRGBi4 & _color)
 }
 template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelARGBi1u & _color){
 	return PixelRGBf8(
-		(static_cast<F8>(_co
+		(static_cast<F8>(_color.getR()) / 255.0),
+		(static_cast<F8>(_color.getG()) / 255.0),
+		(static_cast<F8>(_color.getB()) / 255.0))
+	;
+}
+template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelARGBi4 & _color){
+	return PixelRGBf8(
+		(static_cast<F8>(_color.getR()) / 255.0),
+		(static_cast<F8>(_color.getG()) / 255.0),
+		(static_cast<F8>(_color.getB()) / 255.0))
+	;
+}
+template <> FINLINE PixelRGBf8 pixel_cast<PixelRGBf8>(const PixelYUVf8 & _color){
+	return PixelRGBf8(
+		(_color.getY() +                         +  1.402   *_color.getV()), // See Poynton Y`PbPr http://www.poynton.com/notes/colour_and_gamma/ColorFAQ.html#RTFToC28
+		(_color.getY() + -0.344136*_color.getU() + -0.714136*_color.getV()),
+		(_color.getY() +  1.772   *_color.getU()                          ))
+	;
+}
+////////////////
