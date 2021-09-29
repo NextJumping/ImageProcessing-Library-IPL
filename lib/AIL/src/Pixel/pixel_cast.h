@@ -287,4 +287,17 @@ template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelYi1u & _color){
 template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelYi4  & _color){return PixelYUVf8(_color.getY());}
 template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelRGBf8 & _color){
 	PixelYUVf8 newPixel;
-	newPixel.getY() =  0.299    * _color.getR() +  0.587    * _color.getG() +  0.114    * _color.getB(); // See Poynton Y`PbPr http://www.poynton.com/notes/co
+	newPixel.getY() =  0.299    * _color.getR() +  0.587    * _color.getG() +  0.114    * _color.getB(); // See Poynton Y`PbPr http://www.poynton.com/notes/colour_and_gamma/ColorFAQ.html#RTFToC28
+	newPixel.getU() = -0.168736 * _color.getR() + -0.331264 * _color.getG() +  0.5      * _color.getB();
+	newPixel.getV() =  0.5      * _color.getR() + -0.418688 * _color.getG() + -0.081312 * _color.getB();
+	return newPixel;
+}
+/////////////////////////////////////////////////
+/////////////////////////////////////////////////
+template <> FINLINE PixelRGBi1u pixel_cast<PixelRGBi1u>(const PixelYUVf8 & _color){
+	return pixel_cast<PixelRGBi1u>(pixel_cast<PixelRGBf8>(_color));//TODO: Make a direct conversion
+}
+template <> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const PixelYUVf8 & _color){
+	return pixel_cast<PixelARGBi1u>(pixel_cast<PixelRGBf8>(_color));//TODO: Make a direct conversion
+}
+template <> F
