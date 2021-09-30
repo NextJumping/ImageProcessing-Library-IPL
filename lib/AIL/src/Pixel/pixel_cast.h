@@ -324,4 +324,12 @@ template <> FINLINE PixelYb1     pixel_cast<PixelYb1    >(const PixelYb1     & _
 template <> FINLINE PixelYi1u    pixel_cast<PixelYi1u   >(const PixelYi1u    & _color){return _color;}
 template <> FINLINE PixelYi4     pixel_cast<PixelYi4    >(const PixelYi4     & _color){return _color;}
 template <> FINLINE PixelRGBi1u  pixel_cast<PixelRGBi1u >(const PixelRGBi1u  & _color){return _color;}
-template <> FINLINE PixelRGBi4   pi
+template <> FINLINE PixelRGBi4   pixel_cast<PixelRGBi4  >(const PixelRGBi4   & _color){return _color;}
+template <> FINLINE PixelRGBf8   pixel_cast<PixelRGBf8  >(const PixelRGBf8   & _color){return _color;}
+template <> FINLINE PixelARGBi1u pixel_cast<PixelARGBi1u>(const PixelARGBi1u & _color){return _color;}
+template <> FINLINE PixelARGBi4  pixel_cast<PixelARGBi4 >(const PixelARGBi4  & _color){return _color;}
+template <> FINLINE PixelYUVf8   pixel_cast<PixelYUVf8  >(const PixelYUVf8   & _color){return _color;}
+
+};
+
+#endif
