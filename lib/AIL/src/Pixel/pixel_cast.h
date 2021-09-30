@@ -313,4 +313,15 @@ template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelRGBi1u & _color
 template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelARGBi1u & _color){
 	return pixel_cast<PixelYUVf8>(pixel_cast<PixelRGBf8>(_color));//TODO: Make a direct conversion
 }
-template <> FINLINE 
+template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelRGBi4 & _color){
+	return pixel_cast<PixelYUVf8>(pixel_cast<PixelRGBf8>(_color));//TODO: Make a direct conversion
+}
+template <> FINLINE PixelYUVf8 pixel_cast<PixelYUVf8>(const PixelARGBi4 & _color){
+	return pixel_cast<PixelYUVf8>(pixel_cast<PixelRGBf8>(_color));//TODO: Make a direct conversion
+}
+
+template <> FINLINE PixelYb1     pixel_cast<PixelYb1    >(const PixelYb1     & _color){return _color;}
+template <> FINLINE PixelYi1u    pixel_cast<PixelYi1u   >(const PixelYi1u    & _color){return _color;}
+template <> FINLINE PixelYi4     pixel_cast<PixelYi4    >(const PixelYi4     & _color){return _color;}
+template <> FINLINE PixelRGBi1u  pixel_cast<PixelRGBi1u >(const PixelRGBi1u  & _color){return _color;}
+template <> FINLINE PixelRGBi4   pi
