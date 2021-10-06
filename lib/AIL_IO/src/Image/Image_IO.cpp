@@ -51,4 +51,23 @@ template<typename PixelType> AIL_IO_DLL_EXPORT void writePPM(const Image<PixelTy
 //-------------------------------------------------------
 #define FUNCTION_TEMPLATE_RETURN
 #define FUNCTION_RETURN AIL_IO_DLL_EXPORT Image::Image
-#define FUNCTIO
+#define FUNCTION_NAME Image::IO::read
+#define FUNCTION_SIGNATURE (Data::DataManager * const dataManager,const std::string & fileName)
+
+#include <Pixel/PixelFunctionTemplateMacro.h>
+//-------------------------------------------------------
+
+//-------------------------------------------------------
+#define FUNCTION_TEMPLATE_ARGUMENT_1
+#define FUNCTION_RETURN AIL_IO_DLL_EXPORT void
+#define FUNCTION_NAME Image::IO::write
+#define FUNCTION_SIGNATURE_1 (const Image
+#define FUNCTION_SIGNATURE_2 & image,const std::string & fileName)
+
+#include <Pixel/PixelFunctionTemplateMacro.h>
+//-------------------------------------------------------
+
+//-------------------------------------------------------
+#define FUNCTION_TEMPLATE_ARGUMENT_1
+#define FUNCTION_RETURN AIL_IO_DLL_EXPORT void
+#
