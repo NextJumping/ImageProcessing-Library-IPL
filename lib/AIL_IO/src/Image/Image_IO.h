@@ -13,4 +13,9 @@ namespace IO {
 	template<typename PixelType> AIL_IO_DLL_EXPORT Image<PixelType> read(Data::DataManager * const dataManager,const std::string & fileName);
 	template<typename PixelType> AIL_IO_DLL_EXPORT void write(const Image<PixelType> & image,const std::string & fileName);
 
-	template<typename PixelType> AIL_IO_DLL_EXPORT void writePPM(const Image<PixelType> & image
+	template<typename PixelType> AIL_IO_DLL_EXPORT void writePPM(const Image<PixelType> & image,const std::string & fileName);
+}
+
+}
+
+#endif
