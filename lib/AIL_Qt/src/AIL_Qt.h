@@ -8,4 +8,10 @@
 	#ifdef AIL_QT_BUILD
 		#define AIL_QT_DLL_EXPORT __declspec(dllexport)
 	#else
-		#define AIL_QT_DLL_EXPORT __declspec(dl
+		#define AIL_QT_DLL_EXPORT __declspec(dllimport)
+	#endif
+#else
+	#define AIL_QT_DLL_EXPORT
+#endif
+
+#endif
