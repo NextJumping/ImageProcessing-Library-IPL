@@ -136,3 +136,108 @@ template<typename PixelType> AIL_PNG_DLL_EXPORT void writePNG(const Image<PixelT
 	//TODO: BUG: change the error returns so that they free row_pointers and report an actual error
 
 	// ----------------- start libPNG block ---------------------------------------
+	int width =image.getWidth();
+	int height=image.getHeight();
+	png_byte color_type=PNG_COLOR_TYPE_RGBA; //TODO: Add proper support for alpha channel and other color spaces
+	png_byte bit_depth=8;
+	
+	png_structp png_ptr;
+	png_infop info_ptr;
+
+	FILE * fp = nullptr;
+	if(fopen_s(&fp,fileName.c_str(), "wb") !=0){
+		return ; //TODO: ERROR: File could not be opened for writing
+	}
+
+	png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+
+	if(png_ptr==NULL){
+		return ; //TODO: ERROR: png_create_write_struct failed
+	}
+
+	info_ptr = png_create_info_struct(png_ptr);
+	if(info_ptr==NULL){
+		return ; //TODO: ERROR: png_create_info_struct failed
+	}
+
+	if (setjmp(png_jmpbuf(png_ptr))){
+		return ; //TODO: ERROR: Error during init_io
+	}
+	png_init_io(png_ptr, fp);
+
+	png_set_IHDR(png_ptr, info_ptr, width, height, bit_depth, color_type, PNG_INTERLACE_NONE, PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+
+	png_bytep * row_pointers;
+    row_pointers = (png_bytep*) malloc(sizeof(png_bytep) * height);
+    for (int y=0; y<height; y++){
+		row_pointers[y] = (png_byte*) malloc(png_get_rowbytes(png_ptr,info_ptr));
+	}
+	// ----------------- end libPNG block ---------------------------------------
+
+	auto imageDataPtr = image.getDataPtr();
+	for (long y=0; y<image.getHeight(); ++y){ // TODO: Move this to Algorithm and make a straight copy when in the right color space
+		png_byte * ptr = row_pointers[y];
+		for (long x=0; x<image.getWidth(); ++x){
+			Pixel::PixelRGBi1u pix = Pixel::pixel_cast<Pixel::PixelRGBi1u>(*imageDataPtr); //TODO: fix this so that it uses PixelRGBAi1u directly overlayed with ptr
+			ptr[0]=pix.getR();
+			ptr[1]=pix.getG();
+			ptr[2]=pix.getB();
+			ptr[3]=255;
+			++imageDataPtr;
+			ptr+=4;
+		}
+	}
+
+	// ----------------- start libPNG block ---------------------------------------
+
+	// write header
+	if (setjmp(png_jmpbuf(png_ptr))){
+		return ; //TODO: ERROR: Error during writing header
+	}
+	png_write_info(png_ptr, info_ptr);
+
+	if (setjmp(png_jmpbuf(png_ptr))){
+		return ; //TODO: ERROR: Error during writing bytes
+	}
+	png_write_image(png_ptr, row_pointers);
+
+	if (setjmp(png_jmpbuf(png_ptr))){
+		return ; //TODO: ERROR: Error during end of write
+	}
+	png_write_end(png_ptr, NULL);
+
+	for(int y=0; y<height; y++){
+		free(row_pointers[y]);
+	}
+	free(row_pointers);
+
+	png_free_data(png_ptr, info_ptr, PNG_FREE_ALL, -1);
+	png_destroy_write_struct(&png_ptr, (png_infopp)NULL);
+
+	fclose(fp);
+	// ------------------- end libPNG block ---------------------------------------
+	
+}
+
+}
+
+}
+
+//-------------------------------------------------------
+#define FUNCTION_TEMPLATE_RETURN
+#define FUNCTION_RETURN AIL_PNG_DLL_EXPORT Image::Image
+#define FUNCTION_NAME Image::IO::readPNG
+#define FUNCTION_SIGNATURE (Data::DataManager * const dataManager,const std::string & fileName)
+
+#include <Pixel/PixelFunctionTemplateMacro.h>
+//-------------------------------------------------------
+
+//-------------------------------------------------------
+#define FUNCTION_TEMPLATE_ARGUMENT_1
+#define FUNCTION_RETURN AIL_PNG_DLL_EXPORT void
+#define FUNCTION_NAME Image::IO::writePNG
+#define FUNCTION_SIGNATURE_1 (const Image
+#define FUNCTION_SIGNATURE_2 & image,const std::string & fileName)
+
+#include <Pixel/PixelFunctionTemplateMacro.h>
+//-------------------------------------------------------
