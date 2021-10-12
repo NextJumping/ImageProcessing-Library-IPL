@@ -13,4 +13,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AIL_png.h" />
-    <ClInclude Include="sr
+    <ClInclude Include="src\Image\Image_png.h">
+      <Filter>Image\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Image\Image_png.cpp">
+      <Filter>Image\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

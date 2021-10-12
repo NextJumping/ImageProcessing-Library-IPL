@@ -1,0 +1,138 @@
+
+
+#include "Image_png.h"
+#include <Image/Image.h>
+#include <Pixel/pixel_cast.h>
+#include <png.h>
+
+
+namespace Image {
+
+namespace IO {
+
+template<typename PixelType> AIL_PNG_DLL_EXPORT Image<PixelType> readPNG(Data::DataManager * const dataManager,const std::string & fileName) {
+	
+	//TODO:! change the error returns so that they free row_pointers and report an actual error
+
+	Image<PixelType> ailImage(0,0,dataManager);
+
+	int width, height;
+	png_byte color_type;
+	png_byte bit_depth;
+
+	png_structp png_ptr;
+	png_infop info_ptr;
+	int number_of_passes;
+	png_bytep * row_pointers;
+
+	// ----------------- start libPNG block ---------------------------------------
+	char header[8];
+
+    FILE * fp = nullptr;
+	if(fopen_s(&fp,fileName.c_str(), "rb") !=0){
+		return ailImage; //TODO: ERROR: File could not be opened for reading
+	}
+    fread(header, 1, 8, fp);
+    if (png_sig_cmp(reinterpret_cast<png_const_bytep>(header), 0, 8)){
+		return ailImage; //TODO: ERROR: File is not recognized as a PNG file
+	}
+
+    png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+
+    if (!png_ptr){
+		return ailImage; //TODO: ERROR: png_create_read_struct failed
+	}
+
+    info_ptr = png_create_info_struct(png_ptr);
+    if (!info_ptr){
+		return ailImage; //TODO: ERROR: png_create_info_struct failed
+	}
+
+    if (setjmp(png_jmpbuf(png_ptr))){
+		return ailImage; //TODO: ERROR: Error during init_io
+	}
+
+    png_init_io(png_ptr, fp);
+    png_set_sig_bytes(png_ptr, 8);
+
+    png_read_info(png_ptr, info_ptr);
+
+    width = png_get_image_width(png_ptr, info_ptr);
+    height = png_get_image_height(png_ptr, info_ptr);
+    color_type = png_get_color_type(png_ptr, info_ptr);
+    bit_depth = png_get_bit_depth(png_ptr, info_ptr);
+
+    number_of_passes = png_set_interlace_handling(png_ptr);
+    png_read_update_info(png_ptr, info_ptr);
+
+    if (setjmp(png_jmpbuf(png_ptr))){
+		return ailImage; //TODO: ERROR: Error during read_image
+	}
+
+    row_pointers = (png_bytep*) malloc(sizeof(png_bytep) * height);
+    for (int y=0; y<height; y++){
+		row_pointers[y] = (png_byte*) malloc(png_get_rowbytes(png_ptr,info_ptr));
+	}
+
+    png_read_image(png_ptr, row_pointers);
+
+    fclose(fp);
+	// ------------------- end libPNG block ---------------------------------------
+
+	if (png_get_color_type(png_ptr, info_ptr) == PNG_COLOR_TYPE_GRAY){
+		ailImage = Image<PixelType>(width,height);
+		auto imageDataPtr = ailImage.getDataPtr();
+		for (long y=0; y<ailImage.getHeight(); ++y){ // TODO: Move this to Algorithm and make a straight copy when in the right color space
+			png_byte* row = row_pointers[y];
+			for (long x=0; x<ailImage.getWidth(); ++x){
+				(*imageDataPtr)=Pixel::pixel_cast<PixelType>(Pixel::PixelYi1u(row[x]));
+				++imageDataPtr;
+			}
+		}
+	}else if (png_get_color_type(png_ptr, info_ptr) == PNG_COLOR_TYPE_RGB){
+		ailImage = Image<PixelType>(width,height);
+		auto imageDataPtr = ailImage.getDataPtr();
+		for (long y=0; y<ailImage.getHeight(); ++y){ // TODO: Move this to Algorithm and make a straight copy when in the right color space
+			png_byte* row = row_pointers[y];
+			for (long x=0; x<ailImage.getWidth(); ++x){
+				png_byte * ptr = &(row[x*3]);
+				(*imageDataPtr)=Pixel::pixel_cast<PixelType>(Pixel::PixelRGBi1u(ptr[0], ptr[1], ptr[2]));
+				++imageDataPtr;
+			}
+		}
+	}else if (png_get_color_type(png_ptr, info_ptr) == PNG_COLOR_TYPE_RGBA){
+		ailImage = Image<PixelType>(width,height);
+		auto imageDataPtr = ailImage.getDataPtr();
+		for (long y=0; y<ailImage.getHeight(); ++y){ // TODO: Move this to Algorithm and make a straight copy when in the right color space
+			png_byte* row = row_pointers[y];
+			for (long x=0; x<ailImage.getWidth(); ++x){
+				png_byte * ptr = &(row[x*4]);
+				//Pixel::PixelRGBAi1u pix(ptr[0], ptr[1], ptr[2], ptr[3]); //TODO: Add alpha support
+				Pixel::PixelRGBi1u pix(ptr[0], ptr[1], ptr[2]);
+				(*imageDataPtr)=Pixel::pixel_cast<PixelType>(pix);
+				++imageDataPtr;
+			}
+		}
+	}else{
+		//Unsupported color type
+		ailImage = Image<PixelType>(0,0);
+		//TODO: ERROR
+	}
+
+	// ----------------- start libPNG block ---------------------------------------
+	for(int y=0; y<height; y++){
+		free(row_pointers[y]);
+	}
+	free(row_pointers);
+
+	png_destroy_read_struct(&png_ptr, &info_ptr,NULL);
+	// ------------------- end libPNG block ---------------------------------------
+
+	return ailImage;
+}
+
+template<typename PixelType> AIL_PNG_DLL_EXPORT void writePNG(const Image<PixelType> & image,const std::string & fileName) {
+	
+	//TODO: BUG: change the error returns so that they free row_pointers and report an actual error
+
+	// ----------------- start libPNG block ---------------------------------------
