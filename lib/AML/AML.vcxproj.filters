@@ -28,4 +28,10 @@
       <Filter>Media\Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Media\PlayerControl.cpp">
-      <Filter>Media\Source Files</Filt
+      <Filter>Media\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Media\PlayerControlPacket.cpp">
+      <Filter>Media\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
