@@ -40,4 +40,14 @@ void AML_DLL_EXPORT Control::playPause(const B1 & state){
 }
 void AML_DLL_EXPORT Control::seek(const I8 & videoFrameIndex){
 	auto messageParameter = new CommandSeekParameter(videoFrameIndex);
-	
+	auto controlPacket = ControlPacket(Command::seek,messageParameter);
+	Concurrency::asend(controlQueue,controlPacket);
+}
+void AML_DLL_EXPORT Control::quit(){
+	auto controlPacket = ControlPacket(Command::quit);
+	Concurrency::asend(controlQueue,controlPacket);
+}
+
+}
+
+}
