@@ -22,4 +22,21 @@ class AML_DLL_EXPORT Control {
 		void open(const std::string & fileName,const B1 & autoPlay);
 		void close();
 		void play();
-		
+		void pause();
+		void stop();
+		void playPause();
+		void playPause(const B1 & state);
+		void seek(const I8 & videoFrameIndex);
+		void quit();
+
+	private:
+
+		Concurrency::ITarget<ControlPacket> & controlQueue;
+
+};
+
+}
+
+}
+
+#endif 
