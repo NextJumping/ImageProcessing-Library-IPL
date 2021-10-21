@@ -4,4 +4,14 @@
 	<Import Project="$(IPL)\lib\AML\AML.props" Condition=" '$(AML_PROPS)' == '' " />
 	<Import Project="$(IPL)\lib\AML_ffmpeg\AML_ffmpeg.props" Condition=" '$(AML_FFMPEG_PROPS)' == '' " />
 	<Import Project="$(IPL)\lib\AAL_Qt\AAL_Qt.props" Condition=" '$(AAL_QT_PROPS)' == '' " />
-	<Import Project="$(IPL)\lib
+	<Import Project="$(IPL)\lib\AVL_Qt\AVL_Qt.props" Condition=" '$(AVL_QT_PROPS)' == '' " />
+	<PropertyGroup Label="UserMacros">
+		<AML_QT_PROPS>true</AML_QT_PROPS>
+	</PropertyGroup>
+	<ItemDefinitionGroup>
+		<ClCompile>
+			<AdditionalIncludeDirectories>$(IPL)/lib/AML_Qt/src;$(QTDIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+		</ClCompile>
+	</ItemDefinitionGroup>
+	<ItemGroup />
+</Project>
