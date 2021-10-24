@@ -409,3 +409,11 @@ copy $(QTDIR)\lib\QtMultimedia4.dll $(IPL)\export\$(Platform)-$(Configuration)\Q
     </ProjectReference>
     <ProjectReference Include="..\AVL_Qt\AVL_Qt.vcxproj">
       <Project>{a50c0db6-8146-44cf-a1b2-0250eb7d5b2c}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
