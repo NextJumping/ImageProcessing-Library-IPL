@@ -39,4 +39,15 @@ class AML_QT_DLL_EXPORT FFMPEGqtPlayer {
 		std::unique_ptr<Thread::Queue::Pipe> videoPipe;
 		std::unique_ptr<Thread::Queue::Pipe> audioPipe;
 		std::unique_ptr<Video::Queue::QtTarget> videoQtTarget;
-		std::unique_ptr<Audio::Queue::QtTar
+		std::unique_ptr<Audio::Queue::QtTarget> audioQtTarget;
+		std::unique_ptr<Media::Player::Control> mediaControl;
+		std::unique_ptr<Thread::Queue::ReaderAgent> videoReaderAgent;
+		std::unique_ptr<Thread::Queue::ReaderAgent> audioReaderAgent;
+		std::unique_ptr<Media::FFMPEGmediaPlayerAgent> mediaPlayerAgent;
+
+};
+
+
+}
+
+#endif 
