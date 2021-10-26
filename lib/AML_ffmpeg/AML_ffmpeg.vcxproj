@@ -29,4 +29,21 @@
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\AML_ffmpeg.h" />
+    <ClInclude Include="src\Media\FFMPEGmediaPlayerAgent.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AAL\AAL.vcxproj">
+      <Project>{ac6c45bb-2d1d-4b13-9592-e27bb53bcad7}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ACore\ACore.vcxproj">
+      <Project>{4283e1f3-23a1-409f-96ce-9c8984740455}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\AIL\AIL.vcxproj">
+      <Project>{a09d1519-dc15-45cb-9972-958996280cc
