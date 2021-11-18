@@ -298,4 +298,24 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
 copy $(LIBFFMPEG_DIR)\bin\avcodec-54.dll $(IPL)\export\$(Platform)-$(Configuration)\avcodec-54.dll /Y
 copy $(LIBFFMPEG_DIR)\bin\avformat-54.dll $(IPL)\export\$(Platform)-$(Configuration)\avformat-54.dll /Y
 copy $(LIBFFMPEG_DIR)\bin\avutil-51.dll $(IPL)\export\$(Platform)-$(Configuration)\avutil-51.dll /Y
-copy $(LIBFFMPEG_DIR)\bin\swscale-2.dll $(IPL)\export\$(Platform)-
+copy $(LIBFFMPEG_DIR)\bin\swscale-2.dll $(IPL)\export\$(Platform)-$(Configuration)\swscale-2.dll /Y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <Gen
