@@ -412,4 +412,16 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>avcodec-54.lib;avformat-54.lib;swscale-2.lib;avutil-51.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(LIBFFMPEG_DIR)\bin
+      <AdditionalLibraryDirectories>$(LIBFFMPEG_DIR)\bin</AdditionalLibraryDirectories>
+      <ShowProgress>NotSet</ShowProgress>
+    </Link>
+    <PostBuildEvent>
+      <Command>mkdir $(IPL)\export\$(Platform)-$(Configuration)\
+copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) /Y
+copy $(LIBFFMPEG_DIR)\bin\avcodec-54.dll $(IPL)\export\$(Platform)-$(Configuration)\avcodec-54.dll /Y
+copy $(LIBFFMPEG_DIR)\bin\avformat-54.dll $(IPL)\export\$(Platform)-$(Configuration)\avformat-54.dll /Y
+copy $(LIBFFMPEG_DIR)\bin\avutil-51.dll $(IPL)\export\$(Platform)-$(Configuration)\avutil-51.dll /Y
+copy $(LIBFFMPEG_DIR)\bin\swscale-2.dll $(IPL)\export\$(Platform)-$(Configuration)\swscale-2.dll /Y</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp
