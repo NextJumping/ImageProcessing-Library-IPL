@@ -1,0 +1,26 @@
+
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Media">
+      <UniqueIdentifier>{07F77B6C-8A60-443A-9C3D-CA2255AF52C2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Media\Header Files">
+      <UniqueIdentifier>{4F9C472A-89C0-4055-BC74-8D3DD59C178F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Media\Source Files">
+      <UniqueIdentifier>{08436686-3378-4F01-9B9D-80025A055BB3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\AML_ffmpeg.h" />
+    <ClInclude Include="src\Media\FFMPEGmediaPlayerAgent.h">
+      <Filter>Media\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Media\FFMPEGmediaPlayerAgent.cpp">
+      <Filter>Media\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

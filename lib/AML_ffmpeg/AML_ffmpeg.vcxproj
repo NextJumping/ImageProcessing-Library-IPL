@@ -424,4 +424,7 @@ copy $(LIBFFMPEG_DIR)\bin\avutil-51.dll $(IPL)\export\$(Platform)-$(Configuratio
 copy $(LIBFFMPEG_DIR)\bin\swscale-2.dll $(IPL)\export\$(Platform)-$(Configuration)\swscale-2.dll /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
