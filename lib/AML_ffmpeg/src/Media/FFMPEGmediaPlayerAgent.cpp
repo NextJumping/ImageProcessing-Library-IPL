@@ -211,3 +211,239 @@ AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::run(){
 						if(openParameter->getAutoPlay()==true){
 							state = State::playing;
 							sendPlay();
+						}else{
+							state = State::stopped;
+							sendPause();
+						}
+					}
+					delete openParameter;
+				break;
+				case Media::Player::Command::close :
+					sendFlush();
+					closeFile();
+				break;
+				case Media::Player::Command::quit :
+					sendQuit();
+					done();
+					return;
+				break;
+			}
+		}
+		if(state==State::playing){
+			if(av_read_frame(_this->formatCtx, &packet)>=0) {
+				if((hasVideoStream==true)&&(packet.stream_index==_this->videoStreamID)){
+
+					auto code = avcodec_decode_video2(pCodecCtx, pFrame, &frameFinished,&packet);
+					if(code<0){
+						//TODO: Error decoding video
+					}else if(frameFinished) {
+				
+						F8 timeStamp;
+						if(pFrame->pkt_pts!=AV_NOPTS_VALUE){
+							timeStamp = pFrame->pkt_pts * av_q2d(_this->vStream->time_base);
+						}else if(pFrame->pts!=AV_NOPTS_VALUE){
+							timeStamp = pFrame->pts * av_q2d(_this->vStream->time_base) / 1000.0;
+						}else{
+							timeStamp = static_cast<F8>(videoFrameIndex) * av_q2d(_this->vStream->r_frame_rate) / 1000.0;
+						}
+						F8 timeDelta = timeStamp - lastVideoTimeStamp;
+
+						if(resetVideoTime==false){
+							if((timeDelta>0.0)&&(timeDelta<1.0)){
+								lastVideoTimeStamp = timeStamp;
+								lastVideoTimeDelta = timeDelta;
+							}else{
+								timeStamp = lastVideoTimeStamp+timeDelta;
+							}
+						}else{
+							resetVideoTime=false;
+							lastVideoTimeStamp = timeStamp;
+							lastVideoTimeDelta = timeDelta;
+						}
+
+						auto width  = pCodecCtx->width;
+						auto height = pCodecCtx->height;
+						_this->img_convert_ctx = sws_getCachedContext(_this->img_convert_ctx,width, height, pCodecCtx->pix_fmt, width, height, PIX_FMT_RGB24, SWS_BICUBIC, NULL, NULL, NULL);
+
+						auto imagePtr = new Image::Image<Pixel::PixelRGBi1u>(width,height,dataManager);
+
+						uint8_t * data[AV_NUM_DATA_POINTERS];
+						int linesize[AV_NUM_DATA_POINTERS];
+						data[0] = static_cast<uint8_t*const>(static_cast<void*const>(imagePtr->getDataPtr()));
+						data[1] = nullptr;data[2] = nullptr;data[3] = nullptr;data[4] = nullptr;data[5] = nullptr;data[6] = nullptr;data[7] = nullptr;
+						linesize[0] = width*3;linesize[1] = 0;linesize[2] = 0;linesize[3] = 0;linesize[4] = 0;linesize[5] = 0;linesize[6] = 0;linesize[7] = 0;
+						sws_scale(_this->img_convert_ctx,pFrame->data, pFrame->linesize,0,pCodecCtx->height, data, linesize);
+
+						++videoFrameIndex;
+						auto videoFrame  = new Video::Frame<Pixel::PixelRGBi1u>(imagePtr,timeStamp,videoFrameIndex);
+						auto videoPacket = Thread::Queue::DataPacket(videoFrame,timeStamp);
+						
+						videoPipe.asendData(videoPacket);
+					}
+				}else if((hasAudioStream==true)&&(packet.stream_index==_this->audioStreamID)){
+					auto code = avcodec_decode_audio4(pACodecCtx, pAFrame, &frameFinished,&packet);
+					if(code<0){
+						//TODO: Error decoding audio
+					}else if(frameFinished) {
+						const int bps = av_get_bytes_per_sample(pACodecCtx->sample_fmt);
+						const int decoded_data_size = pAFrame->nb_samples * pACodecCtx->channels * bps;
+
+						F8 timeStamp;
+						if(pAFrame->pkt_pts!=AV_NOPTS_VALUE){
+							timeStamp = pAFrame->pkt_pts * av_q2d(_this->aStream->time_base);
+						}else if(pAFrame->pts!=AV_NOPTS_VALUE){
+							timeStamp = pAFrame->pts * av_q2d(_this->aStream->time_base) / 1000.0;
+						}else{
+							timeStamp = std::numeric_limits<F8>::infinity();
+						}
+						F8 timeDelta = timeStamp - lastAudioTimeStamp;
+
+						if(resetAudioTime==false){
+							if((timeDelta>0.0)&&(timeDelta<1.0)){
+								lastAudioTimeStamp = timeStamp;
+								lastAudioTimeDelta = timeDelta;
+							}else{
+								timeStamp = lastAudioTimeStamp+timeDelta;
+							}
+						}else{
+							resetAudioTime=false;
+							lastAudioTimeStamp = timeStamp;
+							lastAudioTimeDelta = timeDelta;
+						}
+
+						auto audioData = new Audio::AudioData(dataManager,decoded_data_size);
+						memcpy(audioData->getData(),pAFrame->data[0],decoded_data_size);
+
+						++audioFrameIndex;
+						auto audioFrame = new Audio::Frame(audioData,timeStamp,audioFrameIndex);
+						auto audioPacket = Thread::Queue::DataPacket(audioFrame,timeStamp);
+						
+						audioPipe.asendData(audioPacket);
+					}
+				}
+			}else{
+				closeFile(); //av_read_frame failed
+			}
+			av_free_packet(&packet);
+		}
+	}
+	done();
+}
+
+
+AML_FFMPEG_DLL_EXPORT bool FFMPEGmediaPlayerAgent::openFile(const std::string & fileName){
+	auto & pFormatCtx     = _this->formatCtx;
+	auto & pCodecCtx      = _this->codecCtx;
+	auto & pVStream       = _this->vStream;
+	auto & pAStream       = _this->aStream;
+	auto & videoStreamID  = _this->videoStreamID;
+	auto & hasVideoStream = _this->hasVideoStream;
+	auto & audioStreamID  = _this->audioStreamID;
+	auto & hasAudioStream = _this->hasAudioStream;
+	auto & aCodecCtx      = _this->aCodecCtx;
+	auto & aCodec         = _this->aCodec;
+	videoFrameIndex=0;
+	audioFrameIndex=0;
+	_this->formatCtx = avformat_alloc_context();
+
+	if(avformat_open_input(&pFormatCtx, fileName.c_str(), NULL, 0)!=0){return false;}
+  
+	if(avformat_find_stream_info(pFormatCtx,NULL)<0){return false;}
+  
+	// Find the first audio and video streams
+	videoStreamID=0;hasVideoStream=false;
+	audioStreamID=0;hasAudioStream=false;
+	for(unsigned int i=0; i<pFormatCtx->nb_streams; i++){
+		if((pFormatCtx->streams[i]->codec->codec_type==AVMEDIA_TYPE_VIDEO) && (hasVideoStream==false)) {
+			videoStreamID=i;
+			hasVideoStream=true;
+		}
+		if((pFormatCtx->streams[i]->codec->codec_type==AVMEDIA_TYPE_AUDIO) && (hasAudioStream==false)) {
+			audioStreamID=i;
+			hasAudioStream=true;
+		}
+	}
+	/*
+	I4 ret = av_find_best_stream(pCodecCtx, AVMEDIA_TYPE_VIDEO, -1, -1, &pFormatCtx, 0);
+	if (ret < 0) {
+		//TODO: ERROR: Cannot find a video stream in the input file
+		return false;
+	}
+	videoStreamID = ret;
+	//*/
+
+	if(hasVideoStream==true){
+		pVStream  = pFormatCtx->streams[videoStreamID];
+		pCodecCtx = pFormatCtx->streams[videoStreamID]->codec;
+  
+		_this->codec=avcodec_find_decoder(pCodecCtx->codec_id);
+		if(_this->codec==NULL) {
+			//TODO: ERROR: Unsupported codec
+			hasVideoStream=false;
+			return false;
+		}
+
+		if(avcodec_open2(pCodecCtx, _this->codec, NULL)<0){return false;}
+  
+		_this->frame=avcodec_alloc_frame();
+		if(_this->frame==NULL){return false;}
+  
+		_this->numBytes = avpicture_get_size(PIX_FMT_RGB24, pCodecCtx->width,pCodecCtx->height);
+		_this->buffer = (uint8_t *)av_malloc(_this->numBytes*sizeof(uint8_t));
+
+		I8u framesEstimate = 0;
+		if(pVStream->nb_frames!=0){
+			framesEstimate = pVStream->nb_frames;
+		}else{
+			framesEstimate = static_cast<I8u>(static_cast<F8>(pVStream->duration) * av_q2d(pVStream->time_base) * av_q2d(pVStream->r_frame_rate));
+		}
+
+		auto videoConfig = new Video::Config(framesEstimate);
+		auto videoPacket = Thread::Queue::DataPacket(videoConfig,0,0);
+		videoPipe.asendData(videoPacket);
+
+	}
+	if(hasAudioStream==true){
+		pAStream  = pFormatCtx->streams[audioStreamID];
+		aCodecCtx = pFormatCtx->streams[audioStreamID]->codec;
+
+		aCodec = avcodec_find_decoder(aCodecCtx->codec_id);
+		if(!aCodec) {
+			//TODO: ERROR: Unsupported codec
+			hasAudioStream=false;
+			return false;
+		}
+		avcodec_open(aCodecCtx, aCodec);
+
+		_this->aFrame=avcodec_alloc_frame();
+		if(_this->aFrame==NULL){return false;}
+
+		auto bps           = av_get_bytes_per_sample(aCodecCtx->sample_fmt);
+		auto channels      = aCodecCtx->channels;
+		auto sampleRate    = aCodecCtx->sample_rate;
+		//auto sampleFormat  = aCodecCtx->sample_fmt;
+		//auto channelLayout = aCodecCtx->channel_layout;
+
+		auto audioConfig = new Audio::Config(channels,sampleRate,bps);
+		auto audioPacket = Thread::Queue::DataPacket(audioConfig,0,0);
+		audioPipe.asendData(audioPacket);
+
+	}
+	dataManager->releaseFreeFromPool();
+	return true;
+}
+
+AML_FFMPEG_DLL_EXPORT void FFMPEGmediaPlayerAgent::closeFile(){
+	if(_this->buffer   !=nullptr){av_free(_this->buffer);                 _this->buffer    = nullptr;}
+	if(_this->frame    !=nullptr){av_free(_this->frame);                  _this->frame     = nullptr;}
+	if(_this->aFrame   !=nullptr){av_free(_this->aFrame);                 _this->aFrame    = nullptr;}
+	if(_this->codecCtx !=nullptr){avcodec_close(_this->codecCtx);         _this->codecCtx  = nullptr;}
+	if(_this->aCodecCtx!=nullptr){avcodec_close(_this->aCodecCtx);        _this->aCodecCtx = nullptr;}
+	if(_this->formatCtx!=nullptr){avformat_close_input(&_this->formatCtx);_this->formatCtx = nullptr;}
+	state = State::closed;
+	videoFrameIndex=0;
+	audioFrameIndex=0;
+	dataManager->releaseFreeFromPool();
+}
+
+}
