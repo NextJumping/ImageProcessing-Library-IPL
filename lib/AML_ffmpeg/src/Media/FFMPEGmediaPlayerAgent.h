@@ -57,4 +57,15 @@ class AML_FFMPEG_DLL_EXPORT FFMPEGmediaPlayerAgent : public Concurrency::agent {
 		B1 resetVideoTime;
 		B1 resetAudioTime;
 
-		Data::DataManager * const dat
+		Data::DataManager * const dataManager;
+
+		Concurrency::ISource<Media::Player::ControlPacket> & controlQueue;
+
+		I8u flushID;
+		Thread::Queue::Pipe & videoPipe;
+		Thread::Queue::Pipe & audioPipe;
+};
+	
+}
+
+#endif
