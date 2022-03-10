@@ -247,4 +247,20 @@ copy $(TargetPath) $(IPL)\export\$(Platform)-$(Configuration)\$(TargetFileName) 
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optim
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions);BUILD_DLL;AVL_BUILD</PreprocessorDefinitions>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <ShowIncludes>false</ShowIncludes>
+      <PreprocessToFile>false</PreprocessToFile>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependenci
