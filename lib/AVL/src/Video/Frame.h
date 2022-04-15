@@ -27,4 +27,17 @@ template<typename PixelType> class AVL_DLL_EXPORT Frame {
 			return tempImage;
 		}
 
-		const Image::Image<PixelType> * const & getI
+		const Image::Image<PixelType> * const & getImage() const {return image;}
+		const F8  & getTimeStamp()  const {return timeStamp ;}
+		const I8u & getFrameIndex() const {return frameIndex;}
+
+		void release(){if(image!=nullptr){delete image;image=nullptr;}}
+	private:
+		Image::Image<PixelType> * image;
+		F8  timeStamp;
+		I8u frameIndex;
+};
+
+}
+
+#endif 
