@@ -5,4 +5,12 @@
 	<Import Project="$(IPL)\lib\AIL_Qt\AIL_Qt.props" Condition=" '$(AIL_QT_PROPS)' == '' " />
 	<Import Project="$(IPL)\lib\AVL\AVL.props" Condition=" '$(AVL_PROPS)' == '' " />
 	<PropertyGroup Label="UserMacros">
-		<AVL_QT_PROPS>true</AVL
+		<AVL_QT_PROPS>true</AVL_QT_PROPS>
+	</PropertyGroup>
+	<ItemDefinitionGroup>
+		<ClCompile>
+			<AdditionalIncludeDirectories>$(IPL)/lib/AVL_Qt/src;$(QTDIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+		</ClCompile>
+	</ItemDefinitionGroup>
+	<ItemGroup />
+</Project>
