@@ -31,3 +31,5 @@ class AVL_QT_DLL_EXPORT Widget : public QWidget {
 };
 
 }
+
+#endif 
