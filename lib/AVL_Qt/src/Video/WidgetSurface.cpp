@@ -50,4 +50,22 @@ void AVL_QT_DLL_EXPORT WidgetSurface::updateVideoRect(){
 	QSize videoSize  = surfaceFormat().sizeHint();
 	QSize widgetSize = widget->size();
 
-	QSize targetSize = videoS
+	QSize targetSize = videoSize;
+	targetSize.scale(widgetSize, Qt::KeepAspectRatio);
+
+	targetRect = QRect(QPoint(0, 0), targetSize);
+	targetRect.moveCenter(widget->rect().center());
+}
+
+bool AVL_QT_DLL_EXPORT WidgetSurface::present(const QVideoFrame & frame){
+	return false;
+}
+void AVL_QT_DLL_EXPORT WidgetSurface::config(const I8u & durationFrames){
+	emit durationFramesChanged(durationFrames);
+}
+void AVL_QT_DLL_EXPORT WidgetSurface::renderFrame(Image::Image<Pixel::PixelRGBi1u> * frame,const I8u & frameIndex){
+	if(currentFrame!=nullptr){delete currentFrame;}
+	currentFrame = frame;
+	currentQFrame = QImage(static_cast<uchar*>(static_cast<void*>(currentFrame->getDataPtr())),currentFrame->getWidth(),currentFrame->getHeight(),currentFrame->getWidth()*3,QImage::Format_RGB888);
+	if (imageSize != frame->getSize()) {
+		if(start(QVi
