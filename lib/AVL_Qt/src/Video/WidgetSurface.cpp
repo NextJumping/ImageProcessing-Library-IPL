@@ -68,4 +68,31 @@ void AVL_QT_DLL_EXPORT WidgetSurface::renderFrame(Image::Image<Pixel::PixelRGBi1
 	currentFrame = frame;
 	currentQFrame = QImage(static_cast<uchar*>(static_cast<void*>(currentFrame->getDataPtr())),currentFrame->getWidth(),currentFrame->getHeight(),currentFrame->getWidth()*3,QImage::Format_RGB888);
 	if (imageSize != frame->getSize()) {
-		if(start(QVi
+		if(start(QVideoSurfaceFormat(QSize(frame->getWidth(),frame->getHeight()), QVideoFrame::pixelFormatFromImageFormat(QImage::Format_RGB888)))==false){
+			//TODO: ERROR
+			return;
+		}
+		widget->repaint();
+	}else{
+		widget->repaint(targetRect);
+	}
+	emit frameChanged(frameIndex);
+}
+
+void AVL_QT_DLL_EXPORT WidgetSurface::paint(QPainter *painter){
+	painter->setRenderHint(QPainter::SmoothPixmapTransform);
+	painter->drawImage(targetRect, currentQFrame, sourceRect);
+}
+
+void AVL_QT_DLL_EXPORT WidgetSurface::stop(){
+	if(currentFrame!=nullptr){delete currentFrame;currentFrame = nullptr;}
+	currentQFrame = QImage(0,0,QImage::Format_RGB888);
+	targetRect = QRect();
+	imageSize = Image::ImageSize(0,0);
+
+	QAbstractVideoSurface::stop();
+
+	widget->update();
+}
+
+}
