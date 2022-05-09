@@ -13,4 +13,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AVL_ffmpeg.h" />
-    <ClInclude Include="src\Video\F
+    <ClInclude Include="src\Video\FFMPEGvideoFile.h">
+      <Filter>Video\Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Video\FFMPEGvideoFile.cpp">
+      <Filter>Video\Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
