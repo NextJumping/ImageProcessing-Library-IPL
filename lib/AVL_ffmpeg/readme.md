@@ -18,4 +18,12 @@ Image::Image<Pixel::PixelRGBi1u> * image = nullptr;
 while(ffmpegFile.hasNextFrame(image)==true) {  
 	//Use (*image) ...  
 }  
-if(im
+if(image!=nullptr){delete image;}  
+ ------------
+
+## Example Program
+See ./exe/FrameDump  
+
+## Dependencies
+
+./lib/AIL  
